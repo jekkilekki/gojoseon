@@ -50,7 +50,10 @@ function gojoseon_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'gojoseon' ),
+		'top'       => __( 'Top Menu', 'gojoseon' ),
+                'primary'   => __( 'Primary Menu', 'gojoseon' ),
+                'quick'     => __( 'Quick Menu', 'gojoseon' ),
+                'footer'    => __( 'Footer Menu', 'gojoseon' ),
 	) );
 
 	/*
@@ -101,20 +104,6 @@ add_action( 'widgets_init', 'gojoseon_widgets_init' );
  */
 function gojoseon_scripts() {
 	wp_enqueue_style( 'gojoseon-style', get_stylesheet_uri() );
-
-        /* Add Foundation 5.5 CSS */
-        wp_enqueue_style( 'foundation-normalize', get_stylesheet_directory_uri() . '/foundation/css/normalize.css' );   // Underscores has its own normalize.css, so this is layered on top
-        wp_enqueue_style( 'foundation', get_stylesheet_directory_uri() . '/foundation/css/foundation.css' );            // This is the Foundation CSS
-        
-        /* Add Custom CSS */
-        wp_enqueue_style( 'gojoseon-custom-style', get_stylesheet_directory_uri() . '/custom.css', array(), '1' );
-        
-        /* Add Founcation JS */
-        wp_enqueue_script( 'foundation-js', get_template_directory_uri() . '/foundation/js/foundation.min.js', array( 'jquery' ), '1', true );
-        wp_enqueue_script( 'foundation-modernizr-js', get_template_directory_uri() . '/foundation/js/modernizr.js', array( 'jquery' ), '1', true );     // This specifically enqueues modernizr.js which had been unenqueued when doing this using Foundation 5.2
-        
-        /* Foundation Init JS */
-        wp_enqueue_script( 'foundation-init-js', get_template_directory_uri() . '/foundation.js', array( 'jquery' ), '1', true );   // Small (author) customized JS script to start the Foundation library, sitting freely in the Theme folder
         
 	wp_enqueue_script( 'gojoseon-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
@@ -125,6 +114,41 @@ function gojoseon_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'gojoseon_scripts' );
+
+/**
+ * Enqueue Foundation scripts and styles.
+*/
+function gojoseon_foundation_enqueue() {
+    
+        /* Add Foundation 5.5 CSS */
+        wp_enqueue_style( 'foundation-normalize', get_stylesheet_directory_uri() . '/foundation/css/normalize.css' );   // Underscores has its own normalize.css, so this is layered on top
+        wp_enqueue_style( 'foundation', get_stylesheet_directory_uri() . '/foundation/css/foundation.css', array(), 'all' );            // This is the Foundation CSS
+        
+        /* Add Custom CSS */
+        wp_enqueue_style( 'gojoseon-custom-style', get_stylesheet_directory_uri() . '/gojoseon.css' );
+        
+        /* Add Foundation JS */
+        wp_enqueue_script( 'foundation-js', get_template_directory_uri() . '/foundation/js/foundation.min.js', array( 'jquery' ), true );
+        wp_enqueue_script( 'foundation-modernizr-js', get_template_directory_uri() . '/foundation/js/vendor/modernizr.js', array( 'jquery' ), true );     // This specifically enqueues modernizr.js which had been unenqueued when doing this using Foundation 5.2
+        
+        /* Foundation Init JS */
+        wp_enqueue_script( 'foundation-init-js', get_template_directory_uri() . '/foundation.js', array( 'jquery' ), true );   // Small (author) customized JS script to start the Foundation library, sitting freely in the Theme folder
+        
+}
+add_action( 'wp_enqueue_scripts', 'gojoseon_foundation_enqueue' );
+
+/**
+ * Modify Underscores nav menus to work with Foundation
+ */
+function gojoseon_nav_menu( $menu ) {
+    
+    $menu = str_replace( 'menu-item-has-children', 'menu-item-has-children has-dropdown', $menu );
+    $menu = str_replace( 'sub-menu', 'sub-menu dropdown', $menu );
+    return $menu;
+    
+}
+add_filter( 'wp_nav_menu', 'gojoseon_nav_menu' );
+
 
 /**
  * Implement the Custom Header feature.

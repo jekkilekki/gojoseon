@@ -1,3 +1,7 @@
-jQuery(document).ready(function($) {
-   $(document).foundation();
+/*jslint browser: true*/
+/*global $, jQuery*/
+ 
+jQuery(document).ready(function ($) {
+  'use strict';
+	$(document).foundation();
 });

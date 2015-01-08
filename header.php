@@ -22,15 +22,28 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- #site-navigation -->
+            
+            <div class="row">
+                
+                <div class="large-2 columns"><!-- Logo space + site branding -->
+                    <div class="site-branding">
+                            <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                            <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                    </div><!-- .site-branding -->
+                </div><!-- #large-2 -->
+                
+                <div class="large-8 columns"><!-- Possible ad space or additional menu -->
+                    
+                </div><!-- #large-8 -->
+                
+                <div class="large-2 columns"><!-- Menu bar over sidebar -->
+                    <nav id="site-navigation" class="main-navigation" role="navigation">
+                            <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
+                            <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
+                    </nav><!-- #site-navigation -->
+                </div><!-- #large-2 -->
+                
+            </div><!-- #row -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

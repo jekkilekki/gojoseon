@@ -1,0 +1,17 @@
+#masthead { /* Header */
+    background: #7EB0EA; 
+}
+#primary { /* Main content area */
+    background: #F5C98C;
+}
+#secondary { /* Widget area / sidebar */
+    background: #B2E78B;
+}
+#colophon { /* Footer (technically a footer in a book - with technical/print data) */
+    background: #F2B0B4;
+}
+
+/* Change the default width of the Foundation rows */
+.row {
+    max-width: 100em;
+}
