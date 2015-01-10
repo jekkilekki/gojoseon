@@ -15,6 +15,21 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
+
+<?php
+/**
+ * Customizer Color options
+ */
+    $content_text_color = get_option( 'content_text_color' );
+    $content_link_color = get_option( 'content_link_color' );
+    $sidebar_position = get_theme_mod( 'sidebar_position' );
+?>
+<style>
+    body { color: <?php echo $content_text_color; ?>; }
+    a { color: <?php echo $content_link_color; ?>; }
+    .sidebar { float: <?php echo $sidebar_position; ?>; }
+</style>
+
 </head>
 
 <body <?php body_class(); ?>>

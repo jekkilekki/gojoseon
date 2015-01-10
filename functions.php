@@ -46,7 +46,7 @@ function gojoseon_setup() {
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -153,7 +153,7 @@ add_filter( 'wp_nav_menu', 'gojoseon_nav_menu' );
 /**
  * Implement the Custom Header feature.
  */
-//require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -174,3 +174,106 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+/**
+ * -----------------------------------------------------------------------------
+ * My custom functions below
+ * -----------------------------------------------------------------------------
+ */
+
+/**
+ * Enable Theme Customizer
+ * @link: http://www.smashingmagazine.com/2013/03/05/the-wordpress-theme-customizer-a-developers-guide/ Good help
+ */
+function gojoseon_theme_customizer( $wp_customize ) {
+    
+    // Add all sections, settings, and controls here
+    
+    /*
+     * Colors
+     */
+    $colors = array();
+    $colors[] = array(
+        'slug'      => 'content_text_color',
+        'default'   => '#333',
+        'label'     => __( 'Content Text Color', 'gojoseon' )
+    );
+    $colors[] = array(
+        'slug'      => 'content_link_color',
+        'default'   => '#cd7f32', 
+        'label'     => __( 'Link Color', 'gojoseon' )
+    );
+    foreach( $colors as $color ) {
+        
+        // SETTINGS
+        $wp_customize->add_setting(
+                $color[ 'slug' ], array(
+                    'default'       => $color[ 'default' ],
+                    'type'          => 'option',
+                    'capability'    => 'edit_theme_options'
+                )
+        );
+        
+        // CONTROLS
+        $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                        $wp_customize,
+                        $color[ 'slug' ],
+                        array(
+                            'label'     => $color[ 'label' ],
+                            'section'   => 'colors',
+                            'settings'  => $color[ 'slug' ]
+                        )
+                )
+        );
+    }
+    
+    /**
+     * Fonts
+     * TODO: Finish adding this Google Font Dropdown picker
+     * @link: https://github.com/BFTrick/wp-google-font-picker-control seems easy
+     * @link: http://www.dezzain.com/wordpress-tutorials/how-to-add-google-web-fonts-with-font-preview-in-wordpress-without-plugins/
+     * @link: http://www.paulund.co.uk/custom-wordpress-controls very comprehensive but uses classes
+     */
+    $standard_fonts = array();
+    $google_fonts = array();
+    
+    $standard_fonts[] = array(
+        'serif' => array(
+            'label' => _x( 'Serif fonts', 'font style', 'gather' ),
+            'stack' => 'Georgia, Times, "Times New Roman", serif'
+        ),
+        'sans-serif' => array(
+            'label' => _x( 'Sans Serif fonts', 'font style', 'gather' ),
+            'stack' => '"Helvetica Neue", Helvetica, Arial, sans-serif'
+        ),
+        'monospace' => array(
+            'label' => _x( 'Monospaced fonts', 'font style', 'gather' ),
+            'stack' => 'Monaco, "Lucida Sans Typewriter", "Lucida Typewriter", "Courier New", Courier, monospace'
+        )
+    );
+    
+    /**
+     * Layout
+     * TODO: Make the style code in header.php actually move the sidebar position
+     * TODO: Also, make the menu and inset static on the left-hand side of the screen
+     * TODO: Also, CREATE the fixed "Quick Access" menu
+     */
+    $wp_customize->add_setting( 'sidebar_position', array() );
+    $wp_customize->add_control( 'sidebar_position', array(
+        'label'     => __( 'Sidebar Position', 'gojoseon' ),
+        'section'   => 'layout',
+        'settings'  => 'sidebar_position',
+        'type'      => 'radio',
+        'choices'   => array(
+            'left'      => 'left',
+            'right'     => 'right',
+        ),
+    ));
+    $wp_customize->add_section( 'layout', array(
+        'title'     => __( 'Layout', 'gojoseon' ),
+        'priority'  => 30,
+    ));
+}
+add_action( 'customize_register', 'gojoseon_theme_customizer' );
