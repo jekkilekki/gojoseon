@@ -23,11 +23,14 @@
     $content_text_color = get_option( 'content_text_color' );
     $content_link_color = get_option( 'content_link_color' );
     $sidebar_position = get_theme_mod( 'sidebar_position' );
+    $content_font = get_theme_mod( 'content_font' );
+    $header_font = get_theme_mod( 'header_font' );
 ?>
 <style>
-    body { color: <?php echo $content_text_color; ?>; }
+    body { color: <?php echo $content_text_color; ?>; font-family: "<?php echo $content_font; ?>"; }
+    h1, h2, h3, h4, h5, h6 { font-family: "<?php echo $header_font; ?>"; }
     a { color: <?php echo $content_link_color; ?>; }
-    .sidebar { float: <?php echo $sidebar_position; ?>; }
+    #secondary { float: <?php echo $sidebar_position; ?>; }
 </style>
 
 </head>
@@ -40,23 +43,33 @@
             
             <div class="row">
                 
-                <div class="large-2 columns"><!-- Logo space + site branding -->
-                    <div class="site-branding">
+                <!-- Site branding -->
+                <div class="site-branding large-2 columns">
+                    <?php if ( get_theme_mod( 'logo_image' ) ) : ?>
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="site-logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+
+                            <img src="<?php echo get_theme_mod( 'logo_image' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+
+                        </a>
+
+                    <?php else : ?>
+                        <hgroup>
                             <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
                             <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-                    </div><!-- .site-branding -->
-                </div><!-- #large-2 -->
+                        </hgroup>
+
+                    <?php endif; ?>
+                </div><!-- .site-branding -->
                 
                 <div class="large-8 columns"><!-- Possible ad space or additional menu -->
                     
                 </div><!-- #large-8 -->
                 
-                <div class="large-2 columns"><!-- Menu bar over sidebar -->
-                    <nav id="site-navigation" class="main-navigation" role="navigation">
+                <!-- Menu bar over sidebar -->
+                    <nav id="top-navigation" class="main-navigation large-2 columns" role="navigation">
                             <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
                             <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
-                    </nav><!-- #site-navigation -->
-                </div><!-- #large-2 -->
+                    </nav><!-- #top-navigation -->
                 
             </div><!-- #row -->
 	</header><!-- #masthead -->

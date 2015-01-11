@@ -15,3 +15,25 @@
 .row {
     max-width: 100em;
 }
+
+body {
+    color: #333;
+}
+a {
+    color: #cd7f32;
+}
+
+#top-navigation {
+    
+}
+#footer-navigation {
+    
+}
+#quick-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    width: 50px;
+    height: 100%;
+}
