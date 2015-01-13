@@ -25,6 +25,7 @@
     $sidebar_position = get_theme_mod( 'sidebar_position' );
     $content_font = get_theme_mod( 'content_font' );
     $header_font = get_theme_mod( 'header_font' );
+    
 ?>
 <style>
     body { color: <?php echo $content_text_color; ?>; font-family: "<?php echo $content_font; ?>"; }

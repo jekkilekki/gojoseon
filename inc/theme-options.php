@@ -140,6 +140,9 @@ function gojoseon_theme_customizer( $wp_customize ) {
     
     /**
      * Logo Image
+     * 
+     * @link: http://scottbolinger.com/add-a-custom-logo-uploader-to-the-wordpress-theme-customizer/
+     * @link: http://kwight.ca/2012/12/02/adding-a-logo-uploader-to-your-wordpress-site-with-the-theme-customizer/
      */
     $wp_customize->add_setting( 'logo_image' );
     $wp_customize->add_control(
@@ -157,18 +160,26 @@ function gojoseon_theme_customizer( $wp_customize ) {
     /**
      * Layout
      * TODO: Make the style code in header.php actually move the sidebar position
-     * TODO: Also, make the menu and inset static on the left-hand side of the screen
-     * TODO: Also, CREATE the fixed "Quick Access" menu
+     * TODO: Also, make the quick menu fixed and layout left/right chooseable too
+     * 
+     * @link: http://www.wpexplorer.com/interacting-with-wordpress-theme-customizer/
+     * @link: http://wptricks.co.uk/create-a-better-options-page-with-the-theme-customizer/#three
+     * 
+     * PROBLEM: If following tutorials above, there's a problem with the 'body_class' filter
      */
-    $wp_customize->add_setting( 'sidebar_position', array() );
+    $wp_customize->add_setting( 'sidebar_position', array(
+        'default'   => 'right',
+        'type'      => 'theme_mod',
+    ));
     $wp_customize->add_control( 'sidebar_position', array(
         'label'     => __( 'Sidebar Position', 'gojoseon' ),
         'section'   => 'layout',
         'settings'  => 'sidebar_position',
         'type'      => 'radio',
         'choices'   => array(
-            'left'      => 'Left',
-            'right'     => 'Right',
+            'sidebar-right'     => 'Right',
+            'sidebar-left'      => 'Left',
+            'sidebar-none'      => 'None',
         ),
     ));
     $wp_customize->add_section( 'layout', array(
@@ -177,4 +188,3 @@ function gojoseon_theme_customizer( $wp_customize ) {
     ));
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );
-

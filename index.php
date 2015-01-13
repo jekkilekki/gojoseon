@@ -13,17 +13,20 @@
 
 get_header(); ?>
 
+<!-- Quick Menu -->
+<div id="quick-menu"></div>
+
 <div class="row" data-equalizer>
     
     <!-- Primary Menu -->  
-    <nav id="site-navigation" class="main-navigation large-2 columns" role="navigation" data-equalizer-watch>
+    <nav id="side-nav" class="navigation large-2 columns" role="navigation" data-equalizer-watch>
         <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
         <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
     </nav><!-- #site-navigation -->
  
-    
+    <div id="content" class="large-10 columns" data-equalizer-watch>
     <!-- Main Content Area -->    
-    <div id="primary" class="content-area large-8 medium-7 columns" data-equalizer-watch>
+    <div id="primary" class="content-area large-9 medium-7 columns" data-equalizer-watch>
             <main id="main" class="site-main" role="main">
 
             <?php if ( have_posts() ) : ?>
@@ -57,9 +60,11 @@ get_header(); ?>
 
             </main><!-- #main -->
     </div><!-- #primary -->
-    
+       
     <!-- Widget Sidebar -->
-    <?php get_sidebar(); ?>    
+    <?php get_sidebar(); ?> 
+    
+    </div><!-- #content -->
 </div><!-- #row -->
     
 <div class="row">   
