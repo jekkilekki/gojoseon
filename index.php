@@ -11,10 +11,11 @@
  * @package Gojoseon
  */
 
-get_header(); ?>
+get_header(); 
 
-<!-- Quick Menu -->
-<div id="quick-menu"></div>
+/* Quick Menu */
+get_template_part( 'quick-menu' );
+?>
 
 <div class="row" data-equalizer>
     
