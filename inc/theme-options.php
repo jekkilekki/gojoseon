@@ -17,15 +17,22 @@ function gojoseon_theme_customizer( $wp_customize ) {
      * @link: https://github.com/BFTrick/wp-google-font-picker-control seems easy
      * @link: http://www.dezzain.com/wordpress-tutorials/how-to-add-google-web-fonts-with-font-preview-in-wordpress-without-plugins/
      * @link: http://www.paulund.co.uk/custom-wordpress-controls very comprehensive but uses classes
+     * 
+     * @link: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/ Font array
      */
     $standard_fonts = array();
     $google_fonts = array();
     
     $standard_fonts[] = array(
-        'serif' => array(
-            'label' => _x( 'Serif fonts', 'font style', 'gather' ),
+        'Arial, sans-serif'     => 'Arial',
+        '"Avant Garde", sans-serif' => 'Avant Garde',
+        'Cambria, Georgia, serif'   => 'Cambria',
+        'Copse, sans-serif'         => 'Copse',
+        'Garamond, "Hoefler Text", "Times New Roman", Times, serif' => 'Garamond', 
+        'Georgia, serif'            => 'Georgia',
+        '"Helvetica Neue", Helvetica, sans-serif'   => 'Helvetica Neue', 
+        'Tahoma, Geneva, sans-serif'    => 'Tahoma'
             'stack' => 'Georgia, Times, "Times New Roman", serif'
-        ),
         'sans-serif' => array(
             'label' => _x( 'Sans Serif fonts', 'font style', 'gather' ),
             'stack' => '"Helvetica Neue", Helvetica, Arial, sans-serif'
