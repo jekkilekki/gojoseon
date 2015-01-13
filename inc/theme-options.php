@@ -31,8 +31,8 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'Garamond, "Hoefler Text", "Times New Roman", Times, serif' => 'Garamond', 
         'Georgia, serif'            => 'Georgia',
         '"Helvetica Neue", Helvetica, sans-serif'   => 'Helvetica Neue', 
-        'Tahoma, Geneva, sans-serif'    => 'Tahoma'
-            'stack' => 'Georgia, Times, "Times New Roman", serif'
+        'Tahoma, Geneva, sans-serif'    => 'Tahoma',
+            'stack' => 'Georgia, Times, "Times New Roman", serif',
         'sans-serif' => array(
             'label' => _x( 'Sans Serif fonts', 'font style', 'gather' ),
             'stack' => '"Helvetica Neue", Helvetica, Arial, sans-serif'
@@ -157,9 +157,10 @@ function gojoseon_theme_customizer( $wp_customize ) {
                     $wp_customize,
                     'logo_image',
                     array(
-                        'label'     => __( 'Upload Logo (replaces text)', 'gojoseon' ),
-                        'section'   => 'title_tagline',
-                        'settings'  => 'logo_image',
+                        'label'         => __( 'Upload Logo', 'gojoseon' ),
+                        'description'   => __( 'Replaces site title and tagline.', 'gojoseon' ),
+                        'section'       => 'title_tagline',
+                        'settings'      => 'logo_image',
                     )
             )
     );
@@ -184,14 +185,30 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'settings'  => 'sidebar_position',
         'type'      => 'radio',
         'choices'   => array(
-            'sidebar-right'     => 'Right',
-            'sidebar-left'      => 'Left',
-            'sidebar-none'      => 'None',
+            'right'     => 'Right',
+            'left'      => 'Left',
+            'none'      => 'None',
         ),
     ));
     $wp_customize->add_section( 'layout', array(
         'title'     => __( 'Layout', 'gojoseon' ),
         'priority'  => 50,
+    ));
+    
+    $wp_customize->add_setting( 'quickmenu_position', array(
+        'default'   => 'left',
+        'type'      => 'theme_mod',
+    ));
+    $wp_customize->add_control( 'quickmenu_position', array(
+        'label'     => __( 'Quickmenu Position', 'gojoseon' ),
+        'section'   => 'layout',
+        'settings'  => 'quickmenu_position',
+        'type'      => 'radio',
+        'choices'   => array(
+            'left'      => 'Left',
+            'right'     => 'Right',
+            'none'      => 'None',
+        ),
     ));
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );

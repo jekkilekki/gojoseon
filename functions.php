@@ -123,6 +123,11 @@ add_action( 'wp_enqueue_scripts', 'gojoseon_scripts' );
 
 /**
  * Enqueue Foundation scripts and styles.
+ * 
+ * @link: http://wordpress.tv/2014/06/11/steve-zehngut-build-a-wordpress-theme-with-foundation-and-underscores/
+ * @link: http://wordpress.tv/2014/03/31/steve-zehngut-theme-development-with-foundation-framework/
+ * @link: http://www.justinfriebel.com/wordpress-underscores-with-the-foundation-framework-116/
+ * 
 */
 function gojoseon_foundation_enqueue() {
     

@@ -11,11 +11,7 @@
  * @package Gojoseon
  */
 
-get_header(); 
-
-/* Quick Menu */
-get_template_part( 'quick-menu' );
-?>
+get_header(); ?>
 
 <div class="row" data-equalizer>
     

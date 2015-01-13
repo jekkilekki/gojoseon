@@ -18,11 +18,28 @@
 
 <?php
 /**
- * Customizer Color options
+ * Customizer options
  */
     $content_text_color = get_option( 'content_text_color' );
     $content_link_color = get_option( 'content_link_color' );
     $sidebar_position = get_theme_mod( 'sidebar_position' );
+    $sidebar_display = 'block';
+    if ( $sidebar_position == 'none' ) {
+        $sidebar_display = 'none';
+    } else if ( $sidebar_position == 'left' ) {
+        $content_position = 'right';
+    } else {
+        $content_position = 'left';
+    }
+    $quickmenu_position = get_theme_mod( 'quickmenu_position' );
+    if ( $quickmenu_position == 'none' ) {
+        $quickmenu = false;
+        $quickmenu_padding = '0px';
+    } else {
+        $quickmenu = true;
+        $quickmenu_padding = '50px';
+    }
+    
     $content_font = get_theme_mod( 'content_font' );
     $header_font = get_theme_mod( 'header_font' );
     
@@ -31,12 +48,20 @@
     body { color: <?php echo $content_text_color; ?>; font-family: "<?php echo $content_font; ?>"; }
     h1, h2, h3, h4, h5, h6 { font-family: "<?php echo $header_font; ?>"; }
     a { color: <?php echo $content_link_color; ?>; }
-    #secondary { float: <?php echo $sidebar_position; ?>; }
+    #primary { float: <?php echo $content_position; ?>; }
+    #secondary { display: <?php echo $sidebar_display; ?>; }
+    #quickmenu { <?php echo $quickmenu_position; ?>: 0; }
+    .row { padding-<?php echo $quickmenu_position; ?>: <?php echo $quickmenu_padding; ?>; } // Give extra padding for the Quickmenu
 </style>
 
 </head>
 
 <body <?php body_class(); ?>>
+
+<?php if ( $quickmenu ) {
+    get_template_part( 'quickmenu' );
+} ?>
+    
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
 
