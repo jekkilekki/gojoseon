@@ -20,43 +20,51 @@ function gojoseon_theme_customizer( $wp_customize ) {
      * 
      * @link: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/ Font array
      */
-    $standard_fonts = array();
+    $system_fonts = array();
     $google_fonts = array();
+    $typography = array();
     
-    $standard_fonts[] = array(
-        'Arial, sans-serif'     => 'Arial',
-        '"Avant Garde", sans-serif' => 'Avant Garde',
-        'Cambria, Georgia, serif'   => 'Cambria',
-        'Copse, sans-serif'         => 'Copse',
+    $system_fonts = array(
+        'Arial, sans-serif'                     => 'Arial',
+        '"Avant Garde", sans-serif'             => 'Avant Garde',
+        'Cambria, Georgia, serif'               => 'Cambria',
+        '"Courier New", Courier, monospace'     => 'Courier New',
         'Garamond, "Hoefler Text", "Times New Roman", Times, serif' => 'Garamond', 
-        'Georgia, serif'            => 'Georgia',
-        '"Helvetica Neue", Helvetica, sans-serif'   => 'Helvetica Neue', 
-        'Tahoma, Geneva, sans-serif'    => 'Tahoma',
-            'stack' => 'Georgia, Times, "Times New Roman", serif',
-        'sans-serif' => array(
-            'label' => _x( 'Sans Serif fonts', 'font style', 'gather' ),
-            'stack' => '"Helvetica Neue", Helvetica, Arial, sans-serif'
-        ),
-        'monospace' => array(
-            'label' => _x( 'Monospaced fonts', 'font style', 'gather' ),
-            'stack' => 'Monaco, "Lucida Sans Typewriter", "Lucida Typewriter", "Courier New", Courier, monospace'
-        )
+        'Georgia, serif'                        => 'Georgia',
+        '"Helvetica Neue", Helvetica, sans-serif'   => 'Helvetica Neue',
+        '"Lucida Sans Typewriter", monospace'   => 'Lucida Sans Typewriter',
+        '"Lucida Typewriter", monospace'        => 'Lucida Typewriter',
+        'Monaco, monospace'                     => 'Monaco',
+        'Tahoma, Geneva, sans-serif'            => 'Tahoma',
+        '"Times New Roman", Times, serif'       => 'Times',
     );
     
-    $google_fonts[] = array(
-        'serif' => array(
-            'label' => _x( 'Serif fonts', 'font style', 'gather' ),
-            'stack' => '"Roboto Slab", "PT Serif", Merriweather'
-        ),
-        'sans-serif' => array(
-            'label' => _x( 'Sans Serif fonts', 'font style', 'gather' ),
-            'stack' => 'Roboto, "Roboto Condensed", "Open Sans", "PT Sans", Lato, Raleway'
-        ),
-        'monospace' => array(
-            'label' => _x( 'Monospaced fonts', 'font style', 'gather' ),
-            'stack' => ''
-        )
+    $google_fonts = array(
+        'Arvo, serif'                           => 'Arvo',
+        'Copse, sans-serif'                     => 'Copse',
+        '"Droid Sans", sans-serif'              => 'Droid Sans',
+        '"Droid Serif", serif'                  => 'Droid Serif',
+        'Lato, sans-serif'                      => 'Lato',
+        'Lobster, cursive'                      => 'Lobster',
+        'Merriweather, serif'                   => 'Merriweather',
+        'Nobile, sans-serif'                    => 'Nobile',
+        '"Open Sans", sans-serif'               => 'Open Sans',
+        'Oswald, sans-serif'                    => 'Oswald',
+        'Pacifico, cursive'                     => 'Pacifico',
+        'Roboto, sans-serif'                    => 'Roboto',
+        '"Roboto Condensed", sans-serif'        => 'Roboto Condensed',
+        '"Roboto Slab", serif'                  => 'Roboto Slab',
+        '"PT Sans", sans-serif'                 => 'PT Sans',
+        '"PT Serif", serif'                     => 'PT Serif',
+        'Quattrocento, serif'                   => 'Quattrocento',
+        'Raleway, cursive'                      => 'Raleway',
+        'Rokkitt, serif'                        => 'Rokkit',
+        'Ubuntu, sans-serif'                    => 'Ubuntu',
+        '"Yanone Kaffeesatz", sans-serif'       => 'Yanone Kaffeesatz',
     );
+    
+    $typography = array_merge( $system_fonts, $google_fonts );
+    asort( $typography );
     
     $fonts = array();
     $fonts[] = array(
@@ -88,15 +96,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
                     'label'     => $font[ 'label' ],
                     'section'   => 'fonts',
                     'type'      => 'select',
-                    'choices'   => array(
-                        'Roboto'                => 'Roboto',
-                        'Roboto Condensed'      => 'Roboto Condensed',
-                        'Roboto Slab'           => 'Roboto Slab',
-                        'PT Sans'               => 'PT Sans',
-                        'PT Serif'              => 'PT Serif',
-                        'Open Sans'             => 'Open Sans',
-                        'Merriweather'          => 'Merriweather'
-                    )
+                    'choices'   => $typography,
                 )
         );
         

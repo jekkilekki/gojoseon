@@ -45,8 +45,8 @@
     
 ?>
 <style>
-    body { color: <?php echo $content_text_color; ?>; font-family: "<?php echo $content_font; ?>"; }
-    h1, h2, h3, h4, h5, h6 { font-family: "<?php echo $header_font; ?>"; }
+    body { color: <?php echo $content_text_color; ?>; font-family: <?php echo $content_font; ?>; }
+    h1, h2, h3, h4, h5, h6 { font-family: <?php echo $header_font; ?>; }
     a { color: <?php echo $content_link_color; ?>; }
     #primary { float: <?php echo $content_position; ?>; }
     #secondary { display: <?php echo $sidebar_display; ?>; }
