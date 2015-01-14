@@ -210,5 +210,157 @@ function gojoseon_theme_customizer( $wp_customize ) {
             'none'      => 'None',
         ),
     ));
+    
+    /**
+     * Select Categories for the Home Page
+     * 
+     * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
+     */
+    
+    /**
+     * Social site icons for Quick Menu bar
+     */
+    $wp_customize->add_section( 'social_settings', array(
+        'title'     => __( 'Social Media Icons', 'gojoseon' ),
+        'priority'  => 100,
+    ));
+    
+    $social_sites = gojoseon_get_social_sites();
+    $priority = 5;
+    
+    foreach( $social_sites as $social_site ) {
+        
+        $wp_customize->add_setting( "$social_site", array(
+            'type'              => 'theme_mod',
+            'capability'        => 'edit_theme_options',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        
+        $wp_customize->add_control( $social_site, array(
+            'label'             => __( "$social_site url:", 'social_icon' ),
+            'section'           => 'social_settings',
+            'type'              => 'text',
+            'priority'          => $priority,
+        ));
+        
+        $priority += 5;
+    }
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );
+
+/**
+ * Custom functions to store and enqueue Google Fonts
+ * 
+ * @link: http://www.slidedeck.com/blog/tutorial-how-to-integrate-custom-google-fonts-into-slidedeck-2-for-wordpress/
+ * 
+ * 
+ */
+function gojoseon_get_system_fonts() {
+    
+}
+
+function gojoseon_get_google_fonts() {
+    
+}
+
+// Check font options to see if a Google font is selected.
+// If so, gojoseon_enqueue_google_fonts() is called to enqueue the font.
+// Ensures that each Google font is only enqueued once.
+// @link: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/
+if ( !function_exists( 'gojoseon_google_fonts' ) ) {
+    function gojoseon_google_fonts() {
+        
+        $all_google_fonts = array_keys( gojoseon_get_google_fonts() );
+        
+        // Define all the options that possibly have a unique Google font
+        // ...
+        
+        // Get the font face for each option and put it in an array 
+        // ...
+        
+        // Remove any duplicates in the list
+        // ...
+        
+        // Check each of the unique fonts against the defined Google fonts
+        // If it is a Google font, go ahead and call the function to enqueue it
+        foreach ( $selected_fonts as $selected_font ) {
+            if ( in_array( $font, $all_google_fonts ) ) {
+                gojoseon_enqueue_google_fonts( $font );
+            }
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'gojoseon_google_fonts' );
+
+// Enqueues the Google $font that is passed
+function gojoseon_enqueue_google_fonts( $font ) {
+    $font = explode( ',', $font );
+    $font = $font[0];
+    
+    // Certain Google fonts need slight tweaks in order to load properly like Raleway
+    if ( $font == 'Raleway' )
+        $font = 'Raleway:100';
+    
+    $font = str_replace( " ", "+", $font );
+    
+    wp_enqueue_style( "gojoseon_typography_$font", "http://fonts.googleapis.com/css?family=$font", false, null, 'all' );
+}
+
+/**
+ * Custom functions to store and output social media icons
+ * 
+ * @return array
+ * 
+ * @link: https://www.competethemes.com/social-icons-wordpress-menu-theme-customizer/
+ */
+function gojoseon_get_social_sites() {
+    
+    // Store social site names in array
+    $social_sites = array(
+        'twitter', 
+        'facebook', 
+        'google-plus',
+        'flickr',
+        'pinterest', 
+        'youtube',
+        'vimeo',
+        'tumblr',
+        'dribbble',
+        'rss',
+        'linkedin',
+        'instagram',
+        'email'
+    );
+    return $social_sites;
+}
+
+// Get user input from the Customizer and output the linked social media icons
+function gojoseon_show_social_icons() {
+    
+    $social_sites = gojoseon_get_social_sites();
+    
+    // Any inputs that aren't empty are stored in $active_sites array
+    foreach( $social_sites as $social_site ) {
+        if ( strlen( get_theme_mod( $social_site ) ) > 0 ) {
+            $active_sites[] = $social_site;
+        }
+    }
+    
+    // For each active social site, add it as a list item
+    if ( !empty( $active_sites ) ) {
+        echo "<ul class='social-media-icons'>";
+        
+        foreach ( $active_sites as $active_site ) {?>
+            <li>
+                <a href="<?php echo get_theme_mod( $active_site ); ?>">
+                    <?php if( $active_site == 'vimeo' ) { ?>
+                        <i class="fa fa-<?php echo $active_site; ?>-square"></i> <?php
+                    } else { ?>
+                        <i class="fa fa-<?php echo $active_site; ?>"></i> <?php
+                    } ?>
+                </a>
+            </li> <?php
+        }
+        echo "</ul>";
+    }
+}
