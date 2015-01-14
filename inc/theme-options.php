@@ -11,59 +11,48 @@ function gojoseon_theme_customizer( $wp_customize ) {
     // Add all sections, settings, and controls here
     
     /**
+     * Logo Image
+     * 
+     * @link: http://scottbolinger.com/add-a-custom-logo-uploader-to-the-wordpress-theme-customizer/
+     * @link: http://kwight.ca/2012/12/02/adding-a-logo-uploader-to-your-wordpress-site-with-the-theme-customizer/
+     * @link: http://buildwpyourself.com/customizing-client-options-using-the-theme-customizer/
+     */
+    
+    // Modify the Site Title & Tagline section heading
+    $wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Logo, & Tagline', 'gojoseon' );
+    
+    $wp_customize->add_setting( 'logo_image' );
+    $wp_customize->add_control(
+            new WP_Customize_Image_Control(
+                    $wp_customize,
+                    'logo_image',
+                    array(
+                        'label'         => __( 'Upload Logo (replaces title)', 'gojoseon' ),
+                        'section'       => 'title_tagline',
+                        'settings'      => 'logo_image',
+                        'priority'      => 20,
+                    )
+            )
+    );
+    
+    //Adjust the order of Site Title & Tagline controls
+    $wp_customize->get_control( 'blogname' )->priority = 10;
+    $wp_customize->get_control( 'blogdescription' )->priority = 30;
+    
+    
+    /**
      * Fonts
-     * TODO: Actually enqueue the Google CSS files from Google (or Google API)
-     *      - right now this works for me because these fonts are installed on my machine
+     *
      * @link: https://github.com/BFTrick/wp-google-font-picker-control seems easy
      * @link: http://www.dezzain.com/wordpress-tutorials/how-to-add-google-web-fonts-with-font-preview-in-wordpress-without-plugins/
      * @link: http://www.paulund.co.uk/custom-wordpress-controls very comprehensive but uses classes
      * 
      * @link: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/ Font array
      */
-    $system_fonts = array();
-    $google_fonts = array();
+    
     $typography = array();
     
-    $system_fonts = array(
-        'Arial, sans-serif'                     => 'Arial',
-        '"Avant Garde", sans-serif'             => 'Avant Garde',
-        'Cambria, Georgia, serif'               => 'Cambria',
-        '"Courier New", Courier, monospace'     => 'Courier New',
-        'Garamond, "Hoefler Text", "Times New Roman", Times, serif' => 'Garamond', 
-        'Georgia, serif'                        => 'Georgia',
-        '"Helvetica Neue", Helvetica, sans-serif'   => 'Helvetica Neue',
-        '"Lucida Sans Typewriter", monospace'   => 'Lucida Sans Typewriter',
-        '"Lucida Typewriter", monospace'        => 'Lucida Typewriter',
-        'Monaco, monospace'                     => 'Monaco',
-        'Tahoma, Geneva, sans-serif'            => 'Tahoma',
-        '"Times New Roman", Times, serif'       => 'Times',
-    );
-    
-    $google_fonts = array(
-        'Arvo, serif'                           => 'Arvo',
-        'Copse, sans-serif'                     => 'Copse',
-        '"Droid Sans", sans-serif'              => 'Droid Sans',
-        '"Droid Serif", serif'                  => 'Droid Serif',
-        'Lato, sans-serif'                      => 'Lato',
-        'Lobster, cursive'                      => 'Lobster',
-        'Merriweather, serif'                   => 'Merriweather',
-        'Nobile, sans-serif'                    => 'Nobile',
-        '"Open Sans", sans-serif'               => 'Open Sans',
-        'Oswald, sans-serif'                    => 'Oswald',
-        'Pacifico, cursive'                     => 'Pacifico',
-        'Roboto, sans-serif'                    => 'Roboto',
-        '"Roboto Condensed", sans-serif'        => 'Roboto Condensed',
-        '"Roboto Slab", serif'                  => 'Roboto Slab',
-        '"PT Sans", sans-serif'                 => 'PT Sans',
-        '"PT Serif", serif'                     => 'PT Serif',
-        'Quattrocento, serif'                   => 'Quattrocento',
-        'Raleway, cursive'                      => 'Raleway',
-        'Rokkitt, serif'                        => 'Rokkit',
-        'Ubuntu, sans-serif'                    => 'Ubuntu',
-        '"Yanone Kaffeesatz", sans-serif'       => 'Yanone Kaffeesatz',
-    );
-    
-    $typography = array_merge( $system_fonts, $google_fonts );
+    $typography = array_merge( gojoseon_get_system_fonts(), gojoseon_get_google_fonts() );
     asort( $typography );
     
     $fonts = array();
@@ -106,9 +95,14 @@ function gojoseon_theme_customizer( $wp_customize ) {
         ));
     }
     
-    /*
+    
+    /**
      * Colors
+     * 
+     * @link: http://www.smashingmagazine.com/2013/03/05/the-wordpress-theme-customizer-a-developers-guide/
+     * @link: http://buildwpyourself.com/customizing-client-options-using-the-theme-customizer/
      */
+    
     $colors = array();
     $colors[] = array(
         'slug'      => 'content_text_color',
@@ -145,36 +139,17 @@ function gojoseon_theme_customizer( $wp_customize ) {
         );
     }
     
-    /**
-     * Logo Image
-     * 
-     * @link: http://scottbolinger.com/add-a-custom-logo-uploader-to-the-wordpress-theme-customizer/
-     * @link: http://kwight.ca/2012/12/02/adding-a-logo-uploader-to-your-wordpress-site-with-the-theme-customizer/
-     */
-    $wp_customize->add_setting( 'logo_image' );
-    $wp_customize->add_control(
-            new WP_Customize_Image_Control(
-                    $wp_customize,
-                    'logo_image',
-                    array(
-                        'label'         => __( 'Upload Logo', 'gojoseon' ),
-                        'description'   => __( 'Replaces site title and tagline.', 'gojoseon' ),
-                        'section'       => 'title_tagline',
-                        'settings'      => 'logo_image',
-                    )
-            )
-    );
     
     /**
      * Layout
-     * TODO: Make the style code in header.php actually move the sidebar position
-     * TODO: Also, make the quick menu fixed and layout left/right chooseable too
      * 
      * @link: http://www.wpexplorer.com/interacting-with-wordpress-theme-customizer/
      * @link: http://wptricks.co.uk/create-a-better-options-page-with-the-theme-customizer/#three
      * 
-     * PROBLEM: If following tutorials above, there's a problem with the 'body_class' filter
+     * PROBLEM: In following tutorials above, there's a problem with the 'body_class' filter
      */
+    
+    // Sidebar Position
     $wp_customize->add_setting( 'sidebar_position', array(
         'default'   => 'right',
         'type'      => 'theme_mod',
@@ -190,11 +165,8 @@ function gojoseon_theme_customizer( $wp_customize ) {
             'none'      => 'None',
         ),
     ));
-    $wp_customize->add_section( 'layout', array(
-        'title'     => __( 'Layout', 'gojoseon' ),
-        'priority'  => 50,
-    ));
     
+    // Quickmenu Position
     $wp_customize->add_setting( 'quickmenu_position', array(
         'default'   => 'left',
         'type'      => 'theme_mod',
@@ -211,14 +183,81 @@ function gojoseon_theme_customizer( $wp_customize ) {
         ),
     ));
     
+    // Show Excerpts?
+    $wp_customize->add_setting( 'show_excerpts', array(
+        'default'   => false,
+    ));
+    $wp_customize->add_control( 'show_excerpts', array(
+        'label'     => __( 'Show post excerpts?', 'gojoseon' ),
+        'section'   => 'layout',
+        'type'      => 'checkbox'
+    ));
+    
+    $wp_customize->add_section( 'layout', array(
+        'title'     => __( 'Layout & Content Options', 'gojoseon' ),
+        'priority'  => 50,
+    ));
+    
+    
     /**
      * Select Categories for the Home Page
      * 
+     * TODO: Fix this - it's totally broken from the first add_control()
      * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
      */
     
+    // Change "Static Front Page" to "Front Page Options"
+    $wp_customize->get_section( 'static_front_page' )->title = __( 'Front Page Options', 'gojoseon' );
+    /*
+    // Front Page Category 1
+    $wp_customize->add_control( 'front_category_1', array(
+        'label'     => 'Category 1',
+        'section'   => 'static_front_page',
+        'type'      => 'select',
+        'choices'   => gojoseon_get_categories_select()
+    ));
+    /*$wp_customize->add_setting( 'front_category_1' , array(
+        'default'       => 'uncategorized',
+        'capability'    => 'edit_theme_options',
+    ));
+    
+    // Front Page Category 2
+    $wp_customize->add_control( 'front_category_2', array(
+        'settings'  => 'front_category_2',
+        'label'     => 'Category 2',
+        'section'   => 'front_page_options',
+        'type'      => 'select',
+        'choices'   => array(
+            'slug'  => 'something',
+            ) /*gojoseon_get_categories_select()
+    ));
+    $wp_customize->add_setting( 'front_category_2' , array(
+        'default'       => 'uncategorized',
+        'capability'    => 'edit_theme_options',
+    ));
+    
+    // Front Page Category 3
+    $wp_customize->add_control( 'front_category_3', array(
+        'settings'  => 'front_category_3',
+        'label'     => 'Category 3',
+        'section'   => 'front_page_options',
+        'type'      => 'select',
+        'choices'   => array(
+            'slug'  => 'something',
+            ) /*gojoseon_get_categories_select()
+    ));
+    $wp_customize->add_setting( 'front_category_3' , array(
+        'default'       => 'uncategorized',
+        'capability'    => 'edit_theme_options',
+    ));
+     * 
+     */
+    
+    
     /**
      * Social site icons for Quick Menu bar
+     * 
+     * @link: https://www.competethemes.com/social-icons-wordpress-menu-theme-customizer/
      */
     $wp_customize->add_section( 'social_settings', array(
         'title'     => __( 'Social Media Icons', 'gojoseon' ),
@@ -237,7 +276,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
         ));
         
         $wp_customize->add_control( $social_site, array(
-            'label'             => __( "$social_site url:", 'social_icon' ),
+            'label'             => ucwords( __( "$social_site URL:", 'social_icon' ) ),
             'section'           => 'social_settings',
             'type'              => 'text',
             'priority'          => $priority,
@@ -248,44 +287,84 @@ function gojoseon_theme_customizer( $wp_customize ) {
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );
 
+/* -----------------------------------------------------------------------------
+ * Helper functions
+ * ----------------------------------------------------------------------------- */
+
 /**
- * Custom functions to store and enqueue Google Fonts
+ * Google Fonts helper functions
  * 
  * @link: http://www.slidedeck.com/blog/tutorial-how-to-integrate-custom-google-fonts-into-slidedeck-2-for-wordpress/
- * 
- * 
+ * @link: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/
  */
+
 function gojoseon_get_system_fonts() {
     
+    $system_fonts = array(
+        'Arial, sans-serif'                     => 'Arial',
+        '"Avant Garde", sans-serif'             => 'Avant Garde',
+        'Cambria, Georgia, serif'               => 'Cambria',
+        '"Courier New", Courier, monospace'     => 'Courier New',
+        'Garamond, "Hoefler Text", "Times New Roman", Times, serif' => 'Garamond', 
+        'Georgia, serif'                        => 'Georgia',
+        '"Helvetica Neue", Helvetica, sans-serif'   => 'Helvetica Neue',
+        '"Lucida Sans Typewriter", monospace'   => 'Lucida Sans Typewriter',
+        '"Lucida Typewriter", monospace'        => 'Lucida Typewriter',
+        'Monaco, monospace'                     => 'Monaco',
+        'Tahoma, Geneva, sans-serif'            => 'Tahoma',
+        '"Times New Roman", Times, serif'       => 'Times',
+    );
+    return $system_fonts;
 }
 
 function gojoseon_get_google_fonts() {
     
+    $google_fonts = array(
+        'Arvo, serif'                           => 'Arvo',
+        'Copse, sans-serif'                     => 'Copse',
+        '"Droid Sans", sans-serif'              => 'Droid Sans',
+        '"Droid Serif", serif'                  => 'Droid Serif',
+        'Lato, sans-serif'                      => 'Lato',
+        'Lobster, cursive'                      => 'Lobster',
+        'Merriweather, serif'                   => 'Merriweather',
+        'Nobile, sans-serif'                    => 'Nobile',
+        '"Open Sans", sans-serif'               => 'Open Sans',
+        'Oswald, sans-serif'                    => 'Oswald',
+        'Pacifico, cursive'                     => 'Pacifico',
+        'Roboto, sans-serif'                    => 'Roboto',
+        '"Roboto Condensed", sans-serif'        => 'Roboto Condensed',
+        '"Roboto Slab", serif'                  => 'Roboto Slab',
+        '"PT Sans", sans-serif'                 => 'PT Sans',
+        '"PT Serif", serif'                     => 'PT Serif',
+        'Quattrocento, serif'                   => 'Quattrocento',
+        'Raleway, cursive'                      => 'Raleway',
+        'Rokkitt, serif'                        => 'Rokkit',
+        'Ubuntu, sans-serif'                    => 'Ubuntu',
+        '"Yanone Kaffeesatz", sans-serif'       => 'Yanone Kaffeesatz',
+    );
+    return $google_fonts;
 }
 
-// Check font options to see if a Google font is selected.
-// If so, gojoseon_enqueue_google_fonts() is called to enqueue the font.
-// Ensures that each Google font is only enqueued once.
-// @link: http://wptheming.com/2012/06/loading-google-fonts-from-theme-options/
+/* 
+ * Check font options to see if a Google font is selected.
+ * If so, gojoseon_enqueue_google_fonts() is called to enqueue the font.
+ * Ensures that each Google font is only enqueued once.
+ */
+
 if ( !function_exists( 'gojoseon_google_fonts' ) ) {
     function gojoseon_google_fonts() {
         
         $all_google_fonts = array_keys( gojoseon_get_google_fonts() );
         
-        // Define all the options that possibly have a unique Google font
-        // ...
-        
         // Get the font face for each option and put it in an array 
-        // ...
-        
-        // Remove any duplicates in the list
-        // ...
+        $selected_fonts[] = get_theme_mod( 'content_font' );
+        $selected_fonts[] = get_theme_mod( 'header_font' );
         
         // Check each of the unique fonts against the defined Google fonts
         // If it is a Google font, go ahead and call the function to enqueue it
         foreach ( $selected_fonts as $selected_font ) {
-            if ( in_array( $font, $all_google_fonts ) ) {
-                gojoseon_enqueue_google_fonts( $font );
+            if ( in_array( $selected_font, $all_google_fonts ) ) {
+                gojoseon_enqueue_google_fonts( $selected_font );
             }
         }
     }
@@ -307,7 +386,7 @@ function gojoseon_enqueue_google_fonts( $font ) {
 }
 
 /**
- * Custom functions to store and output social media icons
+ * Social Media icon helper functions
  * 
  * @return array
  * 
@@ -363,4 +442,23 @@ function gojoseon_show_social_icons() {
         }
         echo "</ul>";
     }
+}
+
+/**
+ * Category Selector Helper function
+ * 
+ * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
+ */
+function gojoseon_get_categories_select() {
+    $cats = get_categories();
+    $results;
+    
+    $count = count( $cats );
+    for ( $i = 0; i < $count; $i++ ) {
+        if ( isset( $cats[$i] ) )
+            $results[ $cats[$i]->slug ] = $cats[$i]->name;
+        else
+            $count++;
+    }
+    return $results;
 }

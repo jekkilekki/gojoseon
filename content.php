@@ -17,11 +17,20 @@
 
 	<div class="entry-content">
 		<?php
-			/* translators: %s: Name of current post */
+			
+                    if ( get_theme_mod( 'show_excerpts' ) ) : 
+                        /* translators: %s: Name of current post */
+			the_excerpt( sprintf(
+				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'gojoseon' ),
+				the_title( '<span class="screen-reader-text">"', '"</span>', false )
+			) );
+                    else: 
+                        /* translators: %s: Name of current post */
 			the_content( sprintf(
 				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'gojoseon' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
+                    endif;
 		?>
 
 		<?php
