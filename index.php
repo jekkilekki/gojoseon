@@ -12,23 +12,15 @@
  */
 
 get_header(); ?>
-
-<div class="row" data-equalizer>
-    
-    <!-- Primary Menu -->  
-    <nav id="side-nav" class="navigation large-2 columns" role="navigation" data-equalizer-watch>
-        <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
-        <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-    </nav><!-- #site-navigation -->
  
     <div id="content" class="large-10 columns" data-equalizer-watch>
     <!-- Main Content Area -->    
-    <div id="primary" class="content-area large-9 medium-7 columns" data-equalizer-watch>
+    <div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>
             <main id="main" class="site-main" role="main">
 
             <?php if ( have_posts() ) : ?>
 
-                <ul class="large-block-grid-2"><!-- Foundation's block grid -->
+                <ul class="large-block-grid-2 medium-block-grid-1"><!-- Foundation's block grid -->
 
                     <?php /* Start the Loop */ ?>
                     <?php while ( have_posts() ) : the_post(); ?>

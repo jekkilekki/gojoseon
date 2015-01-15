@@ -85,21 +85,27 @@
                         </hgroup>
 
                     <?php endif; ?>
-                    
-                    <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
                 </div><!-- .site-branding -->
                 
-                <div class="large-8 columns"><!-- Possible ad space or additional menu -->
-                    
-                </div><!-- #large-8 -->
+                <div class="large-10 columns"><!-- Possible ad space or additional menu -->
+                    <h2 class="site-description large-9 medium-8 columns"><?php bloginfo( 'description' ); ?></h2>
                 
-                <!-- Menu bar over sidebar -->
-                    <nav id="top-navigation" class="main-navigation large-2 columns" role="navigation">
+                    <!-- Menu bar over sidebar -->
+                    <nav id="top-navigation" class="main-navigation large-3 medium-4 columns" role="navigation">
                             <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
                             <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
                     </nav><!-- #top-navigation -->
+                </div><!-- #large-8 -->
                 
             </div><!-- #row -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
+            
+            <div class="row" data-equalizer>
+
+                <!-- Primary Menu -->  
+                <nav id="side-nav" class="navigation large-2 columns" role="navigation" data-equalizer-watch>
+                    <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
+                    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+                </nav><!-- #site-navigation -->

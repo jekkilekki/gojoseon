@@ -15,6 +15,11 @@
 .row {
     max-width: 100em;
 }
+/* Resizing font-size causes the entire page/grid to resize because of rem measurements */
+/* @link: http://foundation.zurb.com/forum/posts/21347-reducing-body-font-size-reduces-column-width */
+#primary {
+    font-size: 120% !important; /* currently THIS doesn't work, but if I do html { ... } it resizes everything */
+}
 
 #top-navigation {
     

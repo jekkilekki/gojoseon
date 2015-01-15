@@ -69,7 +69,7 @@ function gojoseon_setup() {
 	 * See http://codex.wordpress.org/Post_Formats
 	 */
 	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link',
+		'aside', 'gallery', 'image', 'video', 'quote', 'link', 'status', 'audio', 'chat' // Added gallery, status, audio, chat
 	) );
 
 	// Set up the WordPress core custom background feature.
