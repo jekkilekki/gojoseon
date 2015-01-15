@@ -21,7 +21,12 @@ function gojoseon_theme_customizer( $wp_customize ) {
     // Modify the Site Title & Tagline section heading
     $wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Logo, & Tagline', 'gojoseon' );
     
-    $wp_customize->add_setting( 'logo_image' );
+    $wp_customize->add_setting( 
+            'logo_image', 
+            array(
+                'type'  => 'option',
+            ) 
+    );
     $wp_customize->add_control(
             new WP_Customize_Image_Control(
                     $wp_customize,
@@ -303,6 +308,35 @@ function gojoseon_theme_customizer( $wp_customize ) {
         
         $priority += 5;
     }
+    
+    /**
+     * Custom Copyright Message in the Footer
+     * 
+     * @link: http://code.tutsplus.com/tutorials/a-guide-to-the-wordpress-theme-customizer-a-methodology-for-sections-settings-and-controls-part-2--wp-33252
+     */
+    $wp_customize->add_setting(
+            'gojoseon_copyright_message', 
+            array(
+                'default'           => 'All Rights Reserved',
+                'sanitize_callback' => 'gojoseon_sanitize_copyright',
+            )
+    );
+    $wp_customize->add_control(
+            'gojoseon_copyright_message',
+            array(
+                'section'       => 'footer_options',
+                'label'         => 'Copyright Message',
+                'type'          => 'text'
+            )
+    );
+    $wp_customize->add_section(
+            'footer_options',
+            array(
+                'title'         => __( 'Footer Options', 'gojoseon' ),
+                'priority'      => 160
+            )
+    );
+    
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );
 
@@ -495,4 +529,14 @@ class WP_Customize_Dropdown_Categories_Control extends WP_Customize_Control {
         );
     }
 }
+}
+
+
+/**
+ * Sanitize Copyright Message Helper function
+ * 
+ * @link: http://code.tutsplus.com/tutorials/a-guide-to-the-wordpress-theme-customizer-a-methodology-for-sections-settings-and-controls-part-2--wp-33252
+ */
+function gojoseon_sanitize_copyright( $input ) {
+    return strip_tags( stripslashes( $input ) );
 }

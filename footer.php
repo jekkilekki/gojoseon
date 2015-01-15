@@ -15,22 +15,23 @@
             <div class="row"><!-- Foundation row -->
                 
                 <!-- Footer Menu -->
-                <div class="large-8 columns">
-                    <nav id="site-navigation" class="main-navigation" role="navigation">
-                        <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Footer Menu', 'gojoseon' ); ?></button>
-                        <?php wp_nav_menu( array( 'theme_location' => 'footer' ) ); ?>
-                    </nav><!-- #site-navigation -->
-                </div>
+                <nav id="site-navigation" class="main-navigation large-8 columns" role="navigation">
+                    <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Footer Menu', 'gojoseon' ); ?></button>
+                    <?php wp_nav_menu( array( 'theme_location' => 'footer' ) ); ?>
+                </nav><!-- #site-navigation -->
+                
+                <div id="copyright" class="large-4 columns">
+                    &copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'title' ); ?> <span id="copyright-message"><?php echo get_theme_mod( 'gojoseon_copyright_message', 'All Rights Reserved' ); ?></span>
+                </div><!-- #footer -->
+                
+            </div>
+            <div class="row site-info">
                 
                 <!-- Site Info -->
-                <div class="large-4 columns">
-                    <div class="site-info">
-                            <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'gojoseon' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'gojoseon' ), 'WordPress' ); ?></a>
-                            <span class="sep"> | </span>
-                            <?php printf( __( 'Theme: %1$s by %2$s.', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
-                    </div><!-- .site-info -->
-                </div><!-- .large-4 -->
-                
+                <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'gojoseon' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'gojoseon' ), 'WordPress' ); ?></a>
+                <span class="sep"> | </span>
+                <?php printf( __( 'Theme: %1$s by %2$s.', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
+
             </div><!-- .row -->
         </footer><!-- #colophon -->
      
