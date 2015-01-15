@@ -20,9 +20,9 @@
 /**
  * Customizer options
  */
-    $content_text_color = get_option( 'content_text_color' );
-    $content_link_color = get_option( 'content_link_color' );
-    $sidebar_position = get_theme_mod( 'sidebar_position' );
+    $content_text_color = get_option( 'content_text_color', '#333' );
+    $content_link_color = get_option( 'content_link_color', '#cd7f32;' );
+    $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
     $sidebar_display = 'block';
     if ( $sidebar_position == 'none' ) {
         $sidebar_display = 'none';
@@ -31,7 +31,7 @@
     } else {
         $content_position = 'left';
     }
-    $quickmenu_position = get_theme_mod( 'quickmenu_position' );
+    $quickmenu_position = get_theme_mod( 'quickmenu_position', 'left' );
     if ( $quickmenu_position == 'none' ) {
         $quickmenu = false;
         $quickmenu_padding = '0px';
@@ -40,8 +40,8 @@
         $quickmenu_padding = '50px';
     }
     
-    $content_font = get_theme_mod( 'content_font' );
-    $header_font = get_theme_mod( 'header_font' );
+    $content_font = get_theme_mod( 'content_font', 'Roboto' );
+    $header_font = get_theme_mod( 'header_font', 'Roboto Slab' );
     
 ?>
 <style>

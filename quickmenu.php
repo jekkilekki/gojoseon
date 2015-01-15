@@ -3,14 +3,14 @@
 <!-- Quick Menu -->
 <div id="quickmenu">
     <div id="search">
-        
+        <i class="fa fa-search"></i>
     </div>
     
     <div id="social-icons">
         <?php gojoseon_show_social_icons(); ?>
     </div>
     
-    <nav id="quickmenu">
+    <nav>
         
     </nav>
     

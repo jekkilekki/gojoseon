@@ -16,13 +16,6 @@
     max-width: 100em;
 }
 
-body {
-    color: #333;
-}
-a {
-    color: #cd7f32;
-}
-
 #top-navigation {
     
 }
@@ -36,6 +29,9 @@ a {
     width: 50px;
     height: 100%;
 }
+.social-media-icons {
+    z-index: 2;
+}
 
 .topbutton {
     height: 50px;
@@ -44,11 +40,11 @@ a {
     left: 0;
     bottom: 0;
     z-index: 1;
-    color: white;
+    color: #666;
     text-align: center;
     vertical-align: bottom;
     font-size: 0.7em;
-    border-top: 1px solid silver;
+    border-top: 1px solid #666;
     clear: left;
     padding-top: 5px;
 }

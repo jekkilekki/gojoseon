@@ -202,56 +202,75 @@ function gojoseon_theme_customizer( $wp_customize ) {
     /**
      * Select Categories for the Home Page
      * 
-     * TODO: Fix this - it's totally broken from the first add_control()
      * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
+     * @link: http://code.tutsplus.com/articles/custom-controls-in-the-theme-customizer--wp-34556
+     * 
+     * TODO: Create a homepage and ADD these to it
+     * @link: http://code.tutsplus.com/tutorials/how-to-create-a-homepage-with-multiple-listings-using-custom-queries--wp-32073
      */
     
     // Change "Static Front Page" to "Front Page Options"
     $wp_customize->get_section( 'static_front_page' )->title = __( 'Front Page Options', 'gojoseon' );
-    /*
+    
     // Front Page Category 1
-    $wp_customize->add_control( 'front_category_1', array(
-        'label'     => 'Category 1',
-        'section'   => 'static_front_page',
-        'type'      => 'select',
-        'choices'   => gojoseon_get_categories_select()
+    $wp_customize->add_setting( 'front_category_1', array(
+        'default'   => '',
+        'type'      => 'option',
+        'capability'    => 'manage_options',
     ));
-    /*$wp_customize->add_setting( 'front_category_1' , array(
-        'default'       => 'uncategorized',
-        'capability'    => 'edit_theme_options',
-    ));
+    $wp_customize->add_control( 
+            new WP_Customize_Dropdown_Categories_Control(
+                    $wp_customize,
+                    'front_category_1',
+                    array(
+                        'label'     => __( 'Front Category 1', 'gojoseon' ),
+                        'section'   => 'static_front_page',
+                        'type'      => 'dropdown-categories',
+                        'settings'  => 'front_category_1',
+                        'priority'  => 30,
+                    )
+            )
+    ); 
     
     // Front Page Category 2
-    $wp_customize->add_control( 'front_category_2', array(
-        'settings'  => 'front_category_2',
-        'label'     => 'Category 2',
-        'section'   => 'front_page_options',
-        'type'      => 'select',
-        'choices'   => array(
-            'slug'  => 'something',
-            ) /*gojoseon_get_categories_select()
+    $wp_customize->add_setting( 'front_category_2', array(
+        'default'   => '',
+        'type'      => 'option',
+        'capability'    => 'manage_options',
     ));
-    $wp_customize->add_setting( 'front_category_2' , array(
-        'default'       => 'uncategorized',
-        'capability'    => 'edit_theme_options',
-    ));
+    $wp_customize->add_control( 
+            new WP_Customize_Dropdown_Categories_Control(
+                    $wp_customize,
+                    'front_category_2',
+                    array(
+                        'label'     => __( 'Front Category 2', 'gojoseon' ),
+                        'section'   => 'static_front_page',
+                        'type'      => 'dropdown-categories',
+                        'settings'  => 'front_category_2',
+                        'priority'  => 40,
+                    )
+            )
+    ); 
     
     // Front Page Category 3
-    $wp_customize->add_control( 'front_category_3', array(
-        'settings'  => 'front_category_3',
-        'label'     => 'Category 3',
-        'section'   => 'front_page_options',
-        'type'      => 'select',
-        'choices'   => array(
-            'slug'  => 'something',
-            ) /*gojoseon_get_categories_select()
+    $wp_customize->add_setting( 'front_category_3', array(
+        'default'   => '',
+        'type'      => 'option',
+        'capability'    => 'manage_options',
     ));
-    $wp_customize->add_setting( 'front_category_3' , array(
-        'default'       => 'uncategorized',
-        'capability'    => 'edit_theme_options',
-    ));
-     * 
-     */
+    $wp_customize->add_control( 
+            new WP_Customize_Dropdown_Categories_Control(
+                    $wp_customize,
+                    'front_category_3',
+                    array(
+                        'label'     => __( 'Front Category 3', 'gojoseon' ),
+                        'section'   => 'static_front_page',
+                        'type'      => 'dropdown-categories',
+                        'settings'  => 'front_category_3',
+                        'priority'  => 50,
+                    )
+            )
+    ); 
     
     
     /**
@@ -429,7 +448,8 @@ function gojoseon_show_social_icons() {
     if ( !empty( $active_sites ) ) {
         echo "<ul class='social-media-icons'>";
         
-        foreach ( $active_sites as $active_site ) {?>
+        foreach ( $active_sites as $active_site ) { ?>
+
             <li>
                 <a href="<?php echo get_theme_mod( $active_site ); ?>">
                     <?php if( $active_site == 'vimeo' ) { ?>
@@ -444,21 +464,35 @@ function gojoseon_show_social_icons() {
     }
 }
 
+
 /**
- * Category Selector Helper function
+ * Categories Drop-Down List Control
  * 
- * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
+ * @link: http://code.tutsplus.com/articles/custom-controls-in-the-theme-customizer--wp-34556
  */
-function gojoseon_get_categories_select() {
-    $cats = get_categories();
-    $results;
+if( class_exists( 'WP_Customize_Control' ) ) {
+class WP_Customize_Dropdown_Categories_Control extends WP_Customize_Control {
+    public $type = 'dropdown-categories';
     
-    $count = count( $cats );
-    for ( $i = 0; i < $count; $i++ ) {
-        if ( isset( $cats[$i] ) )
-            $results[ $cats[$i]->slug ] = $cats[$i]->name;
-        else
-            $count++;
+    public function render_content() {
+        $dropdown = wp_dropdown_categories(
+                array(
+                    'name'          => '_customize-dropdown-categories-' . $this->id,
+                    'echo'          => 0,
+                    'hide_empty'    => false,
+                    'show_option_none'  => '&mdash; ' . __( 'Select', 'gojoseon' ) . ' &mdash;',
+                    'hide_if_empty'     => false,
+                    'selected'          => $this->value(),
+                )
+        );
+        
+        $dropdown = str_replace( '<select', '<select ' . $this->get_link(), $dropdown );
+        
+        printf(
+                '<label class="customize-control-select"><span class="customize-control-title">%s</span> %s</label>',
+                $this->label,
+                $dropdown
+        );
     }
-    return $results;
+}
 }
