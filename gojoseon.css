@@ -1,5 +1,7 @@
+/*background: #7EB0EA; */
 #masthead { /* Header */
-    background: #7EB0EA; 
+    background-color: white;
+    margin-bottom: 50px;
 }
 #primary { /* Main content area */
     background: #F5C98C;
@@ -9,6 +11,12 @@
 }
 #colophon { /* Footer (technically a footer in a book - with technical/print data) */
     background: #F2B0B4;
+}
+#masthead,
+#primary,
+#secondary,
+#colophon {
+    background-color: #fff;
 }
 
 /* Change the default width of the Foundation rows */

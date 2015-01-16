@@ -21,7 +21,7 @@
  * Customizer options
  */
     $content_text_color = get_option( 'content_text_color', '#333' );
-    $content_link_color = get_option( 'content_link_color', '#cd7f32;' );
+    $content_link_color = get_option( 'content_link_color', '#cd7f32' );
     $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
     $sidebar_display = 'block';
     if ( $sidebar_position == 'none' ) {
@@ -69,7 +69,7 @@
             
             <div class="row">
                 
-                <!-- Site branding -->
+                <!-- Site title/logo -->
                 <div class="site-branding large-2 columns">
                     <?php if ( get_theme_mod( 'logo_image' ) ) : ?>
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="site-logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
@@ -88,14 +88,25 @@
                 </div><!-- .site-branding -->
                 
                 <div class="large-10 columns"><!-- Possible ad space or additional menu -->
-                    <h2 class="site-description large-9 medium-8 columns"><?php bloginfo( 'description' ); ?></h2>
+                    
+                    <!-- Top Widgetized Area -->
+                    <div class="large-12 columns sidebar-top">
+                        
+                    </div>
+                    
+                    <!-- Site description/tagline -->
+                    <div class=" large-9 medium-8 columns">
+                        <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                    </div>
                 
                     <!-- Menu bar over sidebar -->
-                    <nav id="top-navigation" class="main-navigation large-3 medium-4 columns" role="navigation">
+                    <div class=" large-3 medium-4 columns">
+                        <nav id="top-navigation" class="main-navigation" role="navigation">
                             <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
                             <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
-                    </nav><!-- #top-navigation -->
-                </div><!-- #large-8 -->
+                        </nav><!-- #top-navigation -->
+                    </div>
+                </div><!-- #large-10 -->
                 
             </div><!-- #row -->
 	</header><!-- #masthead -->
