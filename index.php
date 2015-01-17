@@ -11,16 +11,25 @@
  * @package Gojoseon
  */
 
+$sidebar_display = get_theme_mod( 'sidebar_position' );
 get_header(); ?>
  
     <div id="content" class="large-10 columns" data-equalizer-watch>
-    <!-- Main Content Area -->    
-    <div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>
+    <!-- Main Content Area -->  
+    <?php if ( $sidebar_display != 'none' ) {
+        echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
+    } else {
+        echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
+    } ?>
             <main id="main" class="site-main" role="main">
 
             <?php if ( have_posts() ) : ?>
-
-                <ul class="large-block-grid-2 medium-block-grid-1"><!-- Foundation's block grid -->
+                
+                <?php if ( $sidebar_display != 'none' ) {
+                    echo '<ul class="large-block-grid-2 medium-block-grid-1"><!-- Foundation\'s block grid -->';
+                } else {
+                    echo '<ul class="large-block-grid-3 medium-block-grid-2"><!-- Foundation\'s block grid -->';
+                } ?>
 
                     <?php /* Start the Loop */ ?>
                     <?php while ( have_posts() ) : the_post(); ?>
@@ -51,7 +60,7 @@ get_header(); ?>
     </div><!-- #primary -->
        
     <!-- Widget Sidebar -->
-    <?php get_sidebar(); ?> 
+    <?php if ( $sidebar_display != 'none' ) { get_sidebar(); } ?> 
     
     </div><!-- #content -->
 </div><!-- #row -->

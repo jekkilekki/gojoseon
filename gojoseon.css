@@ -1,7 +1,6 @@
 /*background: #7EB0EA; */
 #masthead { /* Header */
     background-color: white;
-    margin-bottom: 50px;
 }
 #primary { /* Main content area */
     background: #F5C98C;
@@ -29,6 +28,13 @@
     font-size: 120% !important; /* currently THIS doesn't work, but if I do html { ... } it resizes everything */
 }
 
+#side-nav,
+#main,
+#secondary {
+    padding-top: 50px;
+    border-top: 1px solid silver;
+}
+
 #top-navigation {
     
 }
@@ -50,7 +56,6 @@
     height: 50px;
     width: 50px;
     position: fixed;
-    left: 0;
     bottom: 0;
     z-index: 1;
     color: #666;

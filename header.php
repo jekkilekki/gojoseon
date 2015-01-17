@@ -20,6 +20,7 @@
 /**
  * Customizer options
  */
+    $header_textcolor = get_theme_mod( 'header_textcolor' );
     $content_text_color = get_option( 'content_text_color', '#333' );
     $content_link_color = get_option( 'content_link_color', '#cd7f32' );
     $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
@@ -50,8 +51,9 @@
     a { color: <?php echo $content_link_color; ?>; }
     #primary { float: <?php echo $content_position; ?>; }
     #secondary { display: <?php echo $sidebar_display; ?>; }
-    #quickmenu { <?php echo $quickmenu_position; ?>: 0; }
+    #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
     .row { padding-<?php echo $quickmenu_position; ?>: <?php echo $quickmenu_padding; ?>; } // Give extra padding for the Quickmenu
+    #top-navigation li a { color: <?php echo $header_textcolor; ?>; }
 </style>
 
 </head>
@@ -66,6 +68,12 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
+            
+            <?php if ( get_header_image() ) : ?>
+            <!-- Header Image -->
+            <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">;
+            </div>
+            <?php endif; // End header image check. ?>
             
             <div class="row">
                 

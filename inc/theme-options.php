@@ -205,6 +205,18 @@ function gojoseon_theme_customizer( $wp_customize ) {
     
     
     /**
+     * Header Image: Is this a Pattern (tileable) or Image (should stretch)?
+     */
+    $wp_customize->add_setting( 'header_image_type' );
+    $wp_customize->add_control( 'header_image_type', array(
+        'label'     => __( 'Is this image a pattern?', 'gojoseon' ),
+        'section'   => 'header_image',
+        'priority'  => 5,
+        'type'      => 'checkbox',
+    ));
+    
+    
+    /**
      * Select Categories for the Home Page
      * 
      * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
