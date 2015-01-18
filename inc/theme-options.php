@@ -20,6 +20,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     
     // Modify the Site Title & Tagline section heading
     $wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Logo, & Tagline', 'gojoseon' );
+    $wp_customize->get_section( 'nav' )->title = __( 'Navigation Menus', 'gojoseon' );
     
     $wp_customize->add_setting( 
             'logo_image', 
@@ -43,6 +44,8 @@ function gojoseon_theme_customizer( $wp_customize ) {
     //Adjust the order of Site Title & Tagline controls
     $wp_customize->get_control( 'blogname' )->priority = 10;
     $wp_customize->get_control( 'blogdescription' )->priority = 30;
+    $wp_customize->get_control( 'display_header_text' )->priority = 40;
+    $wp_customize->get_control( 'display_header_text' )->title = __( 'Display tagline?', 'gojoseon');
     
     
     /**
@@ -209,7 +212,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
      */
     $wp_customize->add_setting( 'header_image_type' );
     $wp_customize->add_control( 'header_image_type', array(
-        'label'     => __( 'Is this image a pattern?', 'gojoseon' ),
+        'label'     => __( 'Is your image a (tileable) pattern?', 'gojoseon' ),
         'section'   => 'header_image',
         'priority'  => 5,
         'type'      => 'checkbox',
