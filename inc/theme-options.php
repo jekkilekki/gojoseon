@@ -45,7 +45,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     $wp_customize->get_control( 'blogname' )->priority = 10;
     $wp_customize->get_control( 'blogdescription' )->priority = 30;
     $wp_customize->get_control( 'display_header_text' )->priority = 40;
-    $wp_customize->get_control( 'display_header_text' )->title = __( 'Display tagline?', 'gojoseon');
+    $wp_customize->get_control( 'display_header_text' )->label = __( 'Display tagline?', 'gojoseon');
     
     
     /**
@@ -110,6 +110,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
      * @link: http://www.smashingmagazine.com/2013/03/05/the-wordpress-theme-customizer-a-developers-guide/
      * @link: http://buildwpyourself.com/customizing-client-options-using-the-theme-customizer/
      */
+    $wp_customize->get_control( 'background_color' )->priority = 60;
     
     $colors = array();
     $colors[] = array(
@@ -118,9 +119,24 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'label'     => __( 'Content Text Color', 'gojoseon' )
     );
     $colors[] = array(
-        'slug'      => 'content_link_color',
+        'slug'      => 'primary_design_color',
         'default'   => '#cd7f32', 
-        'label'     => __( 'Link Color', 'gojoseon' )
+        'label'     => __( 'Primary Design Color', 'gojoseon' )
+    );
+    $colors[] = array(
+        'slug'      => 'primary_design_color_hover',
+        'default'   => '#814001', 
+        'label'     => __( 'Primary Design Color: Hover', 'gojoseon' )
+    );
+    $colors[] = array(
+        'slug'      => 'secondary_design_color',
+        'default'   => '#1ED3A4', 
+        'label'     => __( 'Secondary Design Color', 'gojoseon' )
+    );
+    $colors[] = array(
+        'slug'      => 'secondary_design_color_hover',
+        'default'   => '#169A70', 
+        'label'     => __( 'Secondary Design Color: Hover', 'gojoseon' )
     );
     foreach( $colors as $color ) {
         

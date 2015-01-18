@@ -21,6 +21,7 @@
 /* Change the default width of the Foundation rows */
 .row {
     max-width: 100em;
+    margin-left: 0px;
 }
 /* Resizing font-size causes the entire page/grid to resize because of rem measurements */
 /* @link: http://foundation.zurb.com/forum/posts/21347-reducing-body-font-size-reduces-column-width */
@@ -32,7 +33,10 @@
 #main,
 #secondary {
     padding-top: 50px;
-    border-top: 1px solid silver;
+    border-top: 5px solid #1ED3A4;
+}
+#side-nav {
+    background-color: #f1f1f1;
 }
 
 #top-navigation {
