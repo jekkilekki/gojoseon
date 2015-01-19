@@ -123,7 +123,23 @@
     text-align: center;
     font-size: 1.2em;
 }
-.social-media-icons a {
+#search { 
+    z-index: 2;
+    position: absolute;
+    margin-left: 0px;
+    top: 0;
+    color: #777;
+    border-top: none;
+    border-bottom: 1px solid #555;
+    height: 50px;
+    width: 64px;
+    width: 4rem;
+    text-align: center;
+    font-size: 1.2em;
+    padding-top: 10px;
+}
+.social-media-icons a,
+#search a {
     color: #777;
 }
 .social-media-icons li:hover, .topbutton:hover {

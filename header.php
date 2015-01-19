@@ -61,6 +61,9 @@
     .row { padding-<?php echo $quickmenu_position; ?>: <?php echo $quickmenu_padding; ?>; } // Give extra padding for the Quickmenu
     #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
     #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
+    <?php if ( get_theme_mod ( 'logo_image_background_color' ) == 1 ) : ?> 
+        #site-branding { background-color: transparent; }
+    <?php endif; ?>
 </style>
 
 </head>
@@ -86,20 +89,20 @@
                 
                 <!-- Site title/logo -->
                 <div class="site-branding large-2 columns">
-                    <?php if ( get_theme_mod( 'logo_image' ) ) : ?>
+                    
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="site-logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 
                             <img src="<?php echo get_theme_mod( 'logo_image' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
 
                         </a>
 
-                    <?php else : ?>
+                    
                         <hgroup>
                             <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
                             
                         </hgroup>
 
-                    <?php endif; ?>
+                    
                 </div><!-- .site-branding -->
                 
                 <div class="large-10 columns"><!-- Possible ad space or additional menu -->

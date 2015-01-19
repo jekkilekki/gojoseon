@@ -554,6 +554,8 @@ function gojoseon_show_social_icons() {
                 <a href="<?php echo get_theme_mod( $active_site ); ?>">
                     <?php if( $active_site == 'vimeo' ) { ?>
                         <i class="fa fa-<?php echo $active_site; ?>-square"></i> <?php
+                    } else if( $active_site == 'email' ) { ?>
+                        <i class="fa fa-envelope"></i> <?php
                     } else { ?>
                         <i class="fa fa-<?php echo $active_site; ?>"></i> <?php
                     } ?>
