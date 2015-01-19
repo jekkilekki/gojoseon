@@ -631,6 +631,11 @@ X.X Header
 .header-image-pattern {
     background-repeat: repeat;
 }
+#site-logo {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 .site-branding,
 .site-description,

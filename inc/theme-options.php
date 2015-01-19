@@ -20,22 +20,17 @@ function gojoseon_theme_customizer( $wp_customize ) {
     
     // Modify the Site Title & Tagline section heading
     $wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Logo, & Tagline', 'gojoseon' );
-    $wp_customize->get_section( 'nav' )->title = __( 'Navigation Menus', 'gojoseon' );
+    $wp_customize->get_section( 'nav' )->title = __( 'Menus', 'gojoseon' );
     
-    $wp_customize->add_setting( 
-            'logo_image', 
-            array(
-                'type'  => 'option',
-            ) 
-    );
+    $wp_customize->add_setting( 'gojoseon_logo' );
     $wp_customize->add_control(
             new WP_Customize_Image_Control(
                     $wp_customize,
-                    'logo_image',
+                    'gojoseon_logo',
                     array(
                         'label'         => __( 'Upload Logo (replaces title)', 'gojoseon' ),
                         'section'       => 'title_tagline',
-                        'settings'      => 'logo_image',
+                        'settings'      => 'gojoseon_logo',
                         'priority'      => 20,
                     )
             )
