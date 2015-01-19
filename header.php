@@ -20,7 +20,7 @@
 /**
  * Customizer options
  */
-    $header_textcolor = get_theme_mod( 'header_textcolor' );
+    $header_textcolor = get_theme_mod( 'header_textcolor', '#000' );
     $content_text_color = get_option( 'content_text_color', '#333' );
     $content_link_color = get_option( 'content_link_color', '#cd7f32' );
     $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
@@ -38,11 +38,17 @@
         $quickmenu_padding = '0px';
     } else {
         $quickmenu = true;
-        $quickmenu_padding = '50px';
+        $quickmenu_padding = '64px';
     }
     
     $content_font = get_theme_mod( 'content_font', 'Roboto' );
     $header_font = get_theme_mod( 'header_font', 'Roboto Slab' );
+    
+    if ( get_header_image() ) {
+        $header_border_width = '0px';
+    } else {
+        $header_border_width = '5px';
+    }
     
 ?>
 <style>
@@ -53,7 +59,8 @@
     #secondary { display: <?php echo $sidebar_display; ?>; }
     #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
     .row { padding-<?php echo $quickmenu_position; ?>: <?php echo $quickmenu_padding; ?>; } // Give extra padding for the Quickmenu
-    #top-navigation li a { color: <?php echo $header_textcolor; ?>; }
+    #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
+    #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
 </style>
 
 </head>

@@ -41,6 +41,17 @@ function gojoseon_theme_customizer( $wp_customize ) {
             )
     );
     
+    $wp_customize->add_setting( 'logo_image_background_color' );
+    $wp_customize->add_control( 
+            'logo_image_background_color',
+            array (
+                'label'     => __( 'Hide logo background color?', 'gojoseon' ),
+                'section'   => 'title_tagline',
+                'type'      => 'checkbox',
+                'priority'  => 15
+            )
+    );
+    
     //Adjust the order of Site Title & Tagline controls
     $wp_customize->get_control( 'blogname' )->priority = 10;
     $wp_customize->get_control( 'blogdescription' )->priority = 30;
@@ -356,7 +367,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
             'gojoseon_copyright_message',
             array(
                 'section'       => 'footer_options',
-                'label'         => 'Copyright Message',
+                'label'         => __( 'Copyright Message', 'gojoseon' ),
                 'type'          => 'text'
             )
     );
@@ -368,6 +379,30 @@ function gojoseon_theme_customizer( $wp_customize ) {
             )
     );
     
+    /**
+     * Backend Stuff
+     */
+    $wp_customize->add_setting(
+            'gojoseon_google_analytics', 
+            array(
+                'sanitize_callback' => 'gojoseon_sanitize_analytics',
+            )
+    );
+    $wp_customize->add_control(
+            'gojoseon_google_analytics',
+            array(
+                'section'       => 'backend',
+                'label'         => __( 'Google Analytics Code', 'gojoseon' ),
+                'type'          => 'textarea'
+            )
+    );
+    $wp_customize->add_section(
+            'backend',
+            array(
+                'title'         => __( 'Backend Options', 'gojoseon' ),
+                'priority'      => 200
+            )
+    );
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );
 

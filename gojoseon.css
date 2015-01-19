@@ -36,7 +36,63 @@
     border-top: 5px solid #1ED3A4;
 }
 #side-nav {
-    background-color: #f1f1f1;
+    background-color: whitesmoke; /* #f5f5f5 */
+}
+#side-nav ul {
+    margin: 0 10px;
+}
+#side-nav ul li {
+    list-style-type: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border-top: 1px dotted silver;
+}
+#side-nav ul > li {
+    padding: 10px 0;
+}
+#side-nav ul li a {
+    color: #555;
+}
+#side-nav ul ul li { position: relative; }
+#side-nav ul li ul {
+    padding: 10px 0 35px;
+    margin: 0;
+}
+#side-nav ul li ul li {
+    margin: 0;
+    padding: 10px 0;
+    text-transform: capitalize;
+}
+#side-nav ul li ul li a {
+    color: #aaa;
+}
+#side-nav ul li ul li > a:after { font-family: FontAwesome; content: ' \f0da'; padding-left: 5px; }
+#side-nav ul li ul li > a:only-child:after { content: ''; }
+#side-nav ul ul ul {
+    list-style-type: none;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 0;
+    right: -200px;
+    width: 200px;
+    z-index: 5;
+    display: none;
+    padding: 0;
+}
+#side-nav ul ul ul li {
+    background-color: #777;
+    padding: 10px;
+}
+#side-nav ul ul li:hover > ul {
+    display: list-item;
+}
+#side-nav ul ul ul li a {
+    color: whitesmoke;
+}#side-nav ul ul ul li:hover {
+    background-color: #169A70;
+    padding-left: 20px;
+    padding-right: 0px;
+    animation: 500;
 }
 
 #top-navigation {
@@ -49,28 +105,49 @@
     position: fixed;
     top: 0;
     background-color: #333;
-    width: 50px;
+    width: 64px;
+    width: 4rem;
     height: 100%;
 }
 .social-media-icons {
     z-index: 2;
+    position: absolute;
+    bottom: 30px;
+    margin-left: 0px;
+}
+.social-media-icons li {
+    padding: 5px;
+    border-top: 1px solid #555;
+    width: 64px;
+    width: 4rem;
+    text-align: center;
+    font-size: 1.2em;
+}
+.social-media-icons a {
+    color: #777;
+}
+.social-media-icons li:hover, .topbutton:hover {
+    background-color: #444;
+}
+.social-media-icons li:hover > a {
+    color: #1ED3A4;
 }
 
 .topbutton {
     height: 50px;
-    width: 50px;
+    width: 64px;
+    width: 4rem;
     position: fixed;
     bottom: 0;
     z-index: 1;
-    color: #666;
+    color: #777;
     text-align: center;
     vertical-align: bottom;
     font-size: 0.7em;
-    border-top: 1px solid #666;
+    border-top: 1px solid #555;
     clear: left;
     padding-top: 5px;
 }
 .topbutton i {
-    font-size: 2em;
-    
+    font-size: 2em;   
 }
