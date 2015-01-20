@@ -631,10 +631,12 @@ X.X Header
 .header-image-pattern {
     background-repeat: repeat;
 }
-#site-logo {
+#site-logo { /* @link: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/ */
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    max-width: 150px;
+    max-height: 150px;
 }
 
 .site-branding,

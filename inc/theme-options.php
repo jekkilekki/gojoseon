@@ -112,6 +112,16 @@ function gojoseon_theme_customizer( $wp_customize ) {
         ));
     }
     
+    $wp_customize->add_setting( 'show_korean_fonts' );
+    $wp_customize->add_control( 
+            'show_korean_fonts', 
+            array(
+                'label'     => __( 'Show Korean font options?', 'gojoseon' ),
+                'section'   => 'fonts',
+                'type'      => 'checkbox',
+                'priority'  => 1
+            ));
+    
     
     /**
      * Colors
@@ -230,6 +240,17 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'title'     => __( 'Layout & Content Options', 'gojoseon' ),
         'priority'  => 50,
     ));
+    
+    // Show Breadcrumbs?
+    $wp_customize->add_setting( 'show_breadcrumbs', array(
+        'default'   => false,
+    ));
+    $wp_customize->add_control( 'show_breadcrumbs', array(
+        'label'     => __( 'Show breadcrumbs?', 'gojoseon' ),
+        'section'   => 'layout',
+        'type'      => 'checkbox'
+    ));
+    
     
     
     /**
@@ -445,6 +466,8 @@ function gojoseon_get_google_fonts() {
         'Lobster, cursive'                      => 'Lobster',
         'Merriweather, serif'                   => 'Merriweather',
         'Nobile, sans-serif'                    => 'Nobile',
+        '"Noto Sans", sans-serif'               => 'Noto Sans',
+        '"Noto Serif", serif'                   => 'Noto Serif',
         '"Open Sans", sans-serif'               => 'Open Sans',
         'Oswald, sans-serif'                    => 'Oswald',
         'Pacifico, cursive'                     => 'Pacifico',

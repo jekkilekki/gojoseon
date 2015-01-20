@@ -136,3 +136,13 @@
                     <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
                     <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
                 </nav><!-- #site-navigation -->
+                
+                <div id="content" class="large-10 columns" data-equalizer-watch>
+                    <!-- Main Content Area -->  
+                    <?php if ( $sidebar_display != 'none' ) {
+                        echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
+                    } else {
+                        echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
+                    } ?>
+
+                    <?php if ( get_theme_mod( 'show_breadcrumbs' ) ) { the_breadcrumb(); } ?>

@@ -7,10 +7,7 @@
 
 get_header(); ?>
 
-    <div id="content" class="large-10 columns" data-equalizer-watch>
-        
-        <!-- Main Content Area -->    
-        <div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>
+
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
