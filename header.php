@@ -58,6 +58,7 @@
     #primary { float: <?php echo $content_position; ?>; }
     #secondary { display: <?php echo $sidebar_display; ?>; }
     #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
+    #search-container { <?php echo $quickmenu_position; ?>: 4rem; }
     .row { padding-<?php echo $quickmenu_position; ?>: <?php echo $quickmenu_padding; ?>; } // Give extra padding for the Quickmenu
     #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
     #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
