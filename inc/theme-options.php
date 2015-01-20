@@ -16,6 +16,9 @@ function gojoseon_theme_customizer( $wp_customize ) {
      * @link: http://scottbolinger.com/add-a-custom-logo-uploader-to-the-wordpress-theme-customizer/
      * @link: http://kwight.ca/2012/12/02/adding-a-logo-uploader-to-your-wordpress-site-with-the-theme-customizer/
      * @link: http://buildwpyourself.com/customizing-client-options-using-the-theme-customizer/
+     * 
+     * TODO (later): Add support for JetPack logo
+     * @link: http://jetpack.me/support/site-logo/
      */
     
     // Modify the Site Title & Tagline section heading
@@ -66,7 +69,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     
     $typography = array();
     
-    $typography = array_merge( gojoseon_get_system_fonts(), gojoseon_get_google_fonts() );
+    $typography = array_merge( gojoseon_get_system_fonts(), gojoseon_get_google_fonts(), gojoseon_get_korean_fonts() );
     asort( $typography );
     
     $fonts = array();
@@ -459,6 +462,23 @@ function gojoseon_get_google_fonts() {
     return $google_fonts;
 }
 
+function gojoseon_get_korean_fonts() {
+    
+    $korean_fonts = array(
+        'Hanna, sans-serif'                     => 'Hanna [KO]',
+        '"Jeju Gothic", sans-serif'             => 'Jeju Gothic [KO]',
+        '"Jeju Hallasan", cursive'              => 'Jeju Hallasan [KO]',
+        '"Jeju Myeongjo", serif'                => 'Jeju Myeongjo [KO]',
+        '"KoPub Batang", serif'                 => 'KoPub Batang [KO]',
+        '"Nanum Brush Script", cursive'         => 'Nanum Brush Script [KO]',
+        '"Nanum Gothic", sans-serif'            => 'Nanum Gothic [KO]',
+        '"Nanum Gothic Coding", monospace'      => 'Nanum Gothic Coding [KO]',
+        '"Nanum Myeongjo", serif'               => 'Nanum Myeongjo [KO]',
+        '"Nanum Pen Script", cursive'           => 'Nanum Pen Script [KO]',
+    );
+    return $korean_fonts;
+}
+
 /* 
  * Check font options to see if a Google font is selected.
  * If so, gojoseon_enqueue_google_fonts() is called to enqueue the font.
@@ -469,6 +489,7 @@ if ( !function_exists( 'gojoseon_google_fonts' ) ) {
     function gojoseon_google_fonts() {
         
         $all_google_fonts = array_keys( gojoseon_get_google_fonts() );
+        $ea_google_fonts = array_keys( gojoseon_get_korean_fonts() );
         
         // Get the font face for each option and put it in an array 
         $selected_fonts[] = get_theme_mod( 'content_font' );
@@ -479,6 +500,8 @@ if ( !function_exists( 'gojoseon_google_fonts' ) ) {
         foreach ( $selected_fonts as $selected_font ) {
             if ( in_array( $selected_font, $all_google_fonts ) ) {
                 gojoseon_enqueue_google_fonts( $selected_font );
+            } else if ( in_array( $selected_font, $ea_google_fonts ) ) {
+                gojoseon_enqueue_early_access_fonts( $selected_font );
             }
         }
     }
@@ -491,13 +514,25 @@ function gojoseon_enqueue_google_fonts( $font ) {
     $font = $font[0];
     
     // Certain Google fonts need slight tweaks in order to load properly like Raleway
-    if ( $font == 'Raleway' )
+    if ( $font == 'Raleway' ) {
         $font = 'Raleway:100';
-    
+    } 
     $font = str_replace( " ", "+", $font );
-    
+
     wp_enqueue_style( "gojoseon_typography_$font", "http://fonts.googleapis.com/css?family=$font", false, null, 'all' );
 }
+
+// Enqueues the Early Access Google $font that is passed
+function gojoseon_enqueue_early_access_fonts( $font ) {
+    $font = explode( ',', $font );
+    $font = $font[0];
+    
+    $font = str_replace( "[KO]", "", $font );
+    $font = strtolower( str_replace( " ", "", $font ) );
+        
+    wp_enqueue_style( "gojoseon_typography_$font", "http://fonts.googleapis.com/earlyaccess/$font.css", false, null, 'all' );
+}
+
 
 /**
  * Social Media icon helper functions
