@@ -42,8 +42,13 @@
     color: #aaa;
     font-size: 0.8em;
 }
-#breadcrumbs .separator {
-    color: #1ED3A4;
+#breadcrumbs li::before {
+    font-family: FontAwesome;
+    content: "\f105";
+    padding-right: 10px;
+}
+#breadcrumbs li:first-child::before {
+    content: "";
 }
 #side-nav,
 #main,
@@ -125,6 +130,9 @@
     width: 4rem;
     height: 100%;
 }
+ .admin-bar #quickmenu {
+    padding-top: 32px; 
+}
 .social-media-icons {
     z-index: 2;
     position: absolute;
@@ -139,11 +147,9 @@
     text-align: center;
     font-size: 1.2em;
 }
-#search { 
+.search-toggle { 
     z-index: 2;
-    position: absolute;
     margin-left: 0px;
-    top: 0;
     color: #777;
     border-top: none;
     border-bottom: 1px solid #555;
@@ -153,6 +159,13 @@
     text-align: center;
     font-size: 1.2em;
     padding-top: 10px;
+    cursor: pointer;
+}
+.search-toggle:hover,
+.search-toggle.active {
+    color: white;
+    background-color: #1ED3A4;
+    border-bottom: 1px solid #1ED3A4;
 }
 .social-media-icons a,
 #search a {

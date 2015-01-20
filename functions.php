@@ -109,6 +109,8 @@ function gojoseon_scripts() {
         
         wp_enqueue_script( 'gojoseon-superfish-settings', get_template_directory_uri() . '/js/superfish-settings.js', array( 'gojoseon-superfish' ), '20150120', true ); 
         
+        wp_enqueue_script( 'gojoseon-navigation', get_template_directory_uri() . '/js/hide-search.js', array( 'jquery' ), '20150121', true );
+        
 	wp_enqueue_script( 'gojoseon-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'gojoseon-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -215,13 +217,13 @@ function the_breadcrumb() {
         echo get_option( 'home' );
         echo '">';
         echo 'Home';
-        echo '</a></li><li class="separator"><i class="fa fa-angle-right"></i></li>';
+        echo '</a></li>';
         
         if ( is_category() || is_single() ) {
             echo '<li>';
-            the_category(' </li><li class="separator"><i class="fa fa-angle-right"></i></li><li>');
+            the_category('</li><li>');
             if ( is_single() ) {
-                echo '</li><li class="separator"><i class="fa fa-angle-right"></i></li><li>';
+                echo '</li><li>';
                 the_title();
                 echo '</li>';
             }
@@ -231,7 +233,7 @@ function the_breadcrumb() {
                 $title = get_the_title();
                 
                 foreach ( $ancestors as $ancestor ) {
-                    $output = '<li><a href="' . get_permalink( $ancestor ) . '" title="' . get_the_title( $ancestor ) . '">' . get_the_title( $ancestor ) . '</a></li><li class="separator"><i class="fa fa-angle-right"></i></li>';    
+                    $output = '<li><a href="' . get_permalink( $ancestor ) . '" title="' . get_the_title( $ancestor ) . '">' . get_the_title( $ancestor ) . '</a></li></li>';    
                 }
                 
                 echo $output;

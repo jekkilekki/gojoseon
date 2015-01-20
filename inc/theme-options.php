@@ -243,7 +243,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     
     // Show Breadcrumbs?
     $wp_customize->add_setting( 'show_breadcrumbs', array(
-        'default'   => false,
+        'default'   => true,
     ));
     $wp_customize->add_control( 'show_breadcrumbs', array(
         'label'     => __( 'Show breadcrumbs?', 'gojoseon' ),

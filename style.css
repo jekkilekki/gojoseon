@@ -635,8 +635,6 @@ X.X Header
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    max-width: 150px;
-    max-height: 150px;
 }
 
 .site-branding,
@@ -696,6 +694,34 @@ X.X Header
     color: #aaa;
 }
 
+input[type="search"] {
+    box-sizing: border-box;
+    width: 100%;
+}
+.search-box-wrapper {
+    z-index: 50;
+    width: 320px;
+    position: absolute;
+    left: 4rem;
+    display: none;
+    
+}
+.search-box {
+    padding: 5px;
+    background: #1ED3A4;
+}
+.search-box .search-field {
+    background-color: #fff;
+    border: 0;
+    font-size: 1.2em;
+    margin: 0;
+    height: 40px;
+}
+.search-box .search-submit,
+.error404 .search-submit,
+.archive .search-submit {
+    display: none;
+}
 
 /*--------------------------------------------------------------
 9.0 Widgets
