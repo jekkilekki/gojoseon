@@ -659,6 +659,7 @@ X.X Header
     font-size: 2rem;
     position: absolute;
     bottom: 0px;
+    padding: 0 20px;
 }
 .site-title a {
     color: white;

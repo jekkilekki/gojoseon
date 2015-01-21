@@ -83,6 +83,7 @@
         <!-- Primary Site Navigation Bar (sticky) -->
         <div id="primary-menu" class="large-2 columns">
 
+            <div class="something">
             <!-- Site Branding -->
             <div class="site-branding">
                 
@@ -111,6 +112,7 @@
                 <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
             </nav><!-- End #site-nav -->
+            </div>
 
         </div><!-- End #primary-menu .large-2 columns -->
         
