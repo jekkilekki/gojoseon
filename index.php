@@ -54,10 +54,8 @@ get_header(); ?>
        
     <!-- Widget Sidebar -->
     <?php if ( $sidebar_display != 'none' ) { get_sidebar(); } ?> 
+  
+    <?php get_footer(); ?>
     
     </div><!-- #content -->
-</div><!-- #row -->
-    
-<div class="row">   
-    <?php get_footer(); ?>
 </div><!-- #row -->

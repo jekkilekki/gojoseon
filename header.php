@@ -77,73 +77,83 @@
     
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
+        
+    <div class="row">
+        
+        <!-- Primary Site Navigation Bar (sticky) -->
+        <div id="primary-menu" class="large-2 columns">
 
-	<header id="masthead" class="site-header" role="banner">
-            
-            <?php if ( get_header_image() ) : ?>
-            <!-- Header Image -->
-            <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">;
-            </div>
-            <?php endif; // End header image check. ?>
-            
-            <div class="row">
+            <!-- Site Branding -->
+            <div class="site-branding">
                 
-                <!-- Site title/logo -->
-                <div class="site-branding large-2 columns">
-                    <?php if ( get_theme_mod( 'gojoseon_logo' ) ) : ?>
-                        <div  id="site-logo">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-                            <img src="<?php echo get_theme_mod( 'gojoseon_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
-                        </a>
-                        </div>
-                    <?php else : ?>
-                        <hgroup>
-                            <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                        </hgroup>
-                    <?php endif; ?>
-                    
-                </div><!-- .site-branding -->
+                <?php if ( get_theme_mod( 'gojoseon_logo' ) ) : ?>
                 
-                <div class="large-10 columns"><!-- Possible ad space or additional menu -->
-                    
-                    <!-- Top Widgetized Area -->
-                    <div class="large-12 columns sidebar-top">
-                        
-                    </div>
-                    
-                    <!-- Site description/tagline -->
-                    <div class=" large-9 medium-8 columns">
-                        <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-                    </div>
+                <!-- Site logo (replaces title) -->    
+                <div  id="site-logo">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+                        <img src="<?php echo get_theme_mod( 'gojoseon_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+                    </a>
+                </div>
                 
-                    <!-- Menu bar over sidebar -->
-                    <div class=" large-3 medium-4 columns">
-                        <nav id="top-navigation" class="main-navigation" role="navigation">
-                            <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
-                            <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
-                        </nav><!-- #top-navigation -->
-                    </div>
-                </div><!-- #large-10 -->
+                <?php else : ?>
                 
-            </div><!-- #row -->
-	</header><!-- #masthead -->
+                <!-- Site title -->
+                <hgroup>
+                    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                </hgroup>
+                
+                <?php endif; ?>
+                
+            </div><!-- End .site-branding -->
 
-	<div id="content" class="site-content">
-            
-            <div class="row" data-equalizer>
+            <!-- Primary Menu -->  
+            <nav id="side-nav" class="navigation" role="navigation">
+                <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
+                <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+            </nav><!-- End #site-nav -->
 
-                <!-- Primary Menu -->  
-                <nav id="side-nav" class="navigation large-2 columns" role="navigation" data-equalizer-watch>
-                    <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
-                    <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-                </nav><!-- #site-navigation -->
+        </div><!-- End #primary-menu .large-2 columns -->
+        
+        <!-- Begin main content area -->
+        <div id="content" class="site-content large-10 columns"> 
+
+            <!-- Header area -->
+            <header id="masthead" class="site-header" role="banner">
+
+                <?php if ( get_header_image() ) : ?>
                 
-                <div id="content" class="large-10 columns" data-equalizer-watch>
-                    <!-- Main Content Area -->  
-                    <?php if ( $sidebar_display != 'none' ) {
-                        echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
-                    } else {
-                        echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
-                    } ?>
+                <!-- Header Image -->
+                <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">;
+                </div>
+                
+                <?php endif; // End header image check. ?>
 
-                    <?php if ( get_theme_mod( 'show_breadcrumbs' ) == true ) { the_breadcrumb(); } ?>
+                
+                <!-- Top Widgetized Area -->
+                <div class="large-12 columns sidebar-top">
+
+                </div>
+
+                <!-- Site description/tagline -->
+                <div class=" large-9 medium-8 columns">
+                    <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                </div>
+
+                <!-- Menu bar over sidebar -->
+                <div class=" large-3 medium-4 columns">
+                    <nav id="top-navigation" class="main-navigation" role="navigation">
+                        <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
+                        <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
+                    </nav><!-- #top-navigation -->
+                </div>
+
+            </header><!-- End header #masthead -->
+                
+            <!-- Main Content Area -->  
+            <?php if ( $sidebar_display != 'none' ) {
+                echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
+            } else {
+                echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
+            } ?>
+
+            <?php if ( get_theme_mod( 'show_breadcrumbs' ) == true ) { the_breadcrumb(); } ?>

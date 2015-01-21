@@ -5,6 +5,7 @@
  * @package Gojoseon
  */
 
+$sidebar_display = get_theme_mod( 'sidebar_position' );
 get_header(); ?>
 
 
@@ -29,9 +30,9 @@ get_header(); ?>
 	</div><!-- #primary -->
     
     <!-- Widget Sidebar -->
-    <?php get_sidebar(); ?>
-        
-    </div><!-- #large-10 -->
+    <?php if ( $sidebar_display != 'none' ) { get_sidebar(); } ?> 
+  
+    <?php get_footer(); ?>
+    
+    </div><!-- #content -->
 </div><!-- #row -->
-        
-<?php get_footer(); ?>

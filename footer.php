@@ -7,12 +7,10 @@
  * @package Gojoseon
  */
 ?>
-
-	</div><!-- #content -->
             
         <footer id="colophon" class="site-footer" role="contentinfo">
             
-            <div class="row"><!-- Foundation row -->
+            <div id="footer-area">
                 
                 <!-- Footer Menu -->
                 <nav id="site-navigation" class="main-navigation large-8 columns" role="navigation">
@@ -22,18 +20,24 @@
                 
                 <div id="copyright" class="large-4 columns">
                     &copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'title' ); ?> <span id="copyright-message"><?php echo get_theme_mod( 'gojoseon_copyright_message', 'All Rights Reserved' ); ?></span>
-                </div><!-- #footer -->
+                </div><!-- #copyright -->
                 
-            </div>
-            <div class="row site-info">
+            </div><!-- #footer-area -->
+            
+            <div class="site-info">
                 
                 <!-- Site Info -->
                 <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'gojoseon' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'gojoseon' ), 'WordPress' ); ?></a>
                 <span class="sep"> | </span>
                 <?php printf( __( 'Theme: %1$s by %2$s.', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
 
-            </div><!-- .row -->
+            </div><!-- .site-info -->
+            
         </footer><!-- #colophon -->
+        
+        </div><!-- #large-10 from header.php -->
+                
+    </div><!-- #row from header.php -->
      
 </div><!-- #page -->
 

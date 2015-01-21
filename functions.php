@@ -109,7 +109,9 @@ function gojoseon_scripts() {
         
         wp_enqueue_script( 'gojoseon-superfish-settings', get_template_directory_uri() . '/js/superfish-settings.js', array( 'gojoseon-superfish' ), '20150120', true ); 
         
-        wp_enqueue_script( 'gojoseon-navigation', get_template_directory_uri() . '/js/hide-search.js', array( 'jquery' ), '20150121', true );
+        wp_enqueue_script( 'gojoseon-hide-search', get_template_directory_uri() . '/js/hide-search.js', array( 'jquery' ), '20150121', true );
+        
+        wp_enqueue_script( 'gojoseon-sidebar-scrolling', get_template_directory_uri() . '/js/sidebar-scrolling.js', array( 'jquery' ), '20150121', true );
         
 	wp_enqueue_script( 'gojoseon-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
