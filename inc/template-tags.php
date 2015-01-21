@@ -263,6 +263,12 @@ add_action( 'save_post',     'gojoseon_category_transient_flusher' );
 
 
 /**
+ * -----------------------------------------------------------------------------
+ * My custom functions below
+ * -----------------------------------------------------------------------------
+ */
+
+/**
  * Custom Breadcrumbs
  * 
  * @link: http://thewebtaylor.com/articles/wordpress-creating-breadcrumbs-without-a-plugin
@@ -310,6 +316,24 @@ function the_breadcrumb() {
         
         echo '</ul>';
     }
+}
+
+/**
+ * Fancy excerpts
+ * 
+ * @link: http://wptheming.com/2015/01/excerpt-versus-content-for-archives/
+ */
+function the_fancy_excerpt() {
+    global $post;
+    if (has_excerpt() ) :
+        the_excerpt();
+    elseif ( @strpos( $post->post_content, '<!--more-->' ) ) :
+        the_content();
+    elseif ( str_word_count( $post->post_content ) < 200 ) :
+        the_content();
+    else :
+        the_excerpt();
+    endif;
 }
 
 /**
