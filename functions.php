@@ -52,6 +52,7 @@ function gojoseon_setup() {
 	register_nav_menus( array(
 		'top'       => __( 'Top Menu', 'gojoseon' ),
                 'primary'   => __( 'Primary Menu', 'gojoseon' ),
+                'social'    => __( 'Social Menu', 'gojoseon' ),
                 'quick'     => __( 'Quick Menu', 'gojoseon' ),
                 'footer'    => __( 'Footer Menu', 'gojoseon' ),
 	) );
@@ -206,52 +207,3 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/theme-options.php';
 
-/**
- * Custom Breadcrumbs
- * 
- * @link: http://thewebtaylor.com/articles/wordpress-creating-breadcrumbs-without-a-plugin
- */
-function the_breadcrumb() {
-    global $post;
-    echo '<ul id="breadcrumbs">';
-    if ( !is_home() ) {
-        echo '<li><a href="';
-        echo get_option( 'home' );
-        echo '">';
-        echo 'Home';
-        echo '</a></li>';
-        
-        if ( is_category() || is_single() ) {
-            echo '<li>';
-            the_category('</li><li>');
-            if ( is_single() ) {
-                echo '</li><li>';
-                the_title();
-                echo '</li>';
-            }
-        } else if ( is_page() ) {
-            if( $post->post_parent ) {
-                $ancestors = get_post_ancestors( $post->ID );
-                $title = get_the_title();
-                
-                foreach ( $ancestors as $ancestor ) {
-                    $output = '<li><a href="' . get_permalink( $ancestor ) . '" title="' . get_the_title( $ancestor ) . '">' . get_the_title( $ancestor ) . '</a></li></li>';    
-                }
-                
-                echo $output;
-                echo '<strong title="' . $title . '"> ' . $title . '</strong>';
-            } else {
-                echo '<li><strong> ' . get_the_title() . '</strong></li>';
-            }
-        } 
-        else if ( is_tag() ) { single_tag_title(); }
-        else if ( is_day() ) { echo "<li>Archive for "; the_time( 'F jS, Y' ); echo '</li>'; }
-        else if ( is_month() ) { echo "<li>Archive for "; the_time( 'F, Y' ); echo '</li>'; }
-        else if ( is_year() ) { echo "<li>Archive for "; the_time( 'Y' ); echo '</li>'; }
-        else if ( is_author() ) { echo "<li>Author Archive"; echo '</li>'; }
-        else if ( isset( $_GET[ 'paged' ] ) && !empty( $_GET[ 'paged' ] ) ) { echo "<li>Blog Archives"; echo '</li>'; }
-        else if ( is_search() ) { echo "<li>Search Results"; echo '</li>'; }
-        
-        echo '</ul>';
-    }
-}

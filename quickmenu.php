@@ -19,7 +19,7 @@
     </nav>
     
     <div id="social-icons">
-        <?php gojoseon_show_social_icons(); ?>
+        <?php gojoseon_social_menu(); ?>
     </div>
     
     <a href="#" class="topbutton"><i class="fa fa-angle-up"></i><br />Top</a>

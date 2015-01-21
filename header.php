@@ -137,12 +137,12 @@
                 </div>
 
                 <!-- Site description/tagline -->
-                <div class=" large-9 medium-8 columns">
+                <div class=" large-6 columns">
                     <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
                 </div>
 
                 <!-- Menu bar over sidebar -->
-                <div class=" large-3 medium-4 columns">
+                <div class=" large-6 columns">
                     <nav id="top-navigation" class="main-navigation" role="navigation">
                         <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
                         <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
