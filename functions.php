@@ -207,3 +207,46 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/theme-options.php';
 
+/**
+ * Custom Menu Walker to display the Title Attribute from a menu
+ * 
+ * @link: https://wordpress.org/support/topic/how-to-show-the-description-of-the-menu
+ */
+class Gojoseon_Menu_Walker extends Walker_Nav_Menu {
+    
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        global $wp_query;
+        $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+        
+        $class_names = $value = '';
+        
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        
+        $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+        $class_names = ' class="' . esc_attr( $class_names ) . '"';
+        
+        $output .= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
+        
+        $attributes = ! empty( $item->attr_title )  ? ' title="'  . esc_attr( $item->attr_title ) . '"' : '';
+        $attributes = ! empty( $item->target )      ? ' target="' . esc_attr( $item->target     ) . '"' : '';
+        $attributes = ! empty( $item->xfn )         ? ' rel="'    . esc_attr( $item->xfn        ) . '"' : '';
+        $attributes = ! empty( $item->url )         ? ' href="'   . esc_attr( $item->url        ) . '"' : '';
+        
+        /* Additional code @link: http://www.kriesi.at/archives/improve-your-wordpress-navigation-menu-output */
+        $prepend = '<strong>';
+        $append = '</strong>';
+        $attr_title = ! empty( $item->description ) ? '<span class="sub">' . esc_attr( $item->attr_title ) . '</span>' : '';
+        
+        if( $depth != 0 ) {
+            $description = $append = $prepend = "";
+        }
+        
+        $item_output = $args->before;
+        $item_output .= '<a' . $attributes . '><span class="full">';
+        $item_output .= $args->link_before . $prepend . apply_filters( 'the_title', $item->title, $item->ID ) . $append . $args->link_after;
+        $item_output .= '</span>' . $attr_title . '</a>';  /* Use $item->description for Description */
+        $item_output .= $args->after;
+        
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+}

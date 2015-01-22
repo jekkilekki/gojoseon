@@ -71,14 +71,16 @@
 
 <body <?php body_class(); ?>>
 
-<?php if ( $quickmenu ) {
-    get_template_part( 'quickmenu' );
-} ?>
-    
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
         
+        <?php if ( $quickmenu ) {
+            get_template_part( 'quickmenu' );
+        } ?>
+        
     <div class="row">
+        
+        
         
         <!-- Primary Site Navigation Bar (sticky) -->
         <div id="primary-menu" class="large-2 columns">

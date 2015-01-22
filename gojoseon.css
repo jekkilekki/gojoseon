@@ -106,7 +106,7 @@
     list-style-type: none;
     background-color: whitesmoke;
     position: absolute;
-    top: 0;
+    top: -1px;
     right: -200px;
     width: 200px;
     z-index: 5;
@@ -116,6 +116,9 @@
 #side-nav ul ul ul li {
     background-color: #777;
     padding: 10px;
+}
+#side-nav ul ul ul li:last-child {
+    border-bottom: 1px dotted silver;
 }
 #side-nav ul ul li:hover > ul {
     display: list-item;
@@ -147,7 +150,6 @@
     padding-top: 32px; 
 }
 
-
 #menu-social {
     z-index: 2;
     position: absolute;
@@ -159,7 +161,8 @@
 #menu-social-items {
     margin-left: 0px;
 }
-#menu-social-items li {
+#menu-social-items li,
+#menu-quick-items li {
     padding: 5px;
     border-top: 1px solid #555;
     width: 64px;
@@ -168,11 +171,21 @@
     font-size: 0.8em;
     position: relative;
 }
-#menu-social-items li:last-child {
+#menu-social-items li:last-child,
+#menu-quick-items li:last-child {
     border-bottom: 1px solid #555;
 }
 #menu-social-items li:hover {
     background-color: #000;
+}
+.menu-social li a:before {
+    display: inline-block;
+    padding: 0 5px;
+    vertical-align: top;
+    font-family: 'FontAwesome';
+    font-size: 1.4em;
+    color: #777;
+    -webkit-font-smoothing: antialiased;
 }
 
 .menu-social li a[href*="facebook.com"]::before { content: '\f09a'; }
@@ -220,16 +233,52 @@
 .menu-social li:hover > a[href*="behance.com"] { content: '\f1b4'; }
 .menu-social li:hover > a[href*="slideshare.net"] { content: '\f1e7'; }
 
-.menu-social li a:before {
-    display: inline-block;
-    padding: 0 5px;
-    vertical-align: top;
-    font-family: 'FontAwesome';
-    font-size: 1.4em;
-    color: #777;
-    -webkit-font-smoothing: antialiased;
+/* Quick Menu Items styling */
+#menu-quick {
+    z-index: 20;
+    position: fixed;
+    top: 165px;
+    margin: 0;
+    padding-bottom: 0;
 }
 
+#menu-quick-items {
+    margin-left: 0;
+}
+#menu-quick-items a {
+    color: #777;
+}
+
+#menu-quick-items ul li a {
+    color: whitesmoke;
+}#menu-quick ul ul li:hover {
+    background-color: #169A70;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 0px;
+}
+#menu-quick ul {
+    position: relative;
+    overflow-x: hidden;
+}
+#menu-quick ul li > ul {
+    position: absolute;
+    top: 0;
+}
+#menu-quick-items ul li {
+    background-color: #777;
+    padding: 10px;
+}
+#menu-quick-items li:hover > ul {
+}
+
+#menu-quick-items li span.sub {
+    color: #777;
+    font-size: 1.4em;
+}
+#menu-quick-items li span.full {
+    display: none;
+}
 .search-toggle { 
     z-index: 2;
     margin-left: 0px;
@@ -272,10 +321,12 @@
     color: #777;
     text-align: center;
     vertical-align: bottom;
-    font-size: 0.7em;
     border-top: 1px solid #555;
     clear: left;
     padding-top: 5px;
+}
+.topbutton a {
+    font-size: 0.7em;
 }
 .topbutton i {
     font-size: 2em;   

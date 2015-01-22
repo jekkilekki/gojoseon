@@ -4,9 +4,11 @@
 
 <div id="search-container" class="search-box-wrapper clear">
     <div class="search-box clear">
-        <?php get_search_form(); ?>
+        <?php get_search_form(); // Place this outside the "quickmenu" div so it will stay on top ?>
     </div>
 </div>
+
+<?php gojoseon_quick_menu(); // Place this outside the "quickmenu" div so it will stay on top ?>
 
 <div id="quickmenu">
     <div class="search-toggle">
@@ -14,15 +16,13 @@
         <a href="#search-container" class="screen-reader-text"><?php _e( 'Search', 'gojoseon' ); ?></a>
     </div>
     
-    <nav>
-        
-    </nav>
-    
     <div id="social-icons">
         <?php gojoseon_social_menu(); ?>
     </div>
     
-    <a href="#" class="topbutton"><i class="fa fa-angle-up"></i><br />Top</a>
+    <div class="topbutton">
+        <a href="#" class="topbutton"><i class="fa fa-angle-up"></i><br />Top</a>
+    </div>
     
 </div>
 
