@@ -161,8 +161,7 @@
 #menu-social-items {
     margin-left: 0px;
 }
-#menu-social-items li,
-#menu-quick-items li {
+#menu-social-items li {
     padding: 5px;
     border-top: 1px solid #555;
     width: 64px;
@@ -171,8 +170,7 @@
     font-size: 0.8em;
     position: relative;
 }
-#menu-social-items li:last-child,
-#menu-quick-items li:last-child {
+#menu-social-items li:last-child {
     border-bottom: 1px solid #555;
 }
 #menu-social-items li:hover {
@@ -241,44 +239,74 @@
     margin: 0;
     padding-bottom: 0;
 }
+.admin-bar #menu-quick {
+    top: 197px;
+}
 
 #menu-quick-items {
-    margin-left: 0;
-}
-#menu-quick-items a {
-    color: #777;
-}
-
-#menu-quick-items ul li a {
-    color: whitesmoke;
-}#menu-quick ul ul li:hover {
-    background-color: #169A70;
-    margin: 0;
-    padding-left: 20px;
-    padding-right: 0px;
-}
-#menu-quick ul {
     position: relative;
-    overflow-x: hidden;
-}
-#menu-quick ul li > ul {
-    position: absolute;
-    top: 0;
-}
-#menu-quick-items ul li {
-    background-color: #777;
-    padding: 10px;
-}
-#menu-quick-items li:hover > ul {
-}
-
-#menu-quick-items li span.sub {
+    margin-left: 0;
+    height: 40px;
+    width: 64px;
+    width: 4rem;
+    text-align: center;
+    font-size: 1.2em;
     color: #777;
-    font-size: 1.4em;
 }
-#menu-quick-items li span.full {
+#menu-quick-items li {
+    border-top: 1px solid #555;
+    padding: 5px;
+}
+#menu-quick-items li:last-child {
+    border-bottom: 1px solid #555;
+}
+#menu-quick-items li a {
+    color: #777;
+}
+#menu-quick-items li a strong {
     display: none;
 }
+#menu-quick-items li ul {
+    position: absolute;
+    top: 0px;
+    right: -256px;
+    width: 256px;
+    display: none;
+}
+#menu-quick-items li ul li:hover {
+    background-color: #169A70;
+    padding-left: 20px;
+}
+#menu-quick-items li ul li > a::after {
+    font-family: FontAwesome;
+    padding-left: 5px;
+    content: ' \f0da';
+    color: whitesmoke;
+}
+#menu-quick-items li ul li > a:hover::after {
+    content: ' \f0d7';
+}
+#menu-quick-items li ul li > a:only-child::after,
+#menu-quick-items li ul li > a:only-child:hover::after {
+    content: '';
+}
+#menu-quick-items li ul li {
+    width: 256px;
+    list-style-type: none;
+    background-color: #777;
+    font-size: 0.8em;
+    text-align: left;
+    padding: 10px;
+    border-right: 1px solid #555;
+}
+#menu-quick-items li ul li a {
+    color: whitesmoke;
+}
+#menu-quick-items li ul li ul {
+    right: 0;
+    top: 40px;
+}
+
 .search-toggle { 
     z-index: 2;
     margin-left: 0px;

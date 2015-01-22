@@ -235,16 +235,16 @@ class Gojoseon_Menu_Walker extends Walker_Nav_Menu {
         /* Additional code @link: http://www.kriesi.at/archives/improve-your-wordpress-navigation-menu-output */
         $prepend = '<strong>';
         $append = '</strong>';
-        $attr_title = ! empty( $item->description ) ? '<span class="sub">' . esc_attr( $item->attr_title ) . '</span>' : '';
+        $attr_title = ! empty( $item->attr_title ) ? '<span class="sub">' . esc_attr( $item->attr_title ) . '</span>' : '';
         
         if( $depth != 0 ) {
             $description = $append = $prepend = "";
         }
         
         $item_output = $args->before;
-        $item_output .= '<a' . $attributes . '><span class="full">';
+        $item_output .= '<a' . $attributes . '>';
         $item_output .= $args->link_before . $prepend . apply_filters( 'the_title', $item->title, $item->ID ) . $append . $args->link_after;
-        $item_output .= '</span>' . $attr_title . '</a>';  /* Use $item->description for Description */
+        $item_output .= $attr_title . '</a>';  /* Use $item->description for Description */
         $item_output .= $args->after;
         
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );

@@ -2,6 +2,12 @@
  * Enable sidebar scrolling like the TwentyFifteen theme
  * 
  * @link: https://core.trac.wordpress.org/browser/trunk/src/wp-content/themes/twentyfifteen/js/functions.js?rev=30388
+ * 
+ * @TODO: When Chrome gets to the top and "bounces", it adds an additional 
+ * adminbar distance to the location of the "fixed" sidebar
+ * @TODO: When the sidebar is "fixed" but the content is scrolling, the dropdown 
+ * menus don't pop up over the content 
+ * 
  */
 
 ( function( $ ) {

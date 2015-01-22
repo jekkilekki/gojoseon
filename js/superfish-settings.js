@@ -13,3 +13,8 @@ jQuery(document).ready(function($) {
     });
 });
 
+/**
+ * Excellent resource on styling dropdown menus
+ * 
+ * @link: http://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling/
+ */
