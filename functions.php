@@ -106,9 +106,10 @@ add_action( 'widgets_init', 'gojoseon_widgets_init' );
 function gojoseon_scripts() {
 	wp_enqueue_style( 'gojoseon-style', get_stylesheet_uri() );
         
-        wp_enqueue_script( 'gojoseon-superfish', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '20150120', true ); 
-        
-        wp_enqueue_script( 'gojoseon-superfish-settings', get_template_directory_uri() . '/js/superfish-settings.js', array( 'gojoseon-superfish' ), '20150120', true ); 
+        // Superfish and Superclick Menus and settings
+        wp_enqueue_script( 'gojoseon-superfish', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '20150120', true );
+        wp_enqueue_script( 'gojoseon-superclick', get_template_directory_uri() . '/js/superclick.js', array( 'jquery' ), '20150123', true ); 
+        wp_enqueue_script( 'gojoseon-superfish-settings', get_template_directory_uri() . '/js/superfish-settings.js', array( 'gojoseon-superfish' ), '20150120', true );
         
         wp_enqueue_script( 'gojoseon-hide-search', get_template_directory_uri() . '/js/hide-search.js', array( 'jquery' ), '20150121', true );
         
@@ -212,7 +213,24 @@ require get_template_directory() . '/inc/theme-options.php';
  * 
  * @link: https://wordpress.org/support/topic/how-to-show-the-description-of-the-menu
  */
-class Gojoseon_Menu_Walker extends Walker_Nav_Menu {
+class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
+    
+    // add classes to ul sub-menus for the Superclick.js menu helper
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        // depth dependent classes
+        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+        $display_depth = ( $depth + 1 ); // because it counts the first submenu as 0
+        $classes = array(
+            'quick',
+            ( $display_depth >= 2 ? 'sub-sub-menu' : '' ),
+            'menu-depth-' . $display_depth
+        );
+        
+        $class_names = implode( ' ', $classes );
+        
+        //build html
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+    }
     
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
         global $wp_query;
@@ -223,7 +241,7 @@ class Gojoseon_Menu_Walker extends Walker_Nav_Menu {
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
         
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
-        $class_names = ' class="' . esc_attr( $class_names ) . '"';
+        $class_names = ' class=" ' . esc_attr( $class_names ) . '"';
         
         $output .= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
         
@@ -237,8 +255,13 @@ class Gojoseon_Menu_Walker extends Walker_Nav_Menu {
         $append = '</strong>';
         $attr_title = ! empty( $item->attr_title ) ? '<span class="sub">' . esc_attr( $item->attr_title ) . '</span>' : '';
         
-        if( $depth != 0 ) {
-            $description = $append = $prepend = "";
+        if( $depth == 1 ) {
+            $attr_title = "";
+            $prepend = "<span>";
+            $append = "</span>";
+        }
+        if( $depth == 2 ) {
+            $attr_title = $prepend = $append = "";
         }
         
         $item_output = $args->before;

@@ -348,12 +348,12 @@ function gojoseon_quick_menu() {
                     'container_id'      => 'menu-quick',
                     'container_class'   => 'menu-quick',
                     'menu_id'           => 'menu-quick-items',
-                    'menu_class'        => 'menu-items sub-menu',
+                    'menu_class'        => 'menu-items quick',
                     'depth'             => 3,
                     'link_before'       => '',
                     'link_after'        => '',
                     'fallback_cb'       => '',
-                    'walker'            => new Gojoseon_Menu_Walker(),
+                    'walker'            => new Gojoseon_Quick_Menu_Walker(),
                 )
         );
     }
