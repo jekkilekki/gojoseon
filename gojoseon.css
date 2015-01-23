@@ -336,6 +336,7 @@
     max-height: 40rem;
     z-index: 20;
 }
+/* Custom scrollbars in webkit @link: http://css-tricks.com/custom-scrollbars-in-webkit/ */
 #menu-quick-items li ul li ul::-webkit-scrollbar {
     width: 8px;
 }
