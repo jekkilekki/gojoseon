@@ -97,6 +97,26 @@ function gojoseon_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
+        
+        register_sidebar( array(
+                'name'          => __( 'Header Widgets', 'gojoseon' ),
+                'id'            => 'sidebar-header',
+                'description'   => __( 'Widget appearing above the tagline and top menu, next to the logo.', 'gojoseon' ),
+                'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+                'after_widget'  => '</aside>',
+                'before_title'  => '<h1 class="widget-title">',
+                'after_title'   => '</h1>',
+        ) );
+        
+        register_sidebar( array(
+                'name'          => __( 'Footer Widgets', 'gojoseon' ),
+                'id'            => 'sidebar-footer',
+                'description'   => __( 'Widgets appearing above the footer of the site.', 'gojoseon' ),
+                'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+                'after_widget'  => '</aside>',
+                'before_title'  => '<h1 class="widget-title">',
+                'after_title'   => '</h1>',
+        ) );
 }
 add_action( 'widgets_init', 'gojoseon_widgets_init' );
 

@@ -135,7 +135,7 @@
                 
                 <!-- Top Widgetized Area -->
                 <div class="large-12 columns sidebar-top">
-
+                    <?php get_sidebar( 'header' ); ?>
                 </div>
 
                 <!-- Site description/tagline -->

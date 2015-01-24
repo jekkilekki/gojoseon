@@ -11,6 +11,7 @@
         <footer id="colophon" class="site-footer" role="contentinfo">
             
             <div id="footer-area">
+                <?php get_sidebar( 'footer' ); ?>
                 
                 <!-- Footer Menu -->
                 <nav id="site-navigation" class="main-navigation large-8 columns" role="navigation">
