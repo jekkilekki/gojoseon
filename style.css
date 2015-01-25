@@ -733,6 +733,16 @@ input[type="search"] {
 	margin: 0 0 3em;
         color: #aaa;
 }
+.widget-title {
+    margin-bottom: 1em;
+    font-size: 1.2rem;
+    border-bottom: 3px solid #1ED3A4;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-family: Roboto, sans-serif;
+    text-transform: uppercase;
+    color: #555;
+}
 .widget ul,
 .widget table,
 .widget p {
@@ -748,6 +758,12 @@ input[type="search"] {
     margin: -1em 0 0;
     list-style-type: none;
 }
+.widget ul ul,
+.widget ol ol,
+.widget ul ol,
+.widget ol ul {
+    margin-top: 0;
+}
 .widget li {
     padding: 1em 0 0;
 }
@@ -758,15 +774,71 @@ input[type="search"] {
 .widget li li {
     margin-left: 1.5em;
 }
-.widget-title {
-    margin-bottom: 1em;
-    font-size: 1.2rem;
-    border-bottom: 3px solid #1ED3A4;
-    padding-bottom: 5px;
-    font-weight: bold;
-    font-family: Roboto, sans-serif;
-    text-transform: uppercase;
+.widget_recent_entries li:before,
+.widget_recent_comments li:before,
+.widget_archive li:before,
+.widget_categories li:before {
+    display: block;
+    float: left;
+    margin-top: -1px;
+    margin-left: -2em;
+    font-family: 'FontAwesome';
+    font-size: 1rem;
     color: #555;
+}
+.widget_recent_entries li,
+.widget_recent_comments li {
+    margin: 0 0 .5em 2.5em;
+}
+.widget_recent_entries li:before {
+    content: '\f036';
+}
+.widget_recent_comments li:before {
+    content: '\f086';
+}
+.widget_archive li,
+.widget_categories li {
+    margin: 0 0 0 2.5em;
+}
+.widget_archive li:before {
+    content: '\f187';
+}
+.widget_categories li:before {
+    content: '\f07c';
+}
+.widget_categories li li:before {
+    
+}
+.widget_nav_menu a,
+.widget_pages a {
+    display: block;
+    margin: -1em 0 0;
+    padding: 10px 0;
+}
+.widget_nav_menu li,
+.widget_pages li {
+    
+}
+
+.widget_nav_menu li,
+.widget_pages li {
+
+}
+.widget_rss ul {
+    margin-top: 1em;
+}
+.widget_rss li {
+    margin: 1em 0;
+    border: 1px solid #ccc;
+    padding: 1em;
+}
+.widget_rss .rss-date,
+.widget_rss cite {
+    display: block;
+    font-size: 85%;
+}
+.widget_rss .rssSummary {
+    margin: 1em 0;
 }
 
 /* Make sure select elements fit in widgets */
@@ -790,6 +862,17 @@ input[type="search"] {
     float: left;
     width: 30%;
     margin: 0 1.5% 3%;
+}
+
+/* Footer widgets responsive */
+@media screen and (max-width: 879px) {
+    #footer-widgets { width: 100%!important; }
+    
+    .footer-widgets .widget {
+        float: none;
+        width: 100%;
+        margin: 0 0 8rem;
+    }
 }
 
 /*--------------------------------------------------------------

@@ -139,6 +139,9 @@ function gojoseon_scripts() {
 
 	wp_enqueue_script( 'gojoseon-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
         
+        /* Use Masonry */
+        wp_enqueue_script( 'gojoseon-masonry', get_template_directory_uri() . '/js/masonry-settings.js', array( 'masonry' ), '20150126', true );
+        
         // Add the topbutton script ref @link: http://premium.wpmudev.org/blog/back-to-top-button-wordpress/
         wp_enqueue_script( 'gojoseon-topbutton', get_template_directory_uri() . '/js/topbutton.js', array( 'jquery' ), true ); 
         
@@ -358,7 +361,7 @@ function gojoseon_full_tinymce( $buttons ) {
     $buttons[] = 'newdocument';
     $buttons[] = 'charmap';
     $buttons[] = 'hr';
-    $buttons[] = 'code';
+    $buttons[] = 'code'; /* @TODO: Doesn't work currently */
     
     return $buttons;
 }
