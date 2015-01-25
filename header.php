@@ -119,7 +119,7 @@
         </div><!-- End #primary-menu .large-2 columns -->
         
         <!-- Begin main content area -->
-        <div id="content" class="site-content large-10 columns"> 
+        <div id="content" class="site-content large-10 columns" data-equalizer> 
 
             <!-- Header area -->
             <header id="masthead" class="site-header" role="banner">

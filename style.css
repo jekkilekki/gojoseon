@@ -730,7 +730,43 @@ input[type="search"] {
 9.0 Widgets
 --------------------------------------------------------------*/
 .widget {
-	margin: 0 0 1.5em;
+	margin: 0 0 3em;
+        color: #aaa;
+}
+.widget ul,
+.widget table,
+.widget p {
+    font-size: 0.9rem;
+}
+.widget a {
+    color: #777;
+    border-bottom: 1px dotted silver;
+}
+.widget ul,
+.widget ol {
+    padding: 0;
+    margin: -1em 0 0;
+    list-style-type: none;
+}
+.widget li {
+    padding: 1em 0 0;
+}
+.widget li ul,
+.widget li ol {
+    margin-top: 0;
+}
+.widget li li {
+    margin-left: 1.5em;
+}
+.widget-title {
+    margin-bottom: 1em;
+    font-size: 1.2rem;
+    border-bottom: 3px solid #1ED3A4;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-family: Roboto, sans-serif;
+    text-transform: uppercase;
+    color: #555;
 }
 
 /* Make sure select elements fit in widgets */
@@ -741,6 +777,19 @@ input[type="search"] {
 /* Search widget */
 .widget_search .search-submit {
 	display: none;
+}
+
+.footer-widgets {
+    margin: 0 auto;
+}
+.footer-widgets .widget-title,
+.footer-widgets .widget a:hover {
+    
+}
+.footer-widgets .widget {
+    float: left;
+    width: 30%;
+    margin: 0 1.5% 3%;
 }
 
 /*--------------------------------------------------------------
@@ -899,4 +948,24 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+13.0 Footer
+--------------------------------------------------------------*/
+.site-footer {
+    background-color: #e6e6e6;
+    clear: both;
+    margin: 0 -0.9375rem;
+    padding: 1.5rem;
+}
+.site-footer,
+.site-footer a {
+    color: #555;
+}
+#footer-area {
+    background-color: #777;
+    text-align: center;
+    margin: 0 -2rem;
+    padding: 2rem;
 }

@@ -10,8 +10,9 @@
             
         <footer id="colophon" class="site-footer" role="contentinfo">
             
+            <?php get_sidebar( 'footer' ); ?>
+            
             <div id="footer-area">
-                <?php get_sidebar( 'footer' ); ?>
                 
                 <!-- Footer Menu -->
                 <nav id="site-navigation" class="main-navigation large-8 columns" role="navigation">
@@ -23,16 +24,16 @@
                     &copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'title' ); ?> <span id="copyright-message"><?php echo get_theme_mod( 'gojoseon_copyright_message', 'All Rights Reserved' ); ?></span>
                 </div><!-- #copyright -->
                 
-            </div><!-- #footer-area -->
-            
-            <div class="site-info">
+                <div class="site-info large-12 columns">
                 
-                <!-- Site Info -->
-                <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'gojoseon' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'gojoseon' ), 'WordPress' ); ?></a>
-                <span class="sep"> | </span>
-                <?php printf( __( 'Theme: %1$s by %2$s.', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
-
-            </div><!-- .site-info -->
+                    <!-- Site Info -->
+                    <?php printf( __( 'Theme %1$s by %2$s.', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
+                    <span class="sep"> | </span>
+                    <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'gojoseon' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'gojoseon' ), 'WordPress' ); ?></a>
+                    
+                </div><!-- .site-info -->
+                
+            </div><!-- #footer-area -->
             
         </footer><!-- #colophon -->
         

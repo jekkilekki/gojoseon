@@ -8,6 +8,10 @@
  * @TODO: When the sidebar is "fixed" but the content is scrolling, the dropdown 
  * menus don't pop up over the content 
  * 
+ * @TODO: The problem seems to be that the sidebar thinks it's part of the WINDOW
+ * (so if the window gets huge, the sidebar stretches further), and not part of the 
+ * document (row).
+ * 
  */
 
 ( function( $ ) {

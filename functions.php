@@ -344,3 +344,29 @@ class Gojoseon_Social_Menu_Walker extends Walker_Nav_Menu {
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
 }
+
+/**
+ * Enable more buttons in TinyMCE Editor & keep kitchen sink always ON
+ * 
+ * @link: http://premium.wpmudev.org/blog/display-the-full-tinymce-editor-in-wordpress/
+ */
+function gojoseon_full_tinymce( $buttons ) {
+    $buttons[] = 'fontselect';
+    $buttons[] = 'fontsizeselect';
+    $buttons[] = 'styleselect';
+    $buttons[] = 'backcolor';
+    $buttons[] = 'newdocument';
+    $buttons[] = 'charmap';
+    $buttons[] = 'hr';
+    $buttons[] = 'code';
+    
+    return $buttons;
+}
+add_filter( 'mce_buttons_3', 'gojoseon_full_tinymce' );
+
+function gojoseon_tinymce_always_on ( $in ) {
+    $in[ 'wordpress_adv_hidden' ] = false;
+    
+    return $in;
+}
+add_filter( 'tiny_mce_before_init', 'gojoseon_tinymce_always_on' );
