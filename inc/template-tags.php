@@ -103,14 +103,11 @@ function gojoseon_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( ', ', 'gojoseon' ) );
 		if ( $categories_list && gojoseon_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'gojoseon' ) . '</span>', $categories_list );
+			printf( '<span class="cat-links">' . __( 'Posted in <i class="fa fa-folder-open"></i> %1$s', 'gojoseon' ) . '</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'gojoseon' ) );
-		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'gojoseon' ) . '</span>', $tags_list );
-		}
+		echo get_the_tag_list( '<ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul>' );
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
@@ -381,4 +378,19 @@ function gojoseon_social_menu() {
                 )   
         );
     }
+}
+
+/**
+ * Social Sharing buttons in Single Posts
+ * 
+ * @link: http://kikolani.com/social-sharing-buttons-in-single-post-templates.html
+ */
+function gojoseon_social_sharing_buttons() {
+    
+    $output = '<div class="social-single">';
+    
+    $output .= '<div id="tweetthis"><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>';
+    $output .= '<div><a href="http://twitter.com/share" class="twitter-share-button" data-url="' . the_permalink() . '" data-counturl="' . the_permalink() . '" data-text="' . the_title() . '" data-via="username" data-related="username">Tweet</a></div></div>';
+    
+    echo $output;
 }
