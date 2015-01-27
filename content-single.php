@@ -4,7 +4,7 @@
  */
 ?>
 
-<?php edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link">', '</span>' ); ?>
+<?php edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link top-edit-link">', '</span>' ); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">

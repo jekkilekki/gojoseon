@@ -52,6 +52,10 @@
     content: "";
     padding-right: 0;
 }
+#breadcrumbs li a {
+    color: #777;
+    border-bottom: 1px dotted silver;
+}
 #side-nav,
 #main,
 #secondary {
@@ -421,10 +425,24 @@
     padding: 2px 10px;
     border-radius: 5px;
 }
+.top-edit-link {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+}
 .edit-link a {
     color: #777;
 }
 .edit-link:hover {
     background-color: white;
     border: 1px solid silver;
+}
+
+.social-single {
+    clear: both;
+    height: 40px;
+}
+.social-single div {
+    float: left;
+    padding-right: 1em;
 }

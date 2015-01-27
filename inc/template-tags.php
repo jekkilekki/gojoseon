@@ -79,16 +79,24 @@ function gojoseon_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'gojoseon' ),
+		_x( '%s', 'post date', 'gojoseon' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'gojoseon' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+		_x( 'Written by %s', 'post author', 'gojoseon' ),
+		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . ucwords( esc_html( get_the_author() ) ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+        // Comments
+        if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+		echo '<span class="comments-link"><i class="fa fa-comment"></i>';
+		comments_popup_link( __( 'Leave a comment', 'gojoseon' ), __( '1 Comment', 'gojoseon' ), __( '% Comments', 'gojoseon' ) );
+		echo '</span>';
+	}
+        
+        // Post Meta
+	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"><span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>' . $byline . '</span>';
 
 }
 endif;
@@ -116,7 +124,7 @@ function gojoseon_entry_footer() {
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link bottom-edit-link">', '</span>' );
 }
 endif;
 
@@ -387,10 +395,52 @@ function gojoseon_social_menu() {
  */
 function gojoseon_social_sharing_buttons() {
     
-    $output = '<div class="social-single">';
+    // if( get_theme_mod( 'show_social_sharing' ) ) {
     
-    $output .= '<div id="tweetthis"><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>';
-    $output .= '<div><a href="http://twitter.com/share" class="twitter-share-button" data-url="' . the_permalink() . '" data-counturl="' . the_permalink() . '" data-text="' . the_title() . '" data-via="username" data-related="username">Tweet</a></div></div>';
+    ?>
+    <div class="social-single">
     
-    echo $output;
+    <!-- TWITTER -->
+    <div id="tweetthis">
+        <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+        <div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="jekkilekki" data-size="medium">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+    </div>
+            
+    <!-- FACEBOOK -->
+    <div id="likethis">
+        <iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo rawurlencode( get_permalink() ); ?>&layout=button_count&show_faces=false&&share=true&width=100&action=like&font=verdana&colorscheme=light&height=21" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;; height: 21px;" allowTransparency="true">
+        </iframe>
+    </div>
+    
+    <!-- GOOGLE+ -->
+    <div id="plusonethis">
+        <g:plusone size="medium"></g:plusone>
+    </div>
+    
+    <!-- LINKEDIN -->
+    <div id="linkthisin">
+        <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
+        <script type="in/share" data-counter="right"></script>
+    </div>
+    
+    <!-- STUMBLEUPON -->
+    <div id="stumblethis">
+        <script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
+    </div>
+    
+    <!-- PINTEREST -->
+    
+    <!-- REDDIT -->
+    
+    <!-- DIGG -->
+    
+    <!-- EMAIL -->
+    
+    </div>
+    
+
+    <?php // }
 }
