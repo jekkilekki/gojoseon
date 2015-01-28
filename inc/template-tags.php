@@ -124,9 +124,9 @@ function gojoseon_entry_footer() {
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		echo get_the_tag_list( '<div class="tag-links large-4 columns" data-equalizer-watch><h1><i class="fa fa-tag"></i> Tagged:</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
+		echo get_the_tag_list( '<div class="tag-links large-8 columns" data-equalizer-watch><h1><i class="fa fa-tag"></i> Tagged:</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
 	
-                echo '<div class="share-links large-4 columns" data-equalizer-watch><h1><i class="fa fa-share"></i> Share This:</h1><div>';
+                echo '<div class="share-links large-12 columns" data-equalizer-watch><h1><i class="fa fa-share"></i> Share This:</h1><div>';
                     gojoseon_social_sharing_buttons();
                 echo '</div></div>';
             echo '</div>';

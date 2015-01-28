@@ -585,6 +585,17 @@ a:active {
 	display: block;
 	margin: 0 auto;
 }
+/* Alignment responsive */
+@media screen and (min-width: 1320px) {
+    .alignleft {
+        margin-left: -60px!important;
+    }
+}
+@media screen and (min-width: 1820px) {
+    .alignright {
+        margin-right: -60px!important;
+    }
+}
 
 /*--------------------------------------------------------------
 8.0 Clearings
@@ -882,14 +893,19 @@ input[type="search"] {
 /*--------------------------------------------------------------
 10.1 Posts and pages
 --------------------------------------------------------------*/
+#main article {
+    max-width: 780px;
+    margin: 0 auto;
+}
 .entry-title {
     font-size: 30px;
     font-size: 3rem;
-    line-height: 1.3em;
+    line-height: 1.2em;
+    margin-top: 0;
 }
 .entry-content {
     clear: both;
-    margin-top: 5em;
+    margin: 5em auto 1em;
 }
 .entry-content a {
     border-bottom: 1px dotted;
@@ -902,6 +918,12 @@ input[type="search"] {
 .entry-content h6 {
     margin-bottom: 0.5em;
 }
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+    margin-top: 1.5em;
+}
 .entry-content h5,
 .entry-content h6 {
     text-transform: uppercase;
@@ -913,51 +935,86 @@ input[type="search"] {
 .entry-content ul,
 .entry-content ol {
     font-size: 1.1rem;
-    line-height: 1.7em;
-    color: #333;
+    line-height: 1.8em;
 }
 .entry-content ul li,
 .entry-content ol li {
     line-height: 1.8em;
     margin-left: 1em;
 }
+
+/* Blockquotes */
 .entry-content blockquote {
     border-left: 3px solid #cd7f32;
-    background: whitesmoke;
+    background: #fafafa;
     margin: 1em;
+    font-style: italic;
 }
 .entry-content blockquote p {
+    padding: 0.5em 0.5em 1em;
+    color: #999;
+    font-weight: 100;
     font-size: 1.5rem;
     line-height: 1.5em;
-    font-style: italic;
-    color: #999;
-    border-left: 5px;
-    font-weight: 100;
-    padding: 0.5em 0.5em 1em;
+}
+.entry-content blockquote em {
+    font-style: normal;
 }
 .entry-content cite {
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-size: 0.8rem;
+    line-height: 1.5em;
 }
 .entry-content blockquote cite {
+    display: block;
+    margin-top: 2em;
+    margin-left: 40%;
+    font-weight: normal;
+}
+.entry-content blockquote.alignleft {
+    width: 50%;
+    float: left;
+    padding: 1em 0 0 1em;
+    margin-right: 2em;
+    margin-left: 0;
+}
+.entry-content blockquote.alignright {
+    width: 50%;
     float: right;
-    padding: 20px 40px;
+    padding: 1em 0 0 1em;
+    margin-left: 2em;
+    margin-right: 0;
+}
+.entry-content blockquote.alignleft p,
+.entry-content blockquote.alignright p {
+    margin-bottom: 0;
 }
 .entry-content address {
     color: #999;
     font-style: italic;
-    font-size: 0.8em;
+    font-size: 1rem;
+}
+.entry-content address p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
 }
 .entry-content pre, 
 .entry-content code, 
 .entry-content kbd {
     font-size: 1rem;
 }
+.entry-content pre {
+    background: #333;
+    color: whitesmoke;
+    padding: 20px 30px;
+    margin-bottom: 1.5em;
+}
 .entry-content q {
     color: #999;
     font-style: italic;
-    font-family: serif;
+    font-weight: 100;
     font-size: 1.5rem;
 }
 
@@ -1004,7 +1061,7 @@ input[type="search"] {
     border-bottom: 1px solid silver;
     position: relative;
     height: 35px;
-    margin-right: 15px;
+    margin-right: 80px;
 }
 .posted-on, 
 .comments-link,
@@ -1021,7 +1078,7 @@ input[type="search"] {
 }
 .byline {
     float: right;
-    padding-right: 15px;
+    margin-right: 0;
 }
 .byline .vcard {
     border: none;
@@ -1030,10 +1087,15 @@ input[type="search"] {
 }
 .author-image {
     position: absolute;
-    right: -15px;
-    top: -15px;
-    border: 1px solid silver;
-    border-radius: 50px;
+    right: -80px;
+    top: 0;
+    border-radius: 80px;
+}
+.author-image img {
+
+}
+.author-image img:hover {
+
 }
 .posted-on a,
 .comments-link a,
@@ -1043,6 +1105,10 @@ input[type="search"] {
 .comments-link i {
     padding-right: 5px;
     font-size: 1rem;
+}
+.entry-footer {
+    max-width: 780px;
+    margin: 0 auto 2em;
 }
 .footer-meta {
     margin: 0 -0.9375rem;
@@ -1077,12 +1143,16 @@ input[type="search"] {
 .cat-links a, 
 .tag-links a {
     font-size: 0.8em;
-    color: #999;
+    color: #777;
 }
 .tag-links li i {
-    color: #999;
+    color: #777;
     font-size: 0.8rem;
     margin-right: 5px;
+}
+.share-links {
+    margin-top: 2em;
+    
 }
 .sticky {
 	display: block;
@@ -1167,6 +1237,11 @@ object {
 /*--------------------------------------------------------------
 12.1 Captions
 --------------------------------------------------------------*/
+.alignleft .wp-caption-text,
+.alignright .wp-caption-text,
+.aligncenter .wp-caption-text {
+    margin: 0 5px;
+}
 .wp-caption {
 	margin-bottom: 1.5em;
 	max-width: 100%;
@@ -1182,7 +1257,10 @@ object {
 }
 
 .wp-caption .wp-caption-text {
-	margin: 0.8075em 0;
+        padding: 0.5em 1em;
+        font-size: 0.8rem;
+        color: #555;
+        background: gainsboro;
 }
 
 /*--------------------------------------------------------------

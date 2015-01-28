@@ -59,7 +59,7 @@
 #side-nav,
 #main,
 #secondary {
-    padding-top: 50px;
+    padding-top: 3em;
     border-top: 5px solid #1ED3A4;
 }
 #side-nav {
@@ -427,8 +427,11 @@
 }
 .top-edit-link {
     position: absolute;
-    top: 20px;
+    top: 23px;
     right: 15px;
+}
+.bottom-edit-link {
+    margin-top: -40px;
 }
 .edit-link a {
     color: #777;
