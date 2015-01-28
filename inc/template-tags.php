@@ -89,10 +89,12 @@ function gojoseon_posted_on() {
 	);
         
         // Post Meta
+        echo '<div id="header-meta">';
         echo '<div class="posted-on">' . $posted_on . '</div>';
-	echo '<div class="byline"><span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>' . $byline . '</div>';
+	echo '<div class="byline">' . $byline . '</div>';
+        
+        echo '<span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>';
 
-        echo '<div class="social-single">';
         // Comments
         if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<div class="comments-link"><i class="fa fa-comment"></i>';
@@ -100,8 +102,10 @@ function gojoseon_posted_on() {
 		echo '</div>';
 	}
         
+        echo '</div><!-- #header-meta -->';
+        
         gojoseon_social_sharing_buttons();
-        echo '</div>';
+
 }
 endif;
 
@@ -408,7 +412,7 @@ function gojoseon_social_sharing_buttons() {
     // if( get_theme_mod( 'show_social_sharing' ) ) {
     
     ?>
-    
+    <div class="social-sharing">
     <!-- TWITTER -->
     <div id="tweetthis">
         <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
@@ -448,7 +452,7 @@ function gojoseon_social_sharing_buttons() {
     
     <!-- EMAIL -->
     
-    
+    </div>
 
     <?php // }
 }

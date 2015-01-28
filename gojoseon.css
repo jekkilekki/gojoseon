@@ -438,20 +438,21 @@
     border: 1px solid silver;
 }
 
-.social-single {
+.social-sharing {
     float: left;
     height: 40px;
+    clear: both;
 }
-.social-single div {
+.social-sharing div {
     float: left;
-    padding-right: 5px;
+    padding-right: 15px;
 }
-.tweetthis {
+#tweetthis {
     width: 86px;
 }
-.likethis {
-    
+#likethis {
+    margin-top: 2px;
 }
-.plusonethis {
+#plusonethis {
     width: 64px;
 }
