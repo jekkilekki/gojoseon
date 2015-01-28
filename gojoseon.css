@@ -439,10 +439,19 @@
 }
 
 .social-single {
-    clear: both;
+    float: left;
     height: 40px;
 }
 .social-single div {
     float: left;
-    padding-right: 1em;
+    padding-right: 5px;
+}
+.tweetthis {
+    width: 86px;
+}
+.likethis {
+    
+}
+.plusonethis {
+    width: 64px;
 }

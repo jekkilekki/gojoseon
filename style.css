@@ -883,11 +883,9 @@ input[type="search"] {
 10.1 Posts and pages
 --------------------------------------------------------------*/
 .entry-title {
-    border-bottom: 1px solid silver;
     font-size: 30px;
     font-size: 3rem;
     line-height: 1.3em;
-    padding-bottom: 5px;
 }
 .entry-content {
 
@@ -996,6 +994,24 @@ input[type="search"] {
     }
 }
 /* Meta */
+.posted-on {
+    font-size: 0.6em;
+    font-family: "Roboto Slab", serif;
+    text-transform: uppercase;
+    border-bottom: 1px solid silver;
+    text-decoration: none;
+    margin-top: -5px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+.posted-on a {
+    color: #555;
+        
+}
+.comments-link {
+    font-size: 0.8em;
+    padding: 5px;
+}
 .footer-meta {
     margin: 0 -0.9375rem;
 }

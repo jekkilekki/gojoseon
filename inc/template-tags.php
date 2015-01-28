@@ -87,17 +87,21 @@ function gojoseon_posted_on() {
 		_x( 'Written by %s', 'post author', 'gojoseon' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . ucwords( esc_html( get_the_author() ) ) . '</a></span>'
 	);
-
-        // Comments
-        if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link"><i class="fa fa-comment"></i>';
-		comments_popup_link( __( 'Leave a comment', 'gojoseon' ), __( '1 Comment', 'gojoseon' ), __( '% Comments', 'gojoseon' ) );
-		echo '</span>';
-	}
         
         // Post Meta
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"><span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>' . $byline . '</span>';
+        echo '<div class="posted-on">' . $posted_on . '</div>';
+	echo '<div class="byline"><span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>' . $byline . '</div>';
 
+        echo '<div class="social-single">';
+        // Comments
+        if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+		echo '<div class="comments-link"><i class="fa fa-comment"></i>';
+		comments_popup_link( __( 'Leave a comment', 'gojoseon' ), __( '1 Comment', 'gojoseon' ), __( '% Comments', 'gojoseon' ) );
+		echo '</div>';
+	}
+        
+        gojoseon_social_sharing_buttons();
+        echo '</div>';
 }
 endif;
 
@@ -404,7 +408,6 @@ function gojoseon_social_sharing_buttons() {
     // if( get_theme_mod( 'show_social_sharing' ) ) {
     
     ?>
-    <div class="social-single">
     
     <!-- TWITTER -->
     <div id="tweetthis">
@@ -445,7 +448,6 @@ function gojoseon_social_sharing_buttons() {
     
     <!-- EMAIL -->
     
-    </div>
     
 
     <?php // }

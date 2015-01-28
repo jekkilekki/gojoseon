@@ -12,7 +12,6 @@
 
 		<div class="entry-meta">
 			<?php gojoseon_posted_on(); ?>
-                        <?php gojoseon_social_sharing_buttons(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
