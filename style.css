@@ -513,6 +513,7 @@ a:active {
 .site-main .post-navigation {
 	margin: 0 0 1.5em;
 	overflow: hidden;
+        clear: both;
 }
 
 .comment-navigation .nav-previous,
@@ -668,7 +669,7 @@ X.X Header
 .site-description {
     font-size: 1rem;
     font-style: italic;
-    color: #aaa;
+    color: #999;
 }
 .logo {
     
@@ -676,7 +677,7 @@ X.X Header
 .sidebar-top {
     max-width: 728px;
     height: 90px;
-    border: 1px dashed #aaa;
+    border: 1px dashed #999;
     margin: 0 auto;
     margin-bottom: 10px;
     text-align: center;
@@ -694,7 +695,7 @@ X.X Header
     font-size: 0.8rem;
 }
 #top-navigation ul li a {
-    color: #aaa;
+    color: #999;
 }
 
 input[type="search"] {
@@ -731,7 +732,7 @@ input[type="search"] {
 --------------------------------------------------------------*/
 .widget {
 	margin: 0 0 3em;
-        color: #aaa;
+        color: #999;
 }
 .widget-title {
     margin-bottom: 1em;
@@ -888,6 +889,9 @@ input[type="search"] {
     line-height: 1.3em;
     padding-bottom: 5px;
 }
+.entry-content {
+
+}
 .entry-content a {
     border-bottom: 1px dotted;
 }
@@ -897,9 +901,141 @@ input[type="search"] {
 .entry-content h4,
 .entry-content h5,
 .entry-content h6 {
-    margin-bottom: 0.4em;
+    margin-bottom: 0.5em;
+}
+.entry-content h5,
+.entry-content h6 {
+    text-transform: uppercase;
+}
+.entry-content h6 {
+    letter-spacing: 1px;
+}
+.entry-content p,
+.entry-content ul,
+.entry-content ol {
+    font-size: 1.1rem;
+    line-height: 1.6em;
+}
+.entry-content ul li,
+.entry-content ol li {
+    line-height: 1.8em;
+}
+.entry-content blockquote {
+    border-left: 3px solid #cd7f32;
+}
+.entry-content blockquote p {
+    font-size: 1.5rem;
+    line-height: 1.5em;
+    font-style: italic;
+    color: #999;
+    border-left: 5px;
+    font-family: serif;
+}
+.entry-content cite {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-size: 0.8rem;
+}
+.entry-content blockquote cite {
+    float: right;
+    padding: 10px 40px;
+}
+.entry-content address {
+    color: #999;
+    font-style: italic;
+    font-size: 0.8em;
+}
+.entry-content pre, 
+.entry-content code, 
+.entry-content kbd {
+    font-size: 1rem;
+}
+.entry-content q {
+    color: #999;
+    font-style: italic;
+    font-family: serif;
+    font-size: 1.5rem;
 }
 
+/* Smaller fonts for smaller screens */
+@media screen and ( max-width: 680px ) {
+    .entry-title {
+        font-size: 2rem;
+    }
+    .entry-content {
+
+    }
+    .entry-content a {
+
+    }
+    .entry-content h1,
+    .entry-content h2,
+    .entry-content h3,
+    .entry-content h4,
+    .entry-content h5,
+    .entry-content h6 {
+
+    }
+    .entry-content h5,
+    .entry-content h6 {
+
+    }
+    .entry-content h6 {
+
+    }
+    .entry-content p,
+    .entry-content ul,
+    .entry-content ol {
+        font-size: 1rem;
+    }
+    .entry-content blockquote p {
+        font-size: 1.2rem;
+    }
+    .entry-content blockquote cite {
+        
+    }
+}
+/* Meta */
+.footer-meta {
+    margin: 0 -0.9375rem;
+}
+
+.cat-links h1,
+.tag-links h1,
+.share-links h1 {
+    border-bottom: 1px solid silver;
+    font-family: Roboto, sans-serif;
+    font-size: 1.2rem;
+    padding-bottom: 5px;
+}
+.cat-links ul,
+.tag-links ul {
+    margin: 0;
+    padding-top: 5px;
+}
+.cat-links li,
+.tag-links li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+.cat-links li:hover,
+.tag-links li:hover {
+    border-color: silver;
+}
+.cat-links a, 
+.tag-links a {
+    font-size: 0.8em;
+    color: #999;
+}
+.tag-links li i {
+    color: #999;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
 .sticky {
 	display: block;
 }

@@ -162,4 +162,4 @@
                 echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
             } ?>
 
-            <?php if ( get_theme_mod( 'show_breadcrumbs' ) == true ) { the_breadcrumb(); } ?>
+            <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true ) { the_breadcrumb(); } ?>
