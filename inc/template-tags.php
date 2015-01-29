@@ -38,6 +38,10 @@ endif;
 if ( ! function_exists( 'gojoseon_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
+ * 
+ * Improve the post_nav() with post thumbnails. Help from this
+ * @link: http://www.measureddesigns.com/adding-previous-next-post-wordpress-post/
+ * @link: http://wpsites.net/web-design/add-featured-images-to-previous-next-post-nav-links/
  */
 function gojoseon_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
@@ -48,14 +52,58 @@ function gojoseon_post_nav() {
 		return;
 	}
 	?>
-	<nav class="navigation post-navigation" role="navigation">
+	<nav class="navigation post-navigation clear" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'gojoseon' ); ?></h1>
-		<div class="nav-links">
-			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'gojoseon' ) );
-				next_post_link( '<div class="nav-next">%link</div>', _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link', 'gojoseon' ) );
-			?>
-		</div><!-- .nav-links -->
+                
+                    <?php // My custom code below FIRST, then _s code
+                    
+                    // PREVIOUS POST LINK
+                    if ( ! empty( $previous ) ) { ?>
+                    <div class="nav-links-left">
+                    
+                    <?php if ( get_the_post_thumbnail( $previous->ID ) && get_the_post_thumbnail( $next->ID ) ) { ?>
+                        <a href="<?php echo get_permalink( $previous->ID ); ?>" class="nav-previous">
+                            <div class="post-nav-thumb">
+                                <?php $prev_thumb = get_the_post_thumbnail( $previous->ID, 'medium', array( 'class' => 'img-responsive' ) );
+                                echo $prev_thumb ? $prev_thumb : '<img src="http://localhost:8080/wordpress/wp-content/uploads/2012/08/cropped-keytokorean-logo2.png" />';
+                                ?>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    
+                    <div class="post-nav-link">
+                        <p><i class="fa fa-arrow-left"></i> Previous Post</p>
+                        <h2><a href="<?php echo get_permalink( $previous->ID ); ?>"><?php echo $previous->post_title; ?></a></h2>
+                    </div>
+                    </div>
+                    <?php } 
+                    
+                    // NEXT POST LINK
+                    if ( ! empty( $next ) ) { ?>
+                    <div class="nav-links-right">
+                    
+                    <?php if ( get_the_post_thumbnail( $previous->ID ) && get_the_post_thumbnail( $next->ID ) ) { ?>
+                        <a href="<?php echo get_permalink( $next->ID ); ?>" class="nav-next">
+                            <div class="post-nav-thumb">
+                                <?php $next_thumb = get_the_post_thumbnail( $next->ID, 'medium', array( 'class' => 'img-responsive' ) );
+                                echo $next_thumb ? $next_thumb : '<img src="http://localhost:8080/wordpress/wp-content/uploads/2012/08/cropped-keytokorean-logo2.png" />';
+                                ?>
+                            </div>
+                        </a>
+                    <?php } ?>
+                    
+                    <div class="post-nav-link">
+                        <p>Next Post <i class="fa fa-arrow-right"></i></p>
+                        <h2><a href="<?php echo get_permalink( $next->ID ); ?>"><?php echo $next->post_title; ?></a></h2>
+                    </div>
+                    </div>
+                        <?php } ?>
+                    
+                        <?php /*
+				previous_post_link( '<div class="nav-previous large-6 columns">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'gojoseon' ) );
+				next_post_link( '<div class="nav-next large-6 columns">%link</div>', _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link', 'gojoseon' ) );
+			*/ ?>
+                
 	</nav><!-- .navigation -->
 	<?php
 }
@@ -116,17 +164,17 @@ if ( ! function_exists( 'gojoseon_entry_footer' ) ) :
 function gojoseon_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
-            echo '<div class="footer-meta large-12" data-equalizer>';
+            echo '<div class="footer-meta" data-equalizer>';
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( '</li><li>', 'gojoseon' ) );
 		if ( $categories_list && gojoseon_categorized_blog() ) {
-			printf( '<div class="cat-links large-4 columns" data-equalizer-watch>' . __( '<h1><i class="fa fa-folder-open"></i> Categorized:</h1><ul><li>%1$s', 'gojoseon' ) . '</li></ul></div>', $categories_list );
+			printf( '<div class="cat-links" data-equalizer-watch>' . __( '<h1><i class="fa fa-folder-open"></i> Categorized:</h1><ul><li>%1$s', 'gojoseon' ) . '</li></ul></div>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		echo get_the_tag_list( '<div class="tag-links large-8 columns" data-equalizer-watch><h1><i class="fa fa-tag"></i> Tagged:</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
+		echo get_the_tag_list( '<div class="tag-links" data-equalizer-watch><h1><i class="fa fa-tag"></i> Tagged:</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
 	
-                echo '<div class="share-links large-12 columns" data-equalizer-watch><h1><i class="fa fa-share"></i> Share This:</h1><div>';
+                echo '<div class="share-links" data-equalizer-watch><h1><i class="fa fa-share"></i> Share This:</h1><div>';
                     gojoseon_social_sharing_buttons();
                 echo '</div></div>';
             echo '</div>';
