@@ -530,8 +530,10 @@ a:active {
 }
 
 .post-navigation {
-    margin: 2em auto 4em!important;
-    background: whitesmoke;
+    margin: 4em auto!important;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    padding: 2em 0;
 }
 .post-navigation a {
     color: #555;
@@ -550,12 +552,10 @@ a:active {
     margin: 0;
 }
 .nav-links-left {
-    margin-top: 2em;
     width: 48%;
     float: left;
 }
 .nav-links-right {
-    margin-top: 2em;
     width: 48%;
     float: right;
 }

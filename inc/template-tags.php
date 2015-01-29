@@ -457,7 +457,7 @@ function gojoseon_social_menu() {
  */
 function gojoseon_social_sharing_buttons() {
     
-    // if( get_theme_mod( 'show_social_sharing' ) ) {
+    if( !is_home() ) {
     
     ?>
     <div class="social-sharing">
@@ -502,5 +502,5 @@ function gojoseon_social_sharing_buttons() {
     
     </div>
 
-    <?php // }
+    <?php  }
 }
