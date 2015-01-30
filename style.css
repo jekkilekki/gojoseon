@@ -530,10 +530,9 @@ a:active {
 }
 
 .post-navigation {
-    margin: 4em auto!important;
-    border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
-    padding: 2em 0;
+    margin: 2em auto!important;
+    background: whitesmoke;
+    padding: 1em;
 }
 .post-navigation a {
     color: #555;
@@ -549,7 +548,13 @@ a:active {
     clear: both;
 }
 .post-nav-link p {
-    margin: 0;
+    margin: 5px 0;
+}
+.nav-links-left i {
+    padding-right: 5px;
+}
+.nav-links-right i {
+    padding-left: 5px;
 }
 .nav-links-left {
     width: 48%;
@@ -568,11 +573,23 @@ a:active {
     font-size: 0.8em;
     padding: 0;
 }
+/* Nice modification of object-fit: cover; to make this work. I used two links: 
+ * @link: https://medium.com/@chrisnager/center-and-crop-images-with-a-single-line-of-css-ad140d5b4a87
+ * @link: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/ 
+ */
 .post-nav-thumb {
     width: 100%;
+    height: 150px;
     background: gainsboro;
     text-align: center;
     margin-bottom: 10px;
+    overflow: hidden;
+}
+.post-nav-thumb img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .nav-links-left .post-nav-thumb {
     float: left;
@@ -969,7 +986,7 @@ input[type="search"] {
 }
 .entry-content {
     clear: both;
-    margin: 5em auto 1em;
+    margin: 2em auto 1em;
 }
 .entry-content a {
     border-bottom: 1px dotted;
@@ -1153,10 +1170,9 @@ input[type="search"] {
     position: absolute;
     right: -80px;
     top: 0;
-    border-radius: 80px;
 }
 .author-image img {
-
+    border-radius: 80px;
 }
 .author-image img:hover {
 
@@ -1171,31 +1187,59 @@ input[type="search"] {
     font-size: 1rem;
 }
 
+/* Footer Meta */
+.entry-footer {
+    background: whitesmoke;
+    padding: 0 1em;
+}
+.cat-links,
+.tag-links,
+.share-links {
+    height: 45px!important;
+    padding: 10px 0;
+}
+.cat-link i,
+.tag-links i,
+.share-links i {
+    padding-right: 5px;
+}
+.cat-links {
+    border-bottom: 1px dotted silver;
+}
+.share-links {
+    border-top: 1px dotted silver;
+}
 .cat-links h1,
 .tag-links h1,
 .share-links h1 {
-    border-bottom: 1px solid silver;
-    font-family: Roboto, sans-serif;
-    font-size: 1.2rem;
-    padding-bottom: 5px;
+    font-size: 0.9rem;
+    width: 120px;
+    float: left;
+    margin-right: 10px;
+    border-right: 1px solid silver;
 }
 .cat-links ul,
 .tag-links ul {
     margin: 0;
-    padding-top: 5px;
 }
 .cat-links li,
 .tag-links li {
     list-style-type: none;
     display: inline-block;
-    padding: 0 5px;
+    padding: 0 10px;
     margin-right: 10px;
     border-radius: 5px;
-    border: 1px solid white;
+    border: 1px solid #ccc;
 }
 .cat-links li:hover,
 .tag-links li:hover {
-    border-color: silver;
+    border-color: #cd7f32;
+}
+.cat-links li:hover a,
+.tag-links li:hover a,
+.cat-links a:hover,
+.tag-links a:hover {
+    color: #cd7f32;
 }
 .cat-links a, 
 .tag-links a {
@@ -1205,10 +1249,9 @@ input[type="search"] {
 .tag-links li i {
     color: #777;
     font-size: 0.8rem;
-    margin-right: 5px;
 }
-.share-links {
-    margin-top: 2em;
+.share-links div {
+    float: left;
     
 }
 .sticky {
@@ -1239,6 +1282,39 @@ input[type="search"] {
 	margin: 0 0 1.5em;
 }
 
+/* ShareDaddy Custom Styling (if enabled) */
+.entry-meta .sd-title {
+    display: none!important;
+}
+.entry-meta .sd-block {
+    margin-right: 80px!important;
+}
+.entry-footer .sd-block {
+    min-height: 45px;
+    padding: 10px 0;
+    border-top: 1px dotted silver;
+}
+.entry-footer .sd-title {
+    font-size: 0.9rem!important;
+    font-weight: normal!important;
+    width: 120px;
+    float: left;
+    margin-right: 10px!important;
+    border-right: 1px solid silver;
+    line-height: inherit!important;
+}
+.entry-footer .sd-title::before {
+    font-family: "FontAwesome";
+    content: "\f1e0"!important;
+    display: inline!important;
+    border: none!important;
+    min-width: 0!important;
+    padding-right: 10px;
+}
+.entry-footer .sd-content li:hover {
+    border-color: #cd7f32!important;
+}
+
 /*--------------------------------------------------------------
 10.2 Asides
 --------------------------------------------------------------*/
@@ -1250,6 +1326,9 @@ input[type="search"] {
 /*--------------------------------------------------------------
 10.3 Comments
 --------------------------------------------------------------*/
+#comments {
+    margin-top: 3em!important;
+}
 .comments-title, 
 .comment-reply-title {
     margin-bottom: 1em;

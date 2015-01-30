@@ -152,7 +152,8 @@ function gojoseon_posted_on() {
         
         echo '</div><!-- #header-meta -->';
         
-        gojoseon_social_sharing_buttons();
+        if ( function_exists( 'sharing_display' ) ) { sharing_display( '', true ); }
+        else { gojoseon_social_sharing_buttons(); }
 
 }
 endif;
@@ -162,21 +163,27 @@ if ( ! function_exists( 'gojoseon_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function gojoseon_entry_footer() {
-	// Hide category and tag text for pages.
+    
+        edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link bottom-edit-link">', '</span>' );
+	
+// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
-            echo '<div class="footer-meta" data-equalizer>';
+            echo '<div class="footer-meta">';
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( '</li><li>', 'gojoseon' ) );
 		if ( $categories_list && gojoseon_categorized_blog() ) {
-			printf( '<div class="cat-links" data-equalizer-watch>' . __( '<h1><i class="fa fa-folder-open"></i> Categorized:</h1><ul><li>%1$s', 'gojoseon' ) . '</li></ul></div>', $categories_list );
+			printf( '<div class="cat-links">' . __( '<h1><i class="fa fa-folder-open"></i> Topics</h1><ul><li>%1$s', 'gojoseon' ) . '</li></ul></div>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		echo get_the_tag_list( '<div class="tag-links" data-equalizer-watch><h1><i class="fa fa-tag"></i> Tagged:</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
+		echo get_the_tag_list( '<div class="tag-links"><h1><i class="fa fa-tag"></i> Keywords</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
 	
-                echo '<div class="share-links" data-equalizer-watch><h1><i class="fa fa-share"></i> Share This:</h1><div>';
-                    gojoseon_social_sharing_buttons();
-                echo '</div></div>';
+                if ( function_exists( 'sharing_display' ) ) { sharing_display( '', true ); }
+                else {
+                    echo '<div class="share-links"><h1><i class="fa fa-share"></i> Share</h1><div>';
+                        gojoseon_social_sharing_buttons();
+                    echo '</div></div>';
+                }
             echo '</div>';
         }
 
@@ -185,8 +192,7 @@ function gojoseon_entry_footer() {
 		comments_popup_link( __( 'Leave a comment', 'gojoseon' ), __( '1 Comment', 'gojoseon' ), __( '% Comments', 'gojoseon' ) );
 		echo '</span>';
 	}
-        
-	edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link bottom-edit-link">', '</span>' );
+       
 }
 endif;
 

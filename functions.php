@@ -373,3 +373,37 @@ function gojoseon_tinymce_always_on ( $in ) {
     return $in;
 }
 add_filter( 'tiny_mce_before_init', 'gojoseon_tinymce_always_on' );
+
+/**
+ * Remove Jetpack's sharing so that we can tweak them in our theme
+ * 
+ * @link: http://jetpack.me/2013/06/10/moving-sharing-icons/
+ */
+function jptweak_remove_share() {
+    remove_filter( 'the_content', 'sharing_display', 19 );
+    remove_filter( 'the_excerpt', 'sharing_display', 19 );
+    if ( class_exists( 'Jetpack_Likes' ) ) {
+        remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
+    }
+}
+add_action( 'loop_start', 'jptweak_remove_share' );
+
+/**
+ * Modify Jetpack's Related Posts settings
+ * 
+ * @link: http://jetpack.me/support/related-posts/customize-related-posts/
+ */
+function jetpackme_more_related_posts( $options ) {
+    $options[ 'size' ] = 5;
+    return $options;
+}
+add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_more_related_posts' );
+
+function jetpackme_related_posts_headline( $headline ) {
+    $headline = sprintf(
+            '<h3 class="jp-relatedposts-headline"><em>%s</em></h3>',
+            esc_html( 'Check These Out!' ) 
+            );
+    return $headline;
+}
+add_filter( 'jetpack_related_posts_filter_headline', 'jetpackme_related_posts_headline' );
