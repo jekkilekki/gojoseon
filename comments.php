@@ -35,6 +35,7 @@ if ( post_password_required() ) {
 				wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,
+                                        'avatar_size'=> 84,
 				) );
 			?>
 		</ol><!-- .comment-list -->
@@ -42,8 +43,8 @@ if ( post_password_required() ) {
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
 			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'gojoseon' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'gojoseon' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'gojoseon' ) ); ?></div>
+			<div class="nav-previous"><?php previous_comments_link( __( '<i class="fa fa-arrow-left"></i> Older Comments', 'gojoseon' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments <i class="fa fa-arrow-right"></i>', 'gojoseon' ) ); ?></div>
 		</nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 

@@ -342,8 +342,9 @@ add_action( 'save_post',     'gojoseon_category_transient_flusher' );
  */
 function the_breadcrumb() {
     global $post;
-    echo '<ul id="breadcrumbs">';
+    
     if ( !is_home() ) {
+        echo '<ul id="breadcrumbs">';
         echo '<li><a href="';
         echo get_option( 'home' );
         echo '">';
