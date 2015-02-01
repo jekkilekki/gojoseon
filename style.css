@@ -600,10 +600,9 @@ a:active {
 
 /* Comment navigation */
 .comment-navigation {
-    padding: 1.5em 0;
+    padding: 1.5em;
     margin: 3em 0;
-    border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
+    background: whitesmoke;
 }
 .comment-navigation a {
     color: #555;
@@ -1347,6 +1346,16 @@ input[type="search"] {
 }
 
 ol.children { list-style-type: none; }
+ol.children .vcard img {
+    width: 64px;
+}
+ol.children li { margin-bottom: 0; }
+ol.children li::before {
+    border-left: 1px dotted silver;
+    height: 100%;
+    margin-left: -1em;
+    content: '';
+}
 
 .comment-list ol { margin-left: 50px; }
 
@@ -1381,9 +1390,9 @@ ol.children { list-style-type: none; }
     padding-left: 74px;
 }
 .comment-body {
-    padding-bottom: 2em;
-    margin-bottom: 2em;
-    border-bottom: 20px solid whitesmoke;
+    margin-bottom: 2em!important;
+    border: 1px solid silver;
+    padding: 1em;
 }
 .comment-content a {
 	word-wrap: break-word;
