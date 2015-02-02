@@ -15,23 +15,47 @@ function gojoseon_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
-	}
+        }
+        
+        // Better paging navigation found in the Twenty-Fourteen Theme
+        $paged          = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
+        $pagenum_link   = html_entity_decode( get_pagenum_link() );
+        $query_args     = array();
+        $url_parts      = explode( '?', $pagenum_link );
+        
+        if ( isset( $url_parts[1] ) ) {
+            wp_parse_str( $url_parts[1], $query_args );
+        }
+        
+        $pagenum_link   = remove_query_arg( array_keys( $query_args ), $pagenum_link );
+        $pagenum_link   = trailingslashit( $pagenum_link ) . '%_%';
+        
+        $format  = $GLOBALS[ 'wp_rewrite' ]->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
+        $format .= $GLOBALS[ 'wp_rewrite' ]->using_permalinks() ? user_trailingslashit( 'page/%#%', 'paged' ) : '?paged=%#%';
+        
+        // Set up paginated links.
+        $links = paginate_links( array( 
+            'base'      => $pagenum_link,
+            'format'    => $format,
+            'total'     => $GLOBALS[ 'wp_query' ]->max_num_pages,
+            'current'   => $paged,
+            'mid_size'  => 3,   // This value tells how many numbers to display to the right and left of the current page in paging nav
+            'add_args'  => array_map( 'urlencode', $query_args ),
+            'prev_text' => __( '&larr; Previous', 'gojoseon' ),
+            'next_text' => __( 'Next &rarr;', 'gojoseon' ),
+            'type'      => 'list',
+        ) );
+        
+        if ( $links ) :
+            
 	?>
-	<nav class="navigation paging-navigation" role="navigation">
+        <nav class="navigation paging-navigation" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'gojoseon' ); ?></h1>
-		<div class="nav-links">
-
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'gojoseon' ) ); ?></div>
-			<?php endif; ?>
-
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'gojoseon' ) ); ?></div>
-			<?php endif; ?>
-
-		</div><!-- .nav-links -->
+		<?php echo $links; ?>
 	</nav><!-- .navigation -->
 	<?php
+        
+        endif;
 }
 endif;
 
@@ -154,8 +178,8 @@ function gojoseon_posted_on() {
         
         echo '</div><!-- #header-meta -->';
         
-        if ( function_exists( 'sharing_display' ) ) { sharing_display( '', true ); }
-        else { gojoseon_social_sharing_buttons(); }
+        //if ( function_exists( 'sharing_display' ) ) { sharing_display( '', true ); }
+        //else { gojoseon_social_sharing_buttons(); }
 
 }
 endif;
@@ -174,15 +198,15 @@ function gojoseon_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( __( '</li><li>', 'gojoseon' ) );
 		if ( $categories_list && gojoseon_categorized_blog() ) {
-			printf( '<div class="cat-links">' . __( '<h1><i class="fa fa-folder-open"></i> Topics</h1><ul><li>%1$s', 'gojoseon' ) . '</li></ul></div>', $categories_list );
+			printf( '<div class="cat-links">' . __( '<h1><i class="fa fa-folder-open"></i> Topics:</h1><ul><li>%1$s', 'gojoseon' ) . '</li></ul></div>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		echo get_the_tag_list( '<div class="tag-links"><h1><i class="fa fa-tag"></i> Keywords</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
+		echo get_the_tag_list( '<div class="tag-links"><h1><i class="fa fa-tag"></i> Keywords:</h1><ul><li><i class="fa fa-tag"></i>', '</li><li><i class="fa fa-tag"></i>', '</li></ul></div>' );
 	
                 if ( function_exists( 'sharing_display' ) ) { sharing_display( '', true ); }
                 else {
-                    echo '<div class="share-links"><h1><i class="fa fa-share"></i> Share</h1><div>';
+                    echo '<div class="share-links"><h1><i class="fa fa-share"></i> Share:</h1><div>';
                         gojoseon_social_sharing_buttons();
                     echo '</div></div>';
                 }

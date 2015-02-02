@@ -422,17 +422,17 @@
     background-color: whitesmoke;
     border: 1px solid whitesmoke;
     text-transform: uppercase;
-    padding: 2px 10px;
+    padding: 0 10px;
     border-radius: 5px;
     font-family: Roboto, sans-serif;
 }
 .top-edit-link {
     position: absolute;
-    top: 23px;
-    right: 15px;
+    top: 25px;
+    right: 79px;
 }
 .bottom-edit-link {
-    margin-top: -35px;
+    margin-top: -28px;
     margin-right: -1.5em;
 }
 .edit-link a {

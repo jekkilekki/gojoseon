@@ -20,3 +20,9 @@ Layout: Content-Sidebar
 	clear: both;
 	width: 100%;
 }
+
+.index-box {
+    padding: 1em;
+    border: 1px solid silver;
+    box-shadow: 2px 2px 4px #333;
+}

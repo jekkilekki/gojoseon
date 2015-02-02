@@ -5,12 +5,23 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <div class="index-box">
+        
+        <?php if ( has_post_thumbnail() ) {
+            echo '<div class="small-index-thumbnail clear">';
+            echo '<a href="' . get_permalink() . '" title="' . __( 'Click to read', 'gojoseon' ) . get_the_title() . '" rel="bookmark">';
+            echo the_post_thumbnail( 'index-thumb' );
+            echo '</a>';
+            echo '</div>';
+        } ?>
+        
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php gojoseon_posted_on(); ?>
+                        <?php edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link top-edit-link">', '</span>' ); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -41,7 +52,8 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php gojoseon_entry_footer(); ?>
+	<footer class="entry-footer continue-reading">
+		<?php echo '<a href="' . get_permalink() . '" title="' . __( 'Continue Reading ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">Continue Reading<i class="fa fa-arrow-right"></i></a>'; ?>
 	</footer><!-- .entry-footer -->
+    </div><!-- .index-box -->
 </article><!-- #post-## -->

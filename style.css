@@ -609,6 +609,26 @@ a:active {
     font-size: 0.8rem;
 }
 
+/* Paging Navigation */
+.paging-navigation ul {
+    margin: 0;
+    background: whitesmoke;
+    padding: 2em 1em;
+}
+.paging-navigation li { display: inline; }
+
+a.page-numbers,
+span.page-numbers {
+    padding: 0.3em 0.7em;
+    color: #333;
+}
+a:hover.page-numbers {
+    color: #000;
+}
+.paging-navigation .current {
+    font-weight: bold;
+    color: #000;
+}
 /*--------------------------------------------------------------
 6.0 Accessibility
 --------------------------------------------------------------*/
@@ -1137,25 +1157,31 @@ input[type="search"] {
     }
 }
 /* Meta */
+.entry-meta {
+    position: relative;
+    margin: 1em 0 4em;
+}
 #header-meta {
     border-bottom: 1px solid silver;
     position: relative;
-    height: 35px;
+    height: 22px;
     margin-right: 80px;
+    margin-top: 15px;
+
 }
 .posted-on, 
 .comments-link,
 .byline {
-    font-size: 0.6em;
+    font-size: 0.7rem;
     font-family: "Roboto Slab", serif;
     text-transform: uppercase;
     text-decoration: none;
-    margin-top: 10px;
     padding-bottom: 10px;
-    margin-bottom: 15px;
     margin-right: 50px;
     float: left;
 }
+
+
 .byline {
     float: right;
     margin-right: 0;
@@ -1168,7 +1194,7 @@ input[type="search"] {
 .author-image {
     position: absolute;
     right: -80px;
-    top: 0;
+    top: -10px;
 }
 .author-image img {
     border-radius: 80px;
@@ -1351,8 +1377,17 @@ ol.children .vcard img {
     width: 64px;
 }
 
-.comment-list ol { margin-left: 50px; background: whitesmoke; }
+.comment-list ol { margin-left: 50px; }
+.comment::after {
+    font-family: "FontAwesome";
+    content: '\f175';
+    font-size: 2rem;
+    color: #e1e1e1;
+    text-align: center;
+    margin: -2em auto;
+}
 .children .comment { margin-top: -1em; }
+.children .comment::after { display: none; }
 
 .comment-meta { margin-bottom: 2em; }
 .comment-metadata { margin-top: -65px; padding-left: 74px; padding-top: 5px; border-top: 1px solid silver;  }
@@ -1414,7 +1449,7 @@ ol.children .reply {
 .bypostauthor > .comment-body {
 	position: relative;
         padding: 1em;
-        margin-bottom: 3em!important;
+        margin-bottom: 2em!important;
         border: none;
         background: whitesmoke url(images/contemporary_china.png) repeat;
 }
@@ -1457,6 +1492,33 @@ ol.children .reply {
     font-family: Roboto, sans-serif;
 }
 
+/*--------------------------------------------------------------
+10.4 Index Pages
+--------------------------------------------------------------*/
+.continue-reading {
+    padding: 1em;
+    font-size: 0.8rem;
+}
+.continue-reading i {
+    margin-left: 5px;
+}
+.continue-reading a {
+    color: #333;
+}
+.index-box {
+    padding: 1em 1em 1.5em;
+    border: 1px solid silver;
+    border-radius: 10px;
+    margin-bottom: 2em;
+}
+.index-box .entry-title {
+    font-size: 2rem;
+}
+.index-box p,
+.index-box ol,
+.index-box ul {
+    font-size: 1rem;
+}
 /*--------------------------------------------------------------
 11.0 Infinite scroll
 --------------------------------------------------------------*/
@@ -1608,6 +1670,12 @@ object {
 .single-post-thumbnail img {
     display: block;
     margin: 0 auto;
+}
+.small-index-thumbnail {
+    margin: -1em -1em 1em;
+}
+.small-index-thumbnail img {
+    border-radius: 10px;
 }
 
 /*--------------------------------------------------------------

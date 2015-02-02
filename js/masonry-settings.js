@@ -5,6 +5,7 @@
  */
 jQuery(document).ready(function($) {
     var $container = $( '#footer-widgets' );
+    var $indexContainer = $( '.large-block-grid-2' );
     var $masonryOn;
     var $columnWidth = 400;
     
@@ -33,5 +34,13 @@ jQuery(document).ready(function($) {
             isFitWidth: true,
             isAnimated: true
         });
+        
+        /*
+        $indexContainer.masonry({
+            itemSelector: '.index-box',
+            isFitWidth: true,
+            isAnimated: true
+        });
+        */
     };
 });
