@@ -1194,8 +1194,8 @@ input[type="search"] {
 .cat-links,
 .tag-links,
 .share-links {
-    height: 45px!important;
-    padding: 10px 0;
+    min-height: 45px!important;
+    padding: 5px 0;
 }
 .cat-link i,
 .tag-links i,
@@ -1219,14 +1219,14 @@ input[type="search"] {
 }
 .cat-links ul,
 .tag-links ul {
-    margin: 0;
+    margin: 0 0 0 130px;
 }
 .cat-links li,
 .tag-links li {
     list-style-type: none;
     display: inline-block;
     padding: 0 10px;
-    margin-right: 10px;
+    margin: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
@@ -1349,18 +1349,13 @@ ol.children { list-style-type: none; }
 ol.children .vcard img {
     width: 64px;
 }
-ol.children li { margin-bottom: 0; }
-ol.children li::before {
-    border-left: 1px dotted silver;
-    height: 100%;
-    margin-left: -1em;
-    content: '';
-}
 
 .comment-list ol { margin-left: 50px; }
+.children .comment { margin-top: -2em; }
 
 .comment-meta { margin-bottom: 2em; }
 .comment-metadata { margin-top: -65px; padding-left: 74px; padding-top: 5px; border-top: 1px solid silver;  }
+ol.children .comment-metadata { padding-left: 54px; margin-top: -49px; padding-top: 2px; }
 .comment-metadata time {
 }
 .comment-meta,
@@ -1389,6 +1384,10 @@ ol.children li::before {
 .reply {
     padding-left: 74px;
 }
+ol.children .comment-content,
+ol.children .reply {
+    padding-left: 54px;
+}
 .comment-body {
     margin-bottom: 2em!important;
     border: 1px solid silver;
@@ -1416,10 +1415,10 @@ ol.children li::before {
         padding: 1em;
         margin-bottom: 3em!important;
         border: none;
-        background: gainsboro;
+        background: whitesmoke;
 }
 .bypostauthor > .comment-body .avatar {
-    border-color: gainsboro;
+    border-color: whitesmoke;
 }
 .bypostauthor > .comment-body .avatar::before { /* @TODO: not currently working */
     font-family: "FontAwesome";
@@ -1599,6 +1598,15 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/* Featured Images */
+.single-post-thumbnail {
+    background: whitesmoke url(images/contemporary_china.png) repeat;
+}
+.single-post-thumbnail img {
+    display: block;
+    margin: 0 auto;
 }
 
 /*--------------------------------------------------------------

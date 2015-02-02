@@ -47,6 +47,8 @@ function gojoseon_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
+        $prevID   = $previous ? $previous->ID : '';
+        $nextID   = $next ? $next->ID : '';
 
 	if ( ! $next && ! $previous ) {
 		return;
@@ -61,10 +63,10 @@ function gojoseon_post_nav() {
                     if ( ! empty( $previous ) ) { ?>
                     <div class="nav-links-left">
                     
-                    <?php if ( get_the_post_thumbnail( $previous->ID ) && get_the_post_thumbnail( $next->ID ) ) { ?>
-                        <a href="<?php echo get_permalink( $previous->ID ); ?>" class="nav-previous">
+                    <?php if ( ( has_post_thumbnail( $prevID ) && has_post_thumbnail( $nextID ) ) || ( has_post_thumbnail( $prevID ) && empty( $next ) ) ) { ?>
+                        <a href="<?php echo get_permalink( $prevID ); ?>" class="nav-previous">
                             <div class="post-nav-thumb">
-                                <?php $prev_thumb = get_the_post_thumbnail( $previous->ID, 'medium', array( 'class' => 'img-responsive' ) );
+                                <?php $prev_thumb = get_the_post_thumbnail( $prevID, 'medium', array( 'class' => 'img-responsive' ) );
                                 echo $prev_thumb ? $prev_thumb : '<img src="http://localhost:8080/wordpress/wp-content/uploads/2012/08/cropped-keytokorean-logo2.png" />';
                                 ?>
                             </div>
@@ -73,7 +75,7 @@ function gojoseon_post_nav() {
                     
                     <div class="post-nav-link">
                         <p><i class="fa fa-arrow-left"></i> Previous Post</p>
-                        <h2><a href="<?php echo get_permalink( $previous->ID ); ?>"><?php echo $previous->post_title; ?></a></h2>
+                        <h2><a href="<?php echo get_permalink( $prevID ); ?>"><?php echo $previous->post_title; ?></a></h2>
                     </div>
                     </div>
                     <?php } 
@@ -82,10 +84,10 @@ function gojoseon_post_nav() {
                     if ( ! empty( $next ) ) { ?>
                     <div class="nav-links-right">
                     
-                    <?php if ( get_the_post_thumbnail( $previous->ID ) && get_the_post_thumbnail( $next->ID ) ) { ?>
-                        <a href="<?php echo get_permalink( $next->ID ); ?>" class="nav-next">
+                    <?php if ( get_the_post_thumbnail( $nextID ) && get_the_post_thumbnail( $nextID ) ) { ?>
+                        <a href="<?php echo get_permalink( $nextID ); ?>" class="nav-next">
                             <div class="post-nav-thumb">
-                                <?php $next_thumb = get_the_post_thumbnail( $next->ID, 'medium', array( 'class' => 'img-responsive' ) );
+                                <?php $next_thumb = get_the_post_thumbnail( $nextID, 'medium', array( 'class' => 'img-responsive' ) );
                                 echo $next_thumb ? $next_thumb : '<img src="http://localhost:8080/wordpress/wp-content/uploads/2012/08/cropped-keytokorean-logo2.png" />';
                                 ?>
                             </div>
@@ -94,7 +96,7 @@ function gojoseon_post_nav() {
                     
                     <div class="post-nav-link">
                         <p>Next Post <i class="fa fa-arrow-right"></i></p>
-                        <h2><a href="<?php echo get_permalink( $next->ID ); ?>"><?php echo $next->post_title; ?></a></h2>
+                        <h2><a href="<?php echo get_permalink( $nextID ); ?>"><?php echo $next->post_title; ?></a></h2>
                     </div>
                     </div>
                         <?php } ?>

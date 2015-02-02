@@ -15,6 +15,12 @@
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
+        <?php if ( has_post_thumbnail() ) {
+            echo '<div class="single-post-thumbnail clear">';
+            echo the_post_thumbnail( 'large-thumb' );
+            echo '</div>';
+        } ?>
+        
 	<div class="entry-content">
 		<?php the_content(); ?>
 		<?php

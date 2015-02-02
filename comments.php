@@ -20,9 +20,9 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php // You can start editing here -- including this comment! ?>
+	<?php // Separate comments and pings: @link: http://sivel.net/2008/10/wp-27-comment-separation/ ?>
 
-	<?php if ( have_comments() ) : ?>
+	<?php if ( ! empty( $comments_by_type[ 'comment' ] ) ) : ?>
 		<h2 class="comments-title">
 			<?php
 				printf( _nx( 'One comment', '%1$s comments', get_comments_number(), 'comments title', 'gojoseon' ),
@@ -36,9 +36,20 @@ if ( post_password_required() ) {
 					'style'      => 'ol',
 					'short_ping' => true,
                                         'avatar_size'=> 84,
+                                        'type'       => 'comment'
 				) );
 			?>
 		</ol><!-- .comment-list -->
+                
+        <?php endif; ?>
+
+        <?php if ( ! empty( $comments_by_type[ 'pings' ] ) ) : ?>
+                <h2 class="comments-title">Track/Pingbacks</h2>
+                
+                <ol>
+                    <?php wp_list_comments( 'type=pings&callback=list_pings'); ?>
+                </ol>
+        <?php endif; ?>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
@@ -48,7 +59,7 @@ if ( post_password_required() ) {
 		</nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 
-	<?php endif; // have_comments() ?>
+	<?php //endif; // have_comments() ?>
 
 	<?php
 		// If comments are closed and there are comments, let's leave a little note, shall we?

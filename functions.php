@@ -47,6 +47,8 @@ function gojoseon_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
+        add_image_size( 'large-thumb', 780, 500, true );
+        add_image_size( 'index-thumb', 400, 300, true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -407,3 +409,61 @@ function jetpackme_related_posts_headline( $headline ) {
     return $headline;
 }
 add_filter( 'jetpack_related_posts_filter_headline', 'jetpackme_related_posts_headline' );
+
+/**
+ * Add a default fallback image if no image is found in a post (Jetpack)
+ * 
+ * @link: http://jetpack.me/2013/10/15/add-a-default-fallback-image-if-no-image/
+ */
+function gojoseon_default_post_image( $media, $post_id, $args ) {
+    if ( $media ) {
+        return $media;
+    } else {
+        $permalink = get_permalink( $post_id );
+        $url = apply_filters( 'jetpack_photon_url', 'YOUR_LOGO_IMG_URL' );
+        
+        return array( array(
+            'type'  => 'image',
+            'from'  => 'custom_fallback',
+            'src'   => esc_url( $url ),
+            'href'  => $permalink,
+        ) );
+    }
+}
+add_filter( 'jetpack_images_get_images', 'gojoseon_default_post_image' );
+
+/**
+ * Make BETTER Comments by separating "real" comments from trackbacks and pingbacks
+ * (PINGS CALLBACK)
+ * 
+ * @link: http://sivel.net/2008/10/wp-27-comment-separation/
+ * @link: http://www.wpbeginner.com/wp-tutorials/how-to-separate-trackbacks-from-comments-in-wordpress/
+ */
+function list_pings( $comment, $args, $depth ) {
+    $GLOBALS[ 'comment' ] = $comment; ?>
+    
+    <li id="comment-<?php comment_ID(); ?>">
+            <?php comment_author_link(); ?>
+    </li>
+    
+    <?php
+}
+
+/**
+ * Display the TRUE Comments number (minus trackbacks and pingbacks)
+ * 
+ * @link: http://web-design-weekly.com/snippets/remove-trackbacks-from-comment-count-in-wordpress/ (Updated to deal with "Strict Standards")
+ */
+function comment_count( $count ) {
+    if( ! is_admin() ) {
+        global $id;
+        $get_comments = get_comments( 'status=approve&post_id=' . $id );
+        
+        $comments_by_type = separate_comments( $get_comments );
+        
+        return count( $comments_by_type[ 'comment' ] );
+    } else {
+        return $count;
+    }
+}
+add_filter( 'get_comments_number', 'comment_count', 0 );
