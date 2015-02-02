@@ -415,7 +415,7 @@ add_filter( 'jetpack_related_posts_filter_headline', 'jetpackme_related_posts_he
  * 
  * @link: http://jetpack.me/2013/10/15/add-a-default-fallback-image-if-no-image/
  */
-function gojoseon_default_post_image( $media, $post_id, $args ) {
+function jeherve_custom_image( $media, $post_id, $args ) {
     if ( $media ) {
         return $media;
     } else {
@@ -430,7 +430,7 @@ function gojoseon_default_post_image( $media, $post_id, $args ) {
         ) );
     }
 }
-add_filter( 'jetpack_images_get_images', 'gojoseon_default_post_image' );
+add_filter( 'jetpack_images_get_images', 'jeherve_custom_image', 10, 3 );
 
 /**
  * Make BETTER Comments by separating "real" comments from trackbacks and pingbacks

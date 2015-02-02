@@ -1194,8 +1194,8 @@ input[type="search"] {
 .cat-links,
 .tag-links,
 .share-links {
-    min-height: 45px!important;
-    padding: 5px 0;
+    min-height: 40px!important;
+    padding: 2px 0;
 }
 .cat-link i,
 .tag-links i,
@@ -1216,6 +1216,7 @@ input[type="search"] {
     float: left;
     margin-right: 10px;
     border-right: 1px solid silver;
+    margin-top: 10px;
 }
 .cat-links ul,
 .tag-links ul {
@@ -1350,8 +1351,8 @@ ol.children .vcard img {
     width: 64px;
 }
 
-.comment-list ol { margin-left: 50px; }
-.children .comment { margin-top: -2em; }
+.comment-list ol { margin-left: 50px; background: whitesmoke; }
+.children .comment { margin-top: -1em; }
 
 .comment-meta { margin-bottom: 2em; }
 .comment-metadata { margin-top: -65px; padding-left: 74px; padding-top: 5px; border-top: 1px solid silver;  }
@@ -1415,7 +1416,7 @@ ol.children .reply {
         padding: 1em;
         margin-bottom: 3em!important;
         border: none;
-        background: whitesmoke;
+        background: whitesmoke url(images/contemporary_china.png) repeat;
 }
 .bypostauthor > .comment-body .avatar {
     border-color: whitesmoke;
