@@ -1003,6 +1003,9 @@ input[type="search"] {
     line-height: 1.2em;
     margin-top: 0;
 }
+.entry-title a {
+    color: #333;
+}
 .entry-content {
     clear: both;
     margin: 2em auto 1em;
@@ -1508,6 +1511,9 @@ ol.children .reply {
     color: #333;
     font-size: 0.8rem;
 }
+ul#index {
+    margin-left: 0;
+}
 ul#index li {
     list-style-type: none;
 }
@@ -1523,10 +1529,14 @@ ul#index li {
 .index-box .entry-title {
     font-size: 2rem;
 }
-.index-box .entry-meta {
+.index-box .entry-meta, 
+.featured-post .entry-meta {
     height: 75px;
     margin-bottom: 0;
-    margin-right: -74px;
+}
+.index-box #header-meta,
+.featured-post #header-meta {
+    margin-right: 0;
 }
 .index-box .entry-content {
     margin: -2em 0 0;
@@ -1534,31 +1544,121 @@ ul#index li {
     width: 70%;
     clear: none;
 }
+.featured-post .entry-content {
+    margin: -2em 0 0;
+    clear: none;
+}
+.featured-post .entry-content p {
+        font-size: 1rem;
+}
 .index-box p,
 .index-box ol,
 .index-box ul {
     font-size: 1rem;
 }
-.index-box .byline {
-    float: left;
-    clear: left;
-    border-bottom: 1px solid silver;
-    width: 100%;
-    padding-bottom: 2px;
-    margin-bottom: 5px;
-    display: none;
-}
-.index-box .posted-on,
-.index-box .comments-link {
-    /* margin-right: 0; */
-}
-.index-box .author-image {
-    top: 5px;
-    display: none;
-}
-.index-box .top-edit-link {
+.index-box .top-edit-link,
+.featured-post .top-edit-link {
     top: -2px;
+    right: 0;
 }
+.no-thumb .entry-header,
+.no-thumb .entry-content {
+    width: 100%;
+}
+
+/* Sticky Posts */
+.featured-post article {
+    position: relative;
+    max-width: 100%!important;
+    margin: 0!important;
+}
+.featured-article {
+    max-width: 780px;
+    margin: 0 auto;
+}
+.featured-post .single-post-thumbnail {
+    height: 500px;
+}
+.featured-post .single-post-thumbnail img {
+    max-height: 500px;
+    overflow-y: hidden;
+}
+.featured-post 
+#count {
+    position: absolute;
+    background: #cd7f32;
+    padding: 5px 15px;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    top: 20px;
+    left: 0;
+    font-family: "Roboto Slab", serif;
+}
+#count i {
+    font-size: 1.1rem;
+    padding-right: 10px;
+}
+.featured-post .featured-article {
+    padding: 2em;
+    background: white;
+    position: absolute;
+    margin: 0!important;
+    opacity: 0;
+    top: 200px;
+    height: 300px;
+    overflow-y: hidden;
+    right: 50%;
+    transform: translateX(50%);
+    width: 100%;
+}
+.featured-post article:hover .featured-article {
+    opacity: 1;
+}
+.featured-post article:hover img {
+    opacity: 0.5;
+}
+.featured-post .continue-reading {
+    background: whitesmoke;
+    padding: 0 15px 5px;
+    position: absolute;
+    right: 3rem;
+    bottom: 2rem;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
+.featured-post .continue-reading:hover {
+    border: 1px solid silver;
+    background: white;
+}
+
+/* Asides */
+.aside {
+    position: relative;
+    background: whitesmoke;
+}
+.aside .entry-content {
+    margin: 1em 0 1em 4.5em;
+    float: none;
+}
+.aside .author-image {
+    left: 20px;
+    top: 30px;
+}
+.aside .entry-footer {
+    margin-left: 4.5em;
+}
+.aside .entry-footer,
+.aside .entry-meta {
+    padding: 0;
+    height: 35px;
+    margin-top: -1em;
+}
+.aside #header-meta {
+    margin-right: 2em;
+    border: none;
+}
+
 /*--------------------------------------------------------------
 11.0 Infinite scroll
 --------------------------------------------------------------*/
