@@ -7,13 +7,17 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <div class="index-box">
         
-        <?php if ( has_post_thumbnail() ) {
+        <?php 
             echo '<div class="small-index-thumbnail clear">';
-            echo '<a href="' . get_permalink() . '" title="' . __( 'Click to read', 'gojoseon' ) . get_the_title() . '" rel="bookmark">';
-            echo the_post_thumbnail( 'index-thumb' );
+            echo '<a href="' . get_permalink() . '" title="' . __( 'Click to read ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">';
+            if ( has_post_thumbnail() ) {
+                echo the_post_thumbnail( 'index-thumb' );
+            } else {
+                echo get_the_first_image();
+            }
             echo '</a>';
-            echo '</div>';
-        } ?>
+            echo '</div>';       
+        ?>
         
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>

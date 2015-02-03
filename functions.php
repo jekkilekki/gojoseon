@@ -47,8 +47,8 @@ function gojoseon_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
-        add_image_size( 'large-thumb', 780, 500, true );
-        add_image_size( 'index-thumb', 400, 300, true );
+        add_image_size( 'large-thumb', 910, 500, true );
+        add_image_size( 'index-thumb', 450, 200, true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(

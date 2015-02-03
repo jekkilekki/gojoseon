@@ -537,3 +537,85 @@ function gojoseon_social_sharing_buttons() {
 
     <?php  }
 }
+
+/**
+ * Get the first image of a post if there's no featured image set
+ * 
+ * @link: http://www.wprecipes.com/how-to-get-the-first-image-from-the-post-and-display-it
+ */
+function get_the_first_image() {
+    global $post, $posts;
+    
+    $first_img = '';
+    
+    ob_start();
+    ob_end_clean();
+    
+    $output = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
+    $first_img = ( !empty ( $matches [1] [0] ) ) ? $matches [1] [0] : '';
+    
+    if( empty( $first_img ) ) { // Defines a default image
+        $first_img = get_template_directory_uri() . '/images/contemporary_china.png';
+    }
+    
+    return '<img src="' . $first_img  . '" />';
+}
+
+/**
+ * Get Stickies as "Featured Posts"
+ * 
+ * @link: http://blog.josemcastaneda.com/2013/05/10/creating-a-sticky-post-slider/
+ */
+function gojoseon_featured_posts( $stickies ) {
+    
+    // STICKY POSTS stick them to the top            
+    // How many are there?
+    $count = count( $stickies );
+
+    // Create a set of arguments to pass
+    $args = array(
+        'post__in'  => $stickies,
+        // 'posts_per_page' => 3, commented out so it displays all
+        'post_type' => 'post',
+        'nopaging'  => true,
+    );
+    $featured = new WP_Query( $args );
+
+    // If there is one or more sticky posts, we create our slider
+    if ( $count > 0 ) : ?>
+
+    <section class="featured" id="featured-slider">
+        <?php
+        
+        // Post thumbnail
+        echo '<div class="single-post-thumbnail clear">';
+        echo '<a href="' . get_permalink() . '" title="' . __( 'Click to read ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">';
+        if ( has_post_thumbnail() ) {
+            echo the_post_thumbnail( 'large-thumb' );
+        } else {
+            echo get_the_first_image();
+        }
+        echo '</a>';
+        echo '</div>'; 
+        
+        ?>
+        <div id="count"><i class="fa fa-thumb-tack"></i> Featured Post <?php echo $count; ?></div>
+        
+        <?php while( $featured->have_posts() ) : $featured->the_post(); ?>
+
+        <article <?php post_class( 'featured' ); ?> id="post-<?php the_ID(); ?>">
+            <a href="<?php get_permalink(); ?>" title="<?php __( 'Click to read ', 'gojoseon' ); get_the_title(); ?>" rel="bookmark">
+                <h1 class="featured-title"><?php the_title(); ?></h1>
+            </a>
+            <div class="content"><?php the_content(); ?></div>
+            <div class="content"><?php wp_link_pages(); ?></div>
+            <footer class="meta">
+                <?php echo '<a href="' . get_permalink() . '" title="' . __( 'Continue Reading ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">Continue Reading<i class="fa fa-arrow-right"></i></a>'; ?>
+            </footer>
+        </article>
+
+        <?php endwhile; wp_reset_query(); ?>
+    </section><!-- .featured -->
+
+    <?php endif; // end of the featured posts
+}

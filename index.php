@@ -18,13 +18,19 @@ get_header(); ?>
 
             <?php if ( have_posts() ) : ?>
                 
-                <?php if ( $sidebar_display != 'none' ) {
-                    echo '<ul class="large-block-grid-2 medium-block-grid-1"><!-- Foundation\'s block grid -->';
+                <?php $stickies = get_option( 'sticky_posts' ); ?>
+                <?php gojoseon_featured_posts( $stickies ); ?>
+                
+                <?php
+                /*if ( $sidebar_display != 'none' ) {
+                    echo '<ul id="grid" class="large-block-grid-2 medium-block-grid-1"><!-- Foundation\'s block grid -->';
                 } else {
-                    echo '<ul class="large-block-grid-3 medium-block-grid-2"><!-- Foundation\'s block grid -->';
-                } ?>
+                    echo '<ul id="grid-big" class="large-block-grid-3 medium-block-grid-2"><!-- Foundation\'s block grid -->';
+                }*/ ?>
 
+                <ul id="index">
                     <?php /* Start the Loop */ ?>
+                    <?php query_posts( array( 'post__not_in' => $stickies ) ); // @link: http://www.smashingmagazine.com/2009/06/10/10-useful-wordpress-loop-hacks/ ?>
                     <?php while ( have_posts() ) : the_post(); ?>
 
                             <li><!-- Wrap posts in <li> to make Foundation's block grid work -->

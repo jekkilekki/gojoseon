@@ -1228,9 +1228,7 @@ input[type="search"] {
 .share-links i {
     padding-right: 5px;
 }
-.cat-links {
-    border-bottom: 1px dotted silver;
-}
+.tag-links,
 .share-links {
     border-top: 1px dotted silver;
 }
@@ -1398,7 +1396,7 @@ ol.children .comment-metadata { padding-left: 54px; margin-top: -49px; padding-t
 .comment-author {
     font-family: "Roboto Slab", serif;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 .comment-meta a {
     color: #555;
@@ -1495,29 +1493,71 @@ ol.children .reply {
 /*--------------------------------------------------------------
 10.4 Index Pages
 --------------------------------------------------------------*/
+.featured article {
+    width: 100%;
+}
 .continue-reading {
-    padding: 1em;
-    font-size: 0.8rem;
+    padding: 1em 2em;
+    margin: 0 -2em -1em;
+    clear: both;
 }
 .continue-reading i {
     margin-left: 5px;
 }
 .continue-reading a {
     color: #333;
+    font-size: 0.8rem;
+}
+ul#index li {
+    list-style-type: none;
 }
 .index-box {
-    padding: 1em 1em 1.5em;
+    padding: 1em 2em;
     border: 1px solid silver;
-    border-radius: 10px;
-    margin-bottom: 2em;
+    margin-bottom: 3em;
+}
+.index-box .entry-header {
+    float: right;
+    width: 70%;
 }
 .index-box .entry-title {
     font-size: 2rem;
+}
+.index-box .entry-meta {
+    height: 75px;
+    margin-bottom: 0;
+    margin-right: -74px;
+}
+.index-box .entry-content {
+    margin: -2em 0 0;
+    float: right; 
+    width: 70%;
+    clear: none;
 }
 .index-box p,
 .index-box ol,
 .index-box ul {
     font-size: 1rem;
+}
+.index-box .byline {
+    float: left;
+    clear: left;
+    border-bottom: 1px solid silver;
+    width: 100%;
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+    display: none;
+}
+.index-box .posted-on,
+.index-box .comments-link {
+    /* margin-right: 0; */
+}
+.index-box .author-image {
+    top: 5px;
+    display: none;
+}
+.index-box .top-edit-link {
+    top: -2px;
 }
 /*--------------------------------------------------------------
 11.0 Infinite scroll
@@ -1672,10 +1712,14 @@ object {
     margin: 0 auto;
 }
 .small-index-thumbnail {
-    margin: -1em -1em 1em;
+    margin: -1em -2em 0;
+    height: 300px;
+    overflow: hidden;
+    width: 28%;
+    float: left;
 }
 .small-index-thumbnail img {
-    border-radius: 10px;
+    width: 100%;
 }
 
 /*--------------------------------------------------------------
