@@ -22,7 +22,12 @@ if ( ! function_exists( 'gojoseon_setup' ) ) :
  */
 function gojoseon_setup() {
 
-	/*
+	// This theme styles the visual editor to resemble the theme style.
+        // @TODO: Make sure this $font_url will call WHATEVER Google Font we have selected in the Theme Customizer Options
+        $font_url = 'http://fonts.googleapis.com/css?family=Roboto|Roboto+Slab';
+        add_editor_style( array( 'inc/editor-style.css', str_replace( ',', '$2C', $font_url ) ) );
+    
+        /*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on Gojoseon, use a find and replace

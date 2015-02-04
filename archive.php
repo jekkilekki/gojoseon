@@ -16,6 +16,9 @@ get_header(); ?>
 
 			<header class="page-header">
 				<?php
+                                if ( is_author() ) { 
+                                    echo '<span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>';
+                                }
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
 					the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				?>

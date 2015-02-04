@@ -1,0 +1,148 @@
+/*
+ * Theme Name: Gojoseon
+ * Description: Used to style the content editor in posts and pages.
+ */
+
+/* =Body
+----------------------------------------------------- */
+html .mceContentBody {
+    max-width: 780px;
+}
+body {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* =Base elements
+----------------------------------------------------- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+a {
+    color: #cd7f32;
+    border-bottom: 1px dotted;
+}
+a:visited {
+    color: #D98500;
+}
+h1, h2, h3, h4, h5, h6 {
+    clear: right;
+    font-family: "Roboto Slab", serif;
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 0.5em;
+}
+h3, h4, h5, h6 {
+    margin-top: 1.5em;
+}
+h5, h6 {
+    text-transform: uppercase;
+}
+h6 {
+    letter-spacing: 1px;
+}
+p, ul, ol {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+ul li, ol li {
+    line-height: 1.8;
+    margin-left: 1em;
+}
+
+/* =Blockquotes
+----------------------------------------------------- */
+blockquote {
+    border-left: 3px solid #cd7f32;
+    background: #fafafa;
+    margin: 1em;
+    font-style: italic;
+}
+blockquote p {
+    padding: 0.5em 0.5em 1em;
+    color: #999;
+    font-weight: 100;
+    font-size: 1.5rem;
+    line-height: 1.5em;
+}
+blockquote em {
+    font-style: normal;
+}
+cite {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-size: 0.8rem;
+    line-height: 1.5em;
+}
+blockquote cite {
+    display: block;
+    margin-top: 2em;
+    margin-left: 40%;
+    font-weight: normal;
+}
+blockquote.alignleft {
+    width: 50%;
+    float: left;
+    padding: 1em 0 0 1em;
+    margin-right: 2em;
+    margin-left: 0;
+}
+blockquote.alignright {
+    width: 50%;
+    float: right;
+    padding: 1em 0 0 1em;
+    margin-left: 2em;
+    margin-right: 0;
+}
+blockquote.alignleft p,
+blockquote.alignright p {
+    margin-bottom: 0;
+}
+address {
+    color: #999;
+    font-style: italic;
+    font-size: 1rem;
+}
+address p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+pre, 
+code, 
+kbd {
+    font-size: 1rem;
+}
+pre {
+    background: #333;
+    color: whitesmoke;
+    padding: 20px 30px;
+    margin-bottom: 1.5em;
+}
+q {
+    color: #999;
+    font-style: italic;
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+
+/* =Alignments
+----------------------------------------------------- */
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 2em;
+}
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 2em;
+}
+.aligncenter {
+    clear: right;
+    display: block;
+    margin: 0 auto;
+}

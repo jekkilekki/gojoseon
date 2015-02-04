@@ -156,10 +156,10 @@
             </header><!-- End header #masthead -->
                 
             <!-- Main Content Area -->  
-            <?php if ( $sidebar_display != 'none' ) {
-                echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
+            <?php if ( $sidebar_display == 'none' || is_page_template( 'page-templates/page-nosidebar.php' ) ) {
+                echo '<div id="primary" class="content-area large12 columns full-width" data-equalizer-watch>';
             } else {
-                echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
+                echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
             } ?>
 
             <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true && !is_home() && !is_archive() && !is_search() && !is_404() ) { the_breadcrumb(); } ?>

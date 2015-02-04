@@ -519,6 +519,7 @@ a:active {
 	overflow: hidden;
         clear: both;
         font-size: 1rem;
+        margin-bottom: 2em;
 }
 
 .comment-navigation .nav-previous,
@@ -996,11 +997,12 @@ input[type="search"] {
 /*--------------------------------------------------------------
 10.1 Posts and pages
 --------------------------------------------------------------*/
+
 #main article,
 #main .post-navigation,
 #main #comments {
     max-width: 780px;
-    margin: 1em auto;
+    margin: 0 auto;
 }
 .entry-title {
     font-size: 30px;
@@ -1043,7 +1045,7 @@ input[type="search"] {
 .entry-content ul,
 .entry-content ol {
     font-size: 1.1rem;
-    line-height:1.6em;
+    line-height:1.6;
 }
 .entry-content ul li,
 .entry-content ol li {
@@ -1396,8 +1398,8 @@ ol.children .vcard img {
 .children .comment::after { display: none; }
 
 .comment-meta { margin-bottom: 2em; }
-.comment-metadata { margin-top: -65px; padding-left: 74px; padding-top: 5px; border-top: 1px solid silver;  }
-ol.children .comment-metadata { padding-left: 54px; margin-top: -49px; padding-top: 2px; }
+.comment-metadata { margin-top: -45px; padding-left: 74px; padding-top: 5px; border-top: 1px solid silver;  }
+ol.children .comment-metadata { padding-left: 54px; margin-top: -29px; padding-top: 2px; }
 .comment-metadata time {
 }
 .comment-meta,
@@ -1436,7 +1438,7 @@ ol.children .reply {
     padding: 1em;
 }
 .comment-content a {
-	word-wrap: break-word;
+	word-wrap: k-word;
 }
 .comment-content ol { margin-left: 1.5em; }
 .reply {
@@ -1706,6 +1708,17 @@ ul#index li {
     max-width: 780px;
     margin: 1em auto 2em;
     font-size: 1.2rem;
+}
+
+/* Full-width pages */
+.full-width #primary,
+.full-width article,
+.full-width .post-navigation,
+.full-width #comments,
+.full-width .featured-article,
+.full-width .page-title {
+    max-width: 900px!important;
+    margin: 0 auto;
 }
 
 /*--------------------------------------------------------------

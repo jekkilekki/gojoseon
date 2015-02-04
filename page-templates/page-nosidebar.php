@@ -1,16 +1,10 @@
 <?php
 /**
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * Template Name: Page with no sidebar
  *
  * @package Gojoseon
  */
 
-$sidebar_display = get_theme_mod( 'sidebar_position' );
 get_header(); ?>
 
 		<main id="main" class="site-main" role="main">
@@ -32,7 +26,6 @@ get_header(); ?>
 	</div><!-- #primary -->
 
     <!-- Widget Sidebar -->
-    <?php if ( $sidebar_display != 'none' ) { get_sidebar(); } ?> 
   
     <?php get_footer(); ?>
 

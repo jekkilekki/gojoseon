@@ -168,7 +168,7 @@ function gojoseon_posted_on() {
         
         if ( !is_home() && !is_archive() && !is_search() && !is_404() ) {
             echo '<div class="byline">' . $byline . '</div>';
-            echo '<span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>';
+            echo '<a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '"><span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span></a>';
         }
             
         // Comments
