@@ -537,7 +537,7 @@ a:active {
 
 .post-navigation {
     margin: 2em auto!important;
-    background: whitesmoke;
+    background: #eee;
     padding: 1em;
 }
 .post-navigation a {
@@ -608,7 +608,7 @@ a:active {
 .comment-navigation {
     padding: 1.5em;
     margin: 3em 0;
-    background: whitesmoke;
+    background: #eee;
 }
 .comment-navigation a {
     color: #555;
@@ -618,7 +618,7 @@ a:active {
 /* Paging Navigation */
 .paging-navigation ul {
     margin: 0;
-    background: whitesmoke;
+    background: #eee;
     padding: 2em 1em;
 }
 .paging-navigation li { display: inline; }
@@ -1055,20 +1055,22 @@ input[type="search"] {
 
 /* Blockquotes */
 .entry-content blockquote {
-    border-left: 3px solid #cd7f32;
-    background: #fafafa;
-    margin: 1em;
+    border: 1px dashed #cd7f32;
+    border-left: 5px solid #cd7f32;
+    background: whitesmoke;
+    margin: 2em;
     font-style: italic;
 }
 .entry-content blockquote p {
-    padding: 0.5em 0.5em 1em;
+    padding: 0.5em 0.5em;
     color: #999;
-    font-weight: 100;
+    font-weight: 300;
     font-size: 1.5rem;
     line-height: 1.5em;
 }
 .entry-content blockquote em {
     font-style: normal;
+    font-weight: 300;
 }
 .entry-content cite {
     font-family: Roboto, sans-serif;
@@ -1224,7 +1226,7 @@ input[type="search"] {
 
 /* Footer Meta */
 .entry-footer {
-    background: whitesmoke;
+    background: #eee;
     padding: 0 1em;
 }
 .cat-links,
@@ -1459,10 +1461,10 @@ ol.children .reply {
         padding: 1em;
         margin-bottom: 2em!important;
         border: none;
-        background: whitesmoke url(images/contemporary_china.png) repeat;
+        background: #eee;
 }
 .bypostauthor > .comment-body .avatar {
-    border-color: whitesmoke;
+    border-color: #eee;
 }
 .bypostauthor > .comment-body .avatar::before { /* @TODO: not currently working */
     font-family: "FontAwesome";
@@ -1626,12 +1628,12 @@ ul#index li {
     opacity: 0.5;
 }
 .featured-post .continue-reading {
-    background: whitesmoke;
+    background: #eee;
     padding: 0 15px 5px;
     position: absolute;
     right: 3rem;
     bottom: 2rem;
-    border: 1px solid whitesmoke;
+    border: 1px solid #eee;
     border-radius: 5px;
 }
 .featured-post .continue-reading:hover {
@@ -1642,7 +1644,7 @@ ul#index li {
 /* Asides */
 .aside {
     position: relative;
-    background: whitesmoke;
+    background: #eee;
 }
 .aside .entry-content {
     margin: 1em 0 1em 4.5em;
@@ -1668,9 +1670,10 @@ ul#index li {
 
 /* Archive Index pages */
 .page-header {
-    margin: -2em 0 2em;
+    margin: 0 auto 3em;
     padding: 1em;
-    background: whitesmoke;
+    background: #eee;
+    max-width: 780px;
 }
 .page-title {
     margin: 0;
@@ -1781,7 +1784,7 @@ object {
         padding: 0.5em 1em;
         font-size: 0.8rem;
         color: #555;
-        background: whitesmoke;
+        background: #eee;
 }
 
 /*--------------------------------------------------------------
@@ -1867,7 +1870,7 @@ object {
 
 /* Featured Images */
 .single-post-thumbnail {
-    background: whitesmoke url(images/contemporary_china.png) repeat;
+    background: #eee url(images/contemporary_china.png) repeat;
 }
 .single-post-thumbnail img {
     display: block;

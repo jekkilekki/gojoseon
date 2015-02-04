@@ -80,7 +80,7 @@
         $window     = $( window );
         $document   = $( document );
         $sidebar    = $( '#primary-menu' ).first();
-        adminbarOffset  = $body.is( 'admin-bar' ) ? $( '#wpadminbar' ).height() : 0;
+        adminbarOffset  = $body.is( '.admin-bar' ) ? $( '#wpadminbar' ).height() : 0;
         
         $window
                 .on( 'scroll.gojoseon', scroll )
