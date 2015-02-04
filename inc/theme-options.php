@@ -157,6 +157,12 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'default'   => '#169A70', 
         'label'     => __( 'Secondary Design Color: Hover', 'gojoseon' )
     );
+    $colors[] = array(
+        'slug'      => 'background_color',
+        'default'   => '#169A70',
+        'label'     => __( 'Background Color', 'gojoseon' )
+    );
+    
     foreach( $colors as $color ) {
         
         // SETTINGS

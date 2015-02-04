@@ -847,7 +847,7 @@ input[type="search"] {
 --------------------------------------------------------------*/
 .widget {
 	margin: 0 0 3em;
-        color: #999;
+        color: #777;
 }
 .widget-title {
     margin-bottom: 1em;
@@ -857,7 +857,7 @@ input[type="search"] {
     font-weight: bold;
     font-family: Roboto, sans-serif;
     text-transform: uppercase;
-    color: #555;
+    color: #333;
 }
 .widget ul,
 .widget table,
@@ -865,7 +865,7 @@ input[type="search"] {
     font-size: 0.9rem;
 }
 .widget a {
-    color: #777;
+    color: #333;
     border-bottom: 1px dotted silver;
 }
 .widget ul,
@@ -900,7 +900,7 @@ input[type="search"] {
     margin-left: -2em;
     font-family: 'FontAwesome';
     font-size: 1rem;
-    color: #555;
+    color: #333;
 }
 .widget_recent_entries li,
 .widget_recent_comments li {
@@ -1891,14 +1891,15 @@ object {
 13.0 Footer
 --------------------------------------------------------------*/
 .site-footer {
-    background-color: #e6e6e6;
+    background-color: silver;
     clear: both;
     margin: 0 -0.9375rem;
     padding: 1.5rem;
 }
 .site-footer,
 .site-footer a {
-    color: #555;
+    color: #333;
+    border-bottom: 1px dotted gainsboro;
 }
 #footer-area {
     background-color: #777;

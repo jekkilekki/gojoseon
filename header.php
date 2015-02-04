@@ -34,13 +34,24 @@
     } else {
         $content_position = 'left';
     }
+    
+    // @TODO: Fix this whole repositioning thing for different Theme Customizer options
     $quickmenu_position = get_theme_mod( 'quickmenu_position', 'left' );
     if ( $quickmenu_position == 'none' ) {
         $quickmenu = false;
-        $quickmenu_padding = '0px';
+        $row_padding = '256px';
+        $row_padding_right = '0px';
+        $primarymenu_margin = '0px';
+    } else if ( $quickmenu_position == 'right' ) {
+        $quickmenu = true;
+        $row_padding = '256px';
+        $row_padding_right = '64px';
+        $primarymenu_margin = '0px';
     } else {
         $quickmenu = true;
-        $quickmenu_padding = '64px';
+        $row_padding = '320px';
+        $rox_padding_right = '0px';
+        $primarymenu_margin = '64px';
     }
     
     $content_font = get_theme_mod( 'content_font', 'Roboto' );
@@ -61,7 +72,8 @@
     #secondary { display: <?php echo $sidebar_display; ?>; }
     #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
     #search-container { <?php echo $quickmenu_position; ?>: 4rem; }
-    .row { padding-<?php echo $quickmenu_position; ?>: <?php echo $quickmenu_padding; ?>; } // Give extra padding for the Quickmenu
+    .row { padding-left: <?php echo $row_padding; ?>; padding-right: <?php echo $row_padding_right; ?>; } // Give extra padding for the Quickmenu
+    #primary-menu { margin-left: <?php echo $primarymenu_margin; ?>; }
     #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
     #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
     <?php if ( get_theme_mod ( 'logo_image_background_color' ) == 1 ) : ?> 
@@ -80,12 +92,8 @@
             get_template_part( 'quickmenu' );
         } ?>
         
-    <div class="row">
-        
-        
-        
         <!-- Primary Site Navigation Bar (sticky) -->
-        <div id="primary-menu" class="columns">
+        <div id="primary-menu">
 
             <div class="something">
             <!-- Site Branding -->
@@ -120,8 +128,14 @@
 
         </div><!-- End #primary-menu .large-2 columns -->
         
+    <div class="row">
+        
+        
+        
+        
+        
         <!-- Begin main content area -->
-        <div id="content" class="site-content large-10 columns" data-equalizer> 
+        <div id="content" class="site-content large-12 columns" data-equalizer> 
 
             <!-- Header area -->
             <header id="masthead" class="site-header" role="banner">

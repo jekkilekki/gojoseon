@@ -3,14 +3,8 @@
  * 
  * @link: https://core.trac.wordpress.org/browser/trunk/src/wp-content/themes/twentyfifteen/js/functions.js?rev=30388
  * 
- * @TODO: When Chrome gets to the top and "bounces", it adds an additional 
- * adminbar distance to the location of the "fixed" sidebar
  * @TODO: When the sidebar is "fixed" but the content is scrolling, the dropdown 
  * menus don't pop up over the content 
- * 
- * @TODO: The problem seems to be that the sidebar thinks it's part of the WINDOW
- * (so if the window gets huge, the sidebar stretches further), and not part of the 
- * document (row).
  * 
  */
 

@@ -9,8 +9,7 @@
     background: #B2E78B;
 }
 #content {
-    float: none;
-    margin-left: 256px;
+    /*float: none;*/
 }
 #masthead,
 #primary,
@@ -31,7 +30,7 @@
 }
 
 #primary-menu {
-    padding: 0;
+    margin-left: 64px;
     width: 256px;
     position: absolute;
 }
