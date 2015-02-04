@@ -22,11 +22,13 @@
 /* Resizing font-size causes the entire page/grid to resize because of rem measurements */
 /* @link: http://foundation.zurb.com/forum/posts/21347-reducing-body-font-size-reduces-column-width */
 #primary {
-    font-size: 120% !important; /* currently THIS doesn't work, but if I do html { ... } it resizes everything */
+     
 }
 
 #primary-menu {
     padding: 0;
+    width: 256px;
+    position: absolute;
 }
 
 #breadcrumbs {

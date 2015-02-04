@@ -5,9 +5,9 @@
  * @package Gojoseon
  */
 
+$sidebar_display = get_theme_mod( 'sidebar_position' );
 get_header(); ?>
 
-	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
@@ -39,7 +39,12 @@ get_header(); ?>
 		<?php endif; ?>
 
 		</main><!-- #main -->
-	</section><!-- #primary -->
+	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+    <!-- Widget Sidebar -->
+    <?php if ( $sidebar_display != 'none' ) { get_sidebar(); } ?> 
+  
+    <?php get_footer(); ?>
+    
+    </div><!-- #content -->
+</div><!-- #row -->

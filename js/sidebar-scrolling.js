@@ -44,7 +44,7 @@
                         $sidebar.attr( 'style', 'top: ' + topOffset + 'px;' );
                     } else if ( ! bottom && windowPos + windowHeight > sidebarHeight + $sidebar.offset().top ) {
                         bottom = true;
-                        $sidebar.attr( 'style', 'position: fixed; bottom: 0; padding-right: 11px;' ); // Hackily fix the width of the sidebar. More details @link: https://wordpress.org/support/topic/scrolling-fixed-menu-like-twentyfifteen?replies=3
+                        $sidebar.attr( 'style', 'position: fixed; bottom: 0;' ); // Hackily fix the width of the sidebar. More details @link: https://wordpress.org/support/topic/scrolling-fixed-menu-like-twentyfifteen?replies=3
                     }
                 } else if ( windowPos < lastWindowPos ) {
                     if ( bottom ) {
@@ -53,7 +53,7 @@
                         $sidebar.attr( 'style', 'top: ' + topOffset + 'px;' );
                     } else if ( ! top && windowPos + adminbarOffset < $sidebar.offset().top ) {
                         top = true;
-                        $sidebar.attr( 'style', 'position: fixed; padding-right: 11px;' );
+                        $sidebar.attr( 'style', 'position: fixed;' );
                     }
                 } else {
                     top = bottom = false;
@@ -62,7 +62,7 @@
                 }
             } else if ( ! top ) {
                 top = true;
-                $sidebar.attr( 'style', 'position: fixed; padding-right: 11px;' );
+                $sidebar.attr( 'style', 'position: fixed;' );
             }
         }
         

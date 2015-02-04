@@ -85,7 +85,7 @@
         
         
         <!-- Primary Site Navigation Bar (sticky) -->
-        <div id="primary-menu" class="large-2 columns">
+        <div id="primary-menu" class="columns">
 
             <div class="something">
             <!-- Site Branding -->
@@ -162,4 +162,4 @@
                 echo '<div id="primary" class="content-area large12 columns" data-equalizer-watch>';
             } ?>
 
-            <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true ) { the_breadcrumb(); } ?>
+            <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true && !is_home() && !is_archive() && !is_search() && !is_404() ) { the_breadcrumb(); } ?>

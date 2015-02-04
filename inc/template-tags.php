@@ -166,7 +166,7 @@ function gojoseon_posted_on() {
         echo '<div id="header-meta">';
         echo '<div class="posted-on">' . $posted_on . '</div>';
         
-        if ( !is_home() ) {
+        if ( !is_home() && !is_archive() && !is_search() && !is_404() ) {
             echo '<div class="byline">' . $byline . '</div>';
             echo '<span class="author-image">' . get_avatar( get_the_author_meta( 'ID' ), 64 ) . '</span>';
         }
@@ -237,17 +237,17 @@ if ( ! function_exists( 'the_archive_title' ) ) :
  */
 function the_archive_title( $before = '', $after = '' ) {
 	if ( is_category() ) {
-		$title = sprintf( __( 'Category: %s', 'gojoseon' ), single_cat_title( '', false ) );
+		$title = sprintf( __( 'Posts in the %s category:', 'gojoseon' ), single_cat_title( '', false ) );
 	} elseif ( is_tag() ) {
-		$title = sprintf( __( 'Tag: %s', 'gojoseon' ), single_tag_title( '', false ) );
+		$title = sprintf( __( 'Posts with the %s tag:', 'gojoseon' ), single_tag_title( '', false ) );
 	} elseif ( is_author() ) {
-		$title = sprintf( __( 'Author: %s', 'gojoseon' ), '<span class="vcard">' . get_the_author() . '</span>' );
+		$title = sprintf( __( 'Posts written by %s', 'gojoseon' ), '<span class="vcard">' . get_the_author() . '</span>' );
 	} elseif ( is_year() ) {
-		$title = sprintf( __( 'Year: %s', 'gojoseon' ), get_the_date( _x( 'Y', 'yearly archives date format', 'gojoseon' ) ) );
+		$title = sprintf( __( 'Posts from %s', 'gojoseon' ), get_the_date( _x( 'Y', 'yearly archives date format', 'gojoseon' ) ) );
 	} elseif ( is_month() ) {
-		$title = sprintf( __( 'Month: %s', 'gojoseon' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'gojoseon' ) ) );
+		$title = sprintf( __( 'Posts from %s', 'gojoseon' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'gojoseon' ) ) );
 	} elseif ( is_day() ) {
-		$title = sprintf( __( 'Day: %s', 'gojoseon' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'gojoseon' ) ) );
+		$title = sprintf( __( 'Posts from %s', 'gojoseon' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'gojoseon' ) ) );
 	} elseif ( is_tax( 'post_format' ) ) {
 		if ( is_tax( 'post_format', 'post-format-aside' ) ) {
 			$title = _x( 'Asides', 'post format archive title', 'gojoseon' );
@@ -595,14 +595,14 @@ function gojoseon_featured_posts( $stickies ) {
         <?php
         // Post thumbnail
         echo '<div class="single-post-thumbnail clear">';
-        echo '<a href="' . get_permalink() . '" title="' . __( 'Click to read ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">';
+        echo '<a href="' . get_permalink() . '" title="' . __( 'Read the article ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">';
         if ( has_post_thumbnail() ) {
             echo the_post_thumbnail( 'large-thumb' );
         } else {
             echo '<img src="' . get_the_first_image() . '" />';
         }
         echo '</a>';
-        echo '<div id="count"><i class="fa fa-thumb-tack"></i> Featured Post <?php echo $count; ?></div>';
+        echo '<div id="count"><i class="fa fa-thumb-tack"></i> Featured Post ' . $count . '</div>';
         echo '</div>'; 
         
         ?>
