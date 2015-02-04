@@ -378,7 +378,7 @@ function the_breadcrumb() {
     global $post;
     
     if ( !is_home() ) {
-        echo '<ul id="breadcrumbs">';
+        echo '<ul id="breadcrumbs" class="breadcrumbs">';
         echo '<li><a href="';
         echo get_option( 'home' );
         echo '">';

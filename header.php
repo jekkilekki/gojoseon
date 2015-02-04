@@ -95,7 +95,7 @@
         <!-- Primary Site Navigation Bar (sticky) -->
         <div id="primary-menu">
 
-            <div class="something">
+            <div class="something"><!-- @TODO: Change this name -->
             <!-- Site Branding -->
             <div class="site-branding">
                 
@@ -127,12 +127,10 @@
             </div>
 
         </div><!-- End #primary-menu .large-2 columns -->
+
         
+    <!-- Foundation's Responsive Awesomeness Begins here -->
     <div class="row">
-        
-        
-        
-        
         
         <!-- Begin main content area -->
         <div id="content" class="site-content large-12 columns" data-equalizer> 
@@ -155,12 +153,12 @@
                 </div>
 
                 <!-- Site description/tagline -->
-                <div class=" large-6 columns">
+                <div class=" large-6 medium-10 columns">
                     <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
                 </div>
 
                 <!-- Menu bar over sidebar -->
-                <div class=" large-6 columns">
+                <div class=" large-6 medium-2 columns">
                     <nav id="top-navigation" class="main-navigation" role="navigation">
                         <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
                         <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
@@ -171,9 +169,9 @@
                 
             <!-- Main Content Area -->  
             <?php if ( $sidebar_display == 'none' || is_page_template( 'page-templates/page-nosidebar.php' ) ) {
-                echo '<div id="primary" class="content-area large12 columns full-width" data-equalizer-watch>';
+                echo '<div id="primary" class="content-area large-12 columns full-width" data-equalizer-watch>';
             } else {
-                echo '<div id="primary" class="content-area large-9 medium-8 columns" data-equalizer-watch>';
+                echo '<div id="primary" class="content-area large-9 medium-12 columns" data-equalizer-watch>';
             } ?>
 
             <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true && !is_home() && !is_archive() && !is_search() && !is_404() ) { the_breadcrumb(); } ?>

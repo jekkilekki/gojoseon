@@ -36,23 +36,17 @@
 }
 
 #breadcrumbs {
-    list-style: none;
     position: absolute;
-    top: 25px;
-    overflow: hidden;
-    margin-left: 0px;
+    top: 20px;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
 }
 #breadcrumbs li {
-    float: left;
-    margin-right: 10px;
     color: #999;
-    font-size: 0.7rem;
-    letter-spacing: 0.5px;
 }
 #breadcrumbs li::before {
     font-family: FontAwesome;
     content: "\f105";
-    padding-right: 10px;
 }
 #breadcrumbs li:first-child::before {
     content: "";
@@ -60,7 +54,6 @@
 }
 #breadcrumbs li a {
     color: #777;
-    border-bottom: 1px dotted silver;
 }
 #side-nav,
 #main,

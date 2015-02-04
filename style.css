@@ -501,8 +501,8 @@ a:active {
 .menu-toggle {
 	display: none;
 }
-
-@media screen and (max-width: 600px) {
+/* At Foundation SMALL screen sizes */
+@media screen and (max-width: 40em) {
 	.menu-toggle,
 	.main-navigation.toggled .nav-menu {
 		display: block;
@@ -511,6 +511,24 @@ a:active {
 	.main-navigation ul {
 		display: none;
 	}
+}
+/* At Foundation MEDIUM screen sizes */
+@media only screen and (min-width: 40.063em) and (max-width: 64.063em) {
+        #top-navigation .menu-toggle,
+        #top-navigation.toggled .nav-menu {
+                display: block;
+                float: right;
+                font-size: 0.8rem;
+                background: none;
+                color: #555;
+                padding: 5px;
+                margin: 0;
+                text-transform: uppercase;
+        }
+        
+        #top-navigation ul {
+                display: none;
+        }
 }
 
 .site-main .comment-navigation,
@@ -981,13 +999,20 @@ input[type="search"] {
 }
 
 /* Footer widgets responsive */
-@media screen and (max-width: 879px) {
+@media screen and (max-width: 40em) {
     #footer-widgets { width: 100%!important; }
     
     .footer-widgets .widget {
         float: none;
         width: 100%;
         margin: 0 0 8rem;
+    }
+}
+@media screen and (min-width: 40.063em) and (max-width: 64em) {
+    #footer-widgets { width: 100%!important; }
+    
+    .footer-widgets .widget {
+        width: 47%;
     }
 }
 
@@ -1346,6 +1371,9 @@ input[type="search"] {
     border: none!important;
     min-width: 0!important;
     padding-right: 10px;
+}
+.entry-footer .sd-content {
+    margin-left: 130px;
 }
 .entry-footer .sd-content li:hover {
     border-color: #cd7f32!important;
