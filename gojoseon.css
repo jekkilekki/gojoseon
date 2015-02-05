@@ -55,55 +55,55 @@
 #breadcrumbs li a {
     color: #777;
 }
-#side-nav,
+.primary-nav,
 #main,
 #secondary {
     padding-top: 3em;
     border-top: 5px solid #1ED3A4;
 }
-#side-nav {
+.primary-nav {
     background-color: #eee; /* #f5f5f5 */
 }
-#side-nav ul {
+.primary-nav ul {
     margin: 0 0px;
     padding: 0 20px 50px;
 }
-#side-nav ul li {
+.primary-nav ul li {
     list-style-type: none;
     font-size: 0.8rem;
     text-transform: uppercase;
     border-top: 1px dotted silver;
 }
-#side-nav ul > li {
+.primary-nav ul > li {
     padding: 10px 0;
 }
-#side-nav ul li a {
+.primary-nav ul li a {
     color: #555;
 }
-#side-nav ul ul li { position: relative; }
-#side-nav ul li ul {
+.primary-nav ul ul li { position: relative; }
+.primary-nav ul li ul {
     padding: 10px 0 35px;
     margin: 0;
 }
-#side-nav ul li ul li {
+.primary-nav ul li ul li {
     margin: 0;
     padding: 10px 0;
     text-transform: capitalize;
 }
-#side-nav ul li ul li a {
+.primary-nav ul li ul li a {
     color: #999;
 }
-#side-nav ul ul li:hover {
+.primary-nav ul ul li:hover {
     background-color: #777;
     margin: 0 -20px;
     padding: 10px 20px;
 }
-#side-nav ul ul li:hover > a {
+.primary-nav ul ul li:hover > a {
     color: whitesmoke;
 }
-#side-nav ul li ul li > a:after { font-family: FontAwesome; content: ' \f0da'; padding-left: 5px; }
-#side-nav ul li ul li > a:only-child:after { content: ''; }
-#side-nav ul ul ul {
+.primary-nav ul li ul li > a:after { font-family: FontAwesome; content: ' \f0da'; padding-left: 5px; }
+.primary-nav ul li ul li > a:only-child:after { content: ''; }
+.primary-nav ul ul ul {
     list-style-type: none;
     background-color: #eee;
     position: absolute;
@@ -114,28 +114,26 @@
     display: none;
     padding: 0;
 }
-#side-nav ul ul ul li {
+.primary-nav ul ul ul li {
     background-color: #777;
     padding: 10px;
 }
-#side-nav ul ul ul li:last-child {
+.primary-nav ul ul ul li:last-child {
     border-bottom: 1px dotted silver;
 }
-#side-nav ul ul li:hover > ul {
+.primary-nav ul ul li:hover > ul {
     display: list-item;
 }
-#side-nav ul ul ul li a {
+.primary-nav ul ul ul li a {
     color: whitesmoke;
-}#side-nav ul ul ul li:hover {
+}
+.primary-nav ul ul ul li:hover {
     background-color: #169A70;
     margin: 0;
     padding-left: 20px;
     padding-right: 0px;
 }
 
-#top-navigation {
-    
-}
 #footer-navigation {
     
 }

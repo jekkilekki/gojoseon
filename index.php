@@ -64,4 +64,4 @@ get_header(); ?>
     <?php get_footer(); ?>
     
     </div><!-- #content -->
-</div><!-- #row -->
+</div><!-- .padded-row -->

@@ -72,7 +72,7 @@
     #secondary { display: <?php echo $sidebar_display; ?>; }
     #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
     #search-container { <?php echo $quickmenu_position; ?>: 4rem; }
-    .row { padding-left: <?php echo $row_padding; ?>; padding-right: <?php echo $row_padding_right; ?>; } // Give extra padding for the Quickmenu
+    .padded-row { padding-left: <?php echo $row_padding; ?>; padding-right: <?php echo $row_padding_right; ?>; } // Give extra padding for the Quickmenu
     #primary-menu { margin-left: <?php echo $primarymenu_margin; ?>; }
     #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
     #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
@@ -120,7 +120,7 @@
             </div><!-- End .site-branding -->
 
             <!-- Primary Menu -->  
-            <nav id="side-nav" class="navigation" role="navigation">
+            <nav id="navigation" class="primary-nav navigation" role="navigation">
                 <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
             </nav><!-- End #site-nav -->
@@ -130,7 +130,7 @@
 
         
     <!-- Foundation's Responsive Awesomeness Begins here -->
-    <div class="row">
+    <div class="row padded-row">
         
         <!-- Begin main content area -->
         <div id="content" class="site-content large-12 columns" data-equalizer> 
@@ -159,7 +159,7 @@
 
                 <!-- Menu bar over sidebar -->
                 <div class=" large-6 medium-2 columns">
-                    <nav id="top-navigation" class="main-navigation" role="navigation">
+                    <nav id="site-navigation" class="top-navigation" role="navigation">
                         <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
                         <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
                     </nav><!-- #top-navigation -->

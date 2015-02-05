@@ -514,8 +514,7 @@ a:active {
 }
 /* At Foundation MEDIUM screen sizes */
 @media only screen and (min-width: 40.063em) and (max-width: 64.063em) {
-        #top-navigation .menu-toggle,
-        #top-navigation.toggled .nav-menu {
+        .top-navigation .menu-toggle {
                 display: block;
                 float: right;
                 font-size: 0.8rem;
@@ -524,9 +523,76 @@ a:active {
                 padding: 5px;
                 margin: 0;
                 text-transform: uppercase;
+                box-shadow: none;
+                outline: none;
+        }
+
+        .top-navigation.toggled {
+            position: relative;
+        }
+        .top-navigation.toggled .nav-menu {
+                display: block;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                z-index: 10;
+                background: white;
+                border: 1px solid silver;
+                border-radius: 5px;
+                box-shadow: 1px 1px 5px silver;
+                width: 150px;
+        }
+        .top-navigation.toggled .nav-menu:after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            right: 18px;
+            bottom: 100%;
+            border-left: 13px solid transparent;
+            border-right: 13px solid transparent;
+            border-bottom: 13px solid white;
+            /*border-width: 0 20px 20px 20px;
+            border-style: solid;
+            border-color: white;*/
+        }
+        .top-navigation.toggled .nav-menu:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            right: 16px;
+            bottom: 100%;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid silver;
+            /*border-width: 0 22px 22px 22px;
+            border-style: solid;
+            border-color: silver;*/
+        }
+        .top-navigation.toggled .nav-menu li {
+            list-style-type: none;
+            padding: 7px 0px;
+        }
+        .top-navigation.toggled .nav-menu li:last-child {
+            border: none;
+        }
+        .top-navigation.toggled .nav-menu li:last-child:hover {
+            border-radius: 0 0 5px 5px;
+        }
+        .top-navigation.toggled .nav-menu li:first-child:hover {
+            border-radius: 5px 5px 0 0;
+        }
+        .top-navigation.toggled .nav-menu li:hover {
+            margin-left: 0px;
+            margin-right: 0px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #eee;
+            color: #333;
         }
         
-        #top-navigation ul {
+        .top-navigation ul {
                 display: none;
         }
 }
@@ -774,12 +840,12 @@ X.X Header
 
 .site-branding,
 .site-description,
-#top-navigation {
+.top-navigation {
     margin: 0;
     padding: 0;
 }
 .site-description,
-#top-navigation {
+.top-navigation {
     height: 60px;
     padding-top: 15px;
 }
@@ -815,19 +881,19 @@ X.X Header
     margin-bottom: 10px;
     text-align: center;
 }
-#top-navigation {
+.top-navigation {
     
 }
-#top-navigation ul{
+.top-navigation ul{
     float: right;
 }
-#top-navigation ul li {
+.top-navigation ul li {
     margin: 0 15px;
     border-bottom: 1px dotted silver;
     text-transform: uppercase;
     font-size: 0.8rem;
 }
-#top-navigation ul li a {
+.top-navigation ul li a {
     color: #999;
 }
 
