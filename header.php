@@ -121,7 +121,7 @@
 
             <!-- Primary Menu -->  
             <nav id="navigation" class="primary-nav navigation" role="navigation">
-                <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Primary Menu', 'gojoseon' ); ?></button>
+                <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Main Menu', 'gojoseon' ); ?></button>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
             </nav><!-- End #site-nav -->
             </div>

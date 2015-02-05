@@ -146,6 +146,20 @@ a img {
     margin: 0!important;
 }
 
+/* Foundation and other custom resets */
+#masthead,
+#primary,
+#secondary {
+    background-color: #fff;
+}
+
+/* Change the default width of the Foundation rows */
+.row {
+    max-width: 100em;
+    margin-left: 0px;
+    background: white;
+}
+
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/
@@ -597,6 +611,349 @@ a:active {
         }
 }
 
+/*--------------------------------------------------------------
+5.2.X Quick Menu
+--------------------------------------------------------------*/
+#quickmenu {
+    position: fixed;
+    top: 0;
+    background-color: #333;
+    width: 64px;
+    width: 4rem;
+    height: 100%;
+}
+ .admin-bar #quickmenu {
+    padding-top: 32px; 
+}
+
+/* Quick Menu Items styling */
+#menu-quick {
+    z-index: 20;
+    position: fixed;
+    top: 165px;
+    margin: 0;
+    padding-bottom: 0;
+}
+.admin-bar #menu-quick {
+    top: 197px;
+}
+
+#menu-quick-items {
+    position: relative;
+    margin-left: 0;
+    height: 40px;
+    width: 64px;
+    width: 4rem;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #777;
+}
+#menu-quick-items li {
+    border-top: 1px solid #555;
+    padding: 5px;
+}
+#menu-quick-items li:hover,
+#menu-quick-items li.active {
+    background-color: #000;
+}
+#menu-quick-items ul li.active:hover {
+    background-color: #000;
+    padding-left: 10px;
+}
+#menu-quick-items li:last-child {
+    border-bottom: 1px solid #555;
+}
+#menu-quick-items li a {
+    color: #777;
+}
+#menu-quick-items li a strong {
+    display: none;
+}
+#menu-quick-items li ul {
+    position: absolute;
+    top: -165px;
+    right: -256px;
+    width: 256px;
+    display: none;
+    font-weight: normal;
+}
+#menu-quick-items li ul li:hover {
+    background-color: #169A70;
+    padding-left: 20px;
+}
+#menu-quick-items li ul li.has-dropdown::after {
+    font-family: FontAwesome;
+    content: ' \f0da';
+    color: whitesmoke;
+    float: right;
+    padding-right: 5px;
+}
+#menu-quick-items li ul li.has-dropdown.active::after {
+    content: ' \f0d7';
+}
+/*#menu-quick-items li ul li.has-dropdown .active::after,
+#menu-quick-items li ul li.has-dropdown:hover::after {
+    content: ' \f0d7';
+    border-left: 1px solid #555;
+    padding: 10px 16px;
+    margin: -10px;
+    z-index: 100;
+}
+#menu-quick-items li ul li.has-dropdown .active,
+#menu-quick-items li ul li.has-dropdown:hover {
+    backgroud-color: #169A70;
+    background: linear-gradient( to right, #169A70 0%, #169A70 85%, #777777 85%, #777777 100% );
+}*/
+#menu-quick-items li ul li > a:only-child::after,
+#menu-quick-items li ul li > a:only-child:hover::after {
+    content: '';
+}
+#menu-quick-items li ul li {
+    list-style-type: none;
+    background-color: #777;
+    font-size: 0.8em;
+    text-align: left;
+    padding: 10px;
+    position: relative;
+}
+#menu-quick-items li ul li a {
+    color: whitesmoke;
+}
+#menu-quick-items li ul li ul {
+    position: absolute;
+    right: 0px;
+    top: 41px;
+    width: 256px;
+    overflow-y: scroll;
+    max-height: 40rem;
+    z-index: 20;
+}
+/* Custom scrollbars in webkit @link: http://css-tricks.com/custom-scrollbars-in-webkit/ */
+#menu-quick-items li ul li ul::-webkit-scrollbar {
+    width: 8px;
+}
+#menu-quick-items li ul li ul::-webkit-scrollbar-track {
+    background-color: #777;
+}
+#menu-quick-items li ul li ul::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+}
+#menu-quick-items li ul li ul li:first-child {
+    border-top: none;
+}
+#menu-quick-items li ul li ul li:last-child {
+    padding-bottom: 50px;
+}
+
+/*--------------------------------------------------------------
+5.2.X Primary Menu
+--------------------------------------------------------------*/
+#primary-menu {
+    margin-left: 64px;
+    width: 256px;
+    position: absolute;
+}
+.primary-nav {
+    background-color: #eee; /* #f5f5f5 */
+}
+.primary-nav ul {
+    margin: 0 0px;
+    padding: 0 20px 50px;
+}
+.primary-nav ul li {
+    list-style-type: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border-top: 1px dotted silver;
+}
+.primary-nav ul > li {
+    padding: 10px 0;
+}
+.primary-nav ul li a {
+    color: #555;
+}
+.primary-nav ul ul li { position: relative; }
+.primary-nav ul li ul {
+    padding: 10px 0 35px;
+    margin: 0;
+}
+.primary-nav ul li ul li {
+    margin: 0;
+    padding: 10px 0;
+    text-transform: capitalize;
+}
+.primary-nav ul li ul li a {
+    color: #999;
+}
+.primary-nav ul ul li:hover {
+    background-color: #777;
+    margin: 0 -20px;
+    padding: 10px 20px;
+}
+.primary-nav ul ul li:hover > a {
+    color: whitesmoke;
+}
+.primary-nav ul li ul li > a:after { font-family: FontAwesome; content: ' \f0da'; padding-left: 5px; }
+.primary-nav ul li ul li > a:only-child:after { content: ''; }
+.primary-nav ul ul ul {
+    list-style-type: none;
+    background-color: #eee;
+    position: absolute;
+    top: -1px;
+    right: -200px;
+    width: 200px;
+    z-index: 5;
+    display: none;
+    padding: 0;
+}
+.primary-nav ul ul ul li {
+    background-color: #777;
+    padding: 10px;
+}
+.primary-nav ul ul ul li:last-child {
+    border-bottom: 1px dotted silver;
+}
+.primary-nav ul ul li:hover > ul {
+    display: list-item;
+}
+.primary-nav ul ul ul li a {
+    color: whitesmoke;
+}
+.primary-nav ul ul ul li:hover {
+    background-color: #169A70;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 0px;
+}
+
+/*--------------------------------------------------------------
+5.2.X Social Menu
+--------------------------------------------------------------*/
+.social-media-icons a,
+#menu-social-items a,
+#search a {
+    color: #777;
+}
+#menu-social {
+    z-index: 2;
+    position: absolute;
+    bottom: 29px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+#menu-social,
+#menu-social-items {
+    margin-left: 0px;
+}
+#menu-social-items li {
+    padding: 5px;
+    border-top: 1px solid #555;
+    width: 64px;
+    width: 4rem;
+    text-align: center;
+    font-size: 0.8em;
+    position: relative;
+}
+#menu-social-items li:last-child {
+    border-bottom: 1px solid #555;
+}
+#menu-social-items li:hover {
+    background-color: #000;
+}
+.menu-social li a:before {
+    display: inline-block;
+    padding: 0 5px;
+    vertical-align: top;
+    font-family: 'FontAwesome';
+    font-size: 1.4em;
+    color: #777;
+    -webkit-font-smoothing: antialiased;
+}
+
+.social-media-icons li:hover {
+    background-color: #444;
+}
+.social-media-icons li:hover > a {
+    color: #1ED3A4;
+}
+
+.menu-social li a[href*="facebook.com"]::before { content: '\f09a'; }
+.menu-social li a[href*="twitter.com"]::before { content: '\f099'; }
+.menu-social li a[href*="github.com"]::before { content: '\f09b'; }
+.menu-social li a[href*="linkedin.com"]::before { content: '\f0e1'; }
+.menu-social li a[href*="wordpress.com"]::before, 
+.menu-social li a[href*="wordpress.org"]::before { content: '\f19a'; }
+.menu-social li a[href*="tumblr.com"]::before { content: '\f173'; }
+.menu-social li a[href*="plus.google.com"]::before { content: '\f0d5'; }
+.menu-social li a[href*="dribbble.com"]::before { content: '\f17d'; }
+.menu-social li a[href*="instagram.com"]::before { content: '\f16d'; }
+.menu-social li a[href*="vimeo.com"]::before { content: '\f194'; }
+.menu-social li a[href*="youtube.com"]::before { content: '\f167'; }
+.menu-social li a[href*="pinterest.com"]::before { content: '\f0d2'; }
+.menu-social li a[href*="flickr.com"]::before { content: '\f16e'; }
+.menu-social li a[href*="bitbucket.com"]::before { content: '\f171'; }
+.menu-social li a[href*="digg.com"]::before { content: '\f1a6'; }
+.menu-social li a[href*="reddit.com"]::before { content: '\f1a1'; }
+.menu-social li a[href*="codepen.io"]::before { content: '\f1cb'; }
+.menu-social li a[href*="behance.com"]::before { content: '\f1b4'; }
+.menu-social li a[href*="slideshare.net"]::before { content: '\f1e7'; }
+.menu-social li a[href*="/feed"]::before { content: '\f413'; }
+.menu-social li a[href*="subscribe"]::before { content: '\f410'; }
+
+/* TODO: Fix the hover colors here */
+.menu-social li a[href*="facebook.com"] { background-color: #3b5998; }
+.menu-social li:hover > a[href*="twitter.com"] { color: #33ccff; }
+.menu-social li:hover > a[href*="github.com"] { color: #171515; }
+.menu-social li:hover > a[href*="linkedin.com"] { color: #0e76a8; }
+.menu-social li:hover > a[href*="wordpress.com"], 
+.menu-social li:hover > a[href*="wordpress.org"] { color: #21759b; }
+.menu-social li:hover > a[href*="tumblr.com"] { color: #34526f; }
+.menu-social li:hover > a[href*="plus.google.com"] { color: #dd4b39; }
+.menu-social li:hover > a[href*="dribbble.com"] { color: #ea4c89; }
+.menu-social li:hover > a[href*="instagram.com"] { color: #3f729b; }
+.menu-social li:hover > a[href*="vimeo.com"] { color: #1AB7EA; }
+.menu-social li:hover > a[href*="youtube.com"] { color: #c4302b; }
+.menu-social li:hover > a[href*="pinterest.com"] { color: #c8232c; }
+.menu-social li:hover > a[href*="flickr.com"] { color: #ff0084; }
+.menu-social li:hover > a[href*="bitbucket.com"] { content: '\f171'; }
+.menu-social li:hover > a[href*="digg.com"] { content: '\f1a6'; }
+.menu-social li:hover > a[href*="reddit.com"] { content: '\f1a1'; }
+.menu-social li:hover > a[href*="codepen.io"] { color: #fff; }
+.menu-social li:hover > a[href*="behance.com"] { content: '\f1b4'; }
+.menu-social li:hover > a[href*="slideshare.net"] { content: '\f1e7'; }
+
+/*--------------------------------------------------------------
+5.2.X Back to Top Button
+--------------------------------------------------------------*/
+.topbutton {
+    height: 50px;
+    width: 64px;
+    width: 4rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    color: #777;
+    text-align: center;
+    vertical-align: bottom;
+    border-top: 1px solid #555;
+    clear: left;
+    padding-top: 5px;
+}
+.topbutton a {
+    font-size: 0.7em;
+}
+.topbutton i {
+    font-size: 2em;   
+}
+.topbutton:hover {
+    background-color: #1ED3A4;
+}
+.topbutton:hover > a {
+    color: white;
+}
+
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
@@ -897,6 +1254,7 @@ X.X Header
     color: #999;
 }
 
+/* Search Boxes */
 input[type="search"] {
     box-sizing: border-box;
     width: 100%;
@@ -904,7 +1262,7 @@ input[type="search"] {
 .search-box-wrapper {
     z-index: 50;
     width: 320px;
-    position: absolute;
+    position: fixed;
     left: 4rem;
     display: none;
     
@@ -924,6 +1282,26 @@ input[type="search"] {
 .error404 .search-submit,
 .archive .search-submit {
     display: none;
+}
+.search-toggle { 
+    z-index: 2;
+    margin-left: 0px;
+    color: #777;
+    border-top: none;
+    border-bottom: 1px solid #555;
+    height: 50px;
+    width: 64px;
+    width: 4rem;
+    text-align: center;
+    font-size: 1.2em;
+    padding-top: 10px;
+    cursor: pointer;
+}
+.search-toggle:hover,
+.search-toggle.active {
+    color: white;
+    background-color: #1ED3A4;
+    border-bottom: 1px solid #1ED3A4;
 }
 
 /*--------------------------------------------------------------
@@ -1050,7 +1428,7 @@ input[type="search"] {
 .widget_search .search-submit {
 	display: none;
 }
-
+#footer-widgets { width: 100%!important; }
 .footer-widgets {
     margin: 0 auto;
 }
@@ -1088,6 +1466,34 @@ input[type="search"] {
 /*--------------------------------------------------------------
 10.1 Posts and pages
 --------------------------------------------------------------*/
+
+.primary-nav,
+#main,
+#secondary {
+    padding-top: 3em;
+    border-top: 5px solid #1ED3A4;
+}
+
+#breadcrumbs {
+    position: absolute;
+    top: 20px;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+}
+#breadcrumbs li {
+    color: #999;
+}
+#breadcrumbs li::before {
+    font-family: FontAwesome;
+    content: "\f105";
+}
+#breadcrumbs li:first-child::before {
+    content: "";
+    padding-right: 0;
+}
+#breadcrumbs li a {
+    color: #777;
+}
 
 #main article,
 #main .post-navigation,
@@ -1409,6 +1815,34 @@ input[type="search"] {
 	margin: 0 0 1.5em;
 }
 
+/* Edit buttons */
+.edit-link {
+    float: right;
+    font-size: 0.8rem;
+    background-color: #eee;
+    border: 1px solid #eee;
+    text-transform: uppercase;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-family: Roboto, sans-serif;
+}
+.top-edit-link {
+    position: absolute;
+    top: 25px;
+    right: 79px;
+}
+.bottom-edit-link {
+    margin-top: -28px;
+    margin-right: -1.5em;
+}
+.edit-link a {
+    color: #777;
+}
+.edit-link:hover {
+    background-color: white;
+    border: 1px solid silver;
+}
+
 /* ShareDaddy Custom Styling (if enabled) */
 .entry-meta .sd-title {
     display: none!important;
@@ -1443,6 +1877,25 @@ input[type="search"] {
 }
 .entry-footer .sd-content li:hover {
     border-color: #cd7f32!important;
+}
+
+/* My custom sharing buttons */
+.social-sharing {
+    height: 40px;
+    clear: both;
+}
+.social-sharing div {
+    float: left;
+    padding-right: 15px;
+}
+#tweetthis {
+    width: 86px;
+}
+#likethis {
+    margin-top: 2px;
+}
+#plusonethis {
+    width: 64px;
 }
 
 /*--------------------------------------------------------------
@@ -1989,6 +2442,8 @@ object {
     clear: both;
     margin: 0 -0.9375rem;
     padding: 1.5rem;
+    position: relative;
+    margin-left: 64px;
 }
 .site-footer,
 .site-footer a {
@@ -2000,4 +2455,57 @@ object {
     text-align: center;
     margin: 0 -2rem;
     padding: 2rem;
+}
+
+
+/* At Foundation SMALL screen sizes */
+@media screen and (max-width: 780px) {
+	.primary-nav .menu-toggle,
+	.primary-nav.toggled .nav-menu {
+		display: block;
+        }
+	.primary-nav ul {
+		display: none;
+	}
+        .primary-nav .menu-toggle {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 64px;
+            height: 50px;
+            padding: 5px;
+            background: transparent;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #555;
+            box-shadow: none;
+            text-shadow: none;
+            color: #777;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .primary-nav .menu-toggle:hover,
+        .primary-nav .menu-toggle:active {
+            background: black;
+            color: white;
+        }
+        .padded-row {
+            padding-left: 64px!important;
+        }
+        #menu-quick {
+            top: 99px;
+        }
+        #primary-menu {
+            position: relative;
+            width: 156px;
+            float: left;
+        }
+        .site-branding {
+            height: 100px;
+        }
+        .primary-nav {
+            padding-top: 0px;
+            border: none;
+        }
+        
 }
