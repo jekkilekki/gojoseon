@@ -6,20 +6,41 @@
  */
 
 jQuery(document).ready(function($) {
+    // Primary menu hover dropdowns
     var sf = $('ul.sub-menu');
     sf.superfish({
         delay: 200,
         speed: 'fast',
     });
-});
-
-jQuery(document).ready(function($) {
+    
+    // Quick menu click to open the menu
     var sc = $('ul.quick');
     sc.superclick({
         delay: 200,
         speed: 'fast',
         activeClass: 'active',
     });
+    
+    // Make the responsive main menu button work
+    // @TODO: Make main menu visible ALWAYS on large screens and hidden by DEFAULT on small screens
+    var button = $('#primary-nav-button');
+    var mainmenu = $('#primary-nav-ul');
+    
+    if ((button).is(':visible')) {
+        mainmenu.css({ "display": "none" });
+        
+        button.click(
+                function() {
+                    if (( mainmenu.is(':visible') )) {
+                        mainmenu.css({ "display": "none" });
+                    } else {
+                        mainmenu.css({ "display": "block" });
+                    }
+                });
+    } else {
+        mainmenu.css({ "display": "block" });
+    }
+    
 });
 
 /**

@@ -34,6 +34,9 @@ and Blueprint http://www.blueprintcss.org/
 5.0 Navigation
 	5.1 Links
 	5.2 Menus
+                5.2.1 Quickmenu
+                5.2.2 Primary Menu
+                5.2.3 Social Menu
 6.0 Accessibility
 7.0 Alignments
 8.0 Clearings
@@ -155,8 +158,8 @@ a img {
 
 /* Change the default width of the Foundation rows */
 .row {
-    max-width: 100em;
-    margin-left: 0px;
+    max-width: 100em!important;
+    margin-left: 0px!important;
     background: white;
 }
 
@@ -511,12 +514,32 @@ a:active {
 .main-navigation .current_page_ancestor > a {
 }
 
+
 /* Small menu */
 .menu-toggle {
 	display: none;
 }
+
+.top-navigation {
+    
+}
+.top-navigation ul{
+    float: right;
+}
+.top-navigation ul li {
+    margin: 0 15px;
+    border-bottom: 1px dotted silver;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    list-style-type: none;
+    display: inline;
+}
+.top-navigation ul li a {
+    color: #999;
+}
+
 /* At Foundation SMALL screen sizes */
-@media screen and (max-width: 40em) {
+@media only screen and (max-width: 40em) {
 	.menu-toggle,
 	.main-navigation.toggled .nav-menu {
 		display: block;
@@ -553,7 +576,7 @@ a:active {
                 background: white;
                 border: 1px solid silver;
                 border-radius: 5px;
-                box-shadow: 1px 1px 5px silver;
+                box-shadow: 1px 1px 5px;
                 width: 150px;
         }
         .top-navigation.toggled .nav-menu:after {
@@ -587,6 +610,7 @@ a:active {
         .top-navigation.toggled .nav-menu li {
             list-style-type: none;
             padding: 7px 0px;
+            display: block;
         }
         .top-navigation.toggled .nav-menu li:last-child {
             border: none;
@@ -1131,12 +1155,12 @@ a:hover.page-numbers {
 	margin: 0 auto;
 }
 /* Alignment responsive */
-@media screen and (min-width: 1320px) {
+@media screen and (min-width: 1520px) {
     .alignleft {
         margin-left: -60px!important;
     }
 }
-@media screen and (min-width: 1820px) {
+@media screen and (min-width: 1520px) {
     .alignright {
         margin-right: -60px!important;
     }
@@ -1237,21 +1261,6 @@ X.X Header
     margin: 0 auto;
     margin-bottom: 10px;
     text-align: center;
-}
-.top-navigation {
-    
-}
-.top-navigation ul{
-    float: right;
-}
-.top-navigation ul li {
-    margin: 0 15px;
-    border-bottom: 1px dotted silver;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-}
-.top-navigation ul li a {
-    color: #999;
 }
 
 /* Search Boxes */
@@ -2459,14 +2468,24 @@ object {
 
 
 /* At Foundation SMALL screen sizes */
-@media screen and (max-width: 780px) {
+@media only screen and (max-width: 780px) {
 	.primary-nav .menu-toggle,
 	.primary-nav.toggled .nav-menu {
 		display: block;
         }
 	.primary-nav ul {
 		display: none;
+                position: fixed;
+                top: 50px;
+                left: 80px;
+                z-index: 20;
+                width: 200px;
+                box-shadow: 1px 1px 5px;
+                background: #eee;
 	}
+        .primary-nav ul li:last-child {
+            padding-bottom: 0;
+        }
         .primary-nav .menu-toggle {
             position: fixed;
             top: 50px;
@@ -2492,8 +2511,11 @@ object {
         .padded-row {
             padding-left: 64px!important;
         }
-        #menu-quick {
+        #menu-quick{
             top: 99px;
+        }
+        #menu-quick-items li ul {
+            top: -99px;
         }
         #primary-menu {
             position: relative;
@@ -2502,6 +2524,14 @@ object {
         }
         .site-branding {
             height: 100px;
+        }
+        .site-description {
+            padding-bottom: 15px;
+        }
+        .sidebar-top {
+            width: 75%;
+            float: right;
+            margin-top: -100px;
         }
         .primary-nav {
             padding-top: 0px;

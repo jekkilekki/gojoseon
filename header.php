@@ -120,13 +120,15 @@
             </div><!-- End .site-branding -->
 
             <!-- Primary Menu -->  
-            <nav id="navigation" class="primary-nav navigation" role="navigation">
-                <button class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Main Menu', 'gojoseon' ); ?></button>
-                <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+            <nav id="primary-navigation" class="primary-nav navigation" role="navigation">
+                <button id="primary-nav-button" class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Main Menu', 'gojoseon' ); ?></button>
+                    <?php // gojoseon_primary_menu(); ?>
+                    <?php wp_nav_menu( array( 'container' => false, 'menu_id' => 'primary-nav-ul', 'theme_location' => 'primary' ) ); ?>
             </nav><!-- End #site-nav -->
-            </div>
+            
+            </div><!-- .something -->
 
-        </div><!-- End #primary-menu .large-2 columns -->
+        </div><!-- End #primary-menu -->
 
         
     <!-- Foundation's Responsive Awesomeness Begins here -->

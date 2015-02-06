@@ -462,6 +462,29 @@ function gojoseon_quick_menu() {
 }
 
 /**
+ * Primary Menu (uses Foundation's Off-canvas menu
+ */
+function gojoseon_primary_menu() {
+    if ( has_nav_menu ( 'primary' ) ) {
+        wp_nav_menu(
+                array(
+                    'theme_location'    => 'primary',
+                    'container'         => 'div',
+                    'container_id'      => '',
+                    'container_class'   => 'left-off-canvas-menu',
+                    'menu_id'           => '',
+                    'menu_class'        => 'off-canvas-list',
+                    'depth'             => 3,
+                    'link_before'       => '',
+                    'link_after'        => '',
+                    'fallback_cb'       => '',
+                    'walker'            => new Gojoseon_Foundation_Menu_Walker(),
+                )
+        );
+    }
+}
+
+/**
  * Social media icon menu 
  * 
  * @link: http://justintadlock.com/archives/2013/08/14/social-nav-menus-part-2

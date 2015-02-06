@@ -307,6 +307,138 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
 }
 
 /**
+ * Custom Menu Walker for LEARNING 
+ * 
+ * @TODO: Delete this later?
+ * @link: http://shinraholdings.com/62/custom-nav-menu-walker-function/#example-code
+ */
+class Gojoseon_Basic_Menu_Walker extends Walker_Nav_Menu {
+
+    // Add classes to ul sub-menus
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        // depth dependent classes
+        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+        $display_depth = ( $depth + 1 ); // because it counts the first submenu as 0
+        $classes = array(
+            'sub-menu',
+            ( $display_depth % 2 ? 'menu-odd' : 'menu-even' ),
+            ( $display_depth >= 2 ? 'sub-sub-menu' : '' ),
+            'menu-depth-' . $display_depth
+        );
+        $class_names = implode( ' ', $classes );
+        
+        // build html
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+    }
+    
+    // Add main/sub classes to li's and links
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        global $wp_query;
+        $indent = ( $depth > 0 ) ? str_repeat( "\t", $depth ) : ''; // code indent
+        
+        // depth dependent classes
+        $depth_classes = array(
+            ( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
+            ( $depth >= 2 ? 'sub-sub-menu-item' : '' ),
+            ( $depth %  2 ? 'menu-item-odd' : 'menu-item-even' ),
+            'menu-item-depth-' . $depth
+        );
+        $depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
+        
+        // passed classes
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+        
+        // build html
+        $output .= $indent . '<li id="nav-menu-item-' . $item->ID . '" class="' . $depth_class_names . ' ' . $class_names . '">';
+        
+        // link attributes
+        $attributes  = ! empty( $item->attr_title ) ? ' title="'     .esc_attr( $item->attr_title ) . '"' : '';
+        $attributes .= ! empty( $item->target )     ? ' target="'    .esc_attr( $item->target     ) . '"' : '';
+        $attributes .= ! empty( $item->xfn )        ? ' rel="'       .esc_attr( $item->xfn        ) . '"' : '';
+        $attributes .= ! empty( $item->url )        ? ' href="'      .esc_attr( $item->url        ) . '"' : '';
+        $attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link'   ) . '"';
+        
+        $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+                $args->before,
+                $attributes,
+                $args->link_before,
+                apply_filters( 'the_title', $item->title, $item->ID ),
+                $args->link_after,
+                $args->after
+        );
+        
+        // build html
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+}
+
+/**
+ * Custom Menu Walker to assign Foundation classes to the Primary Menu #primary-menu
+ * 
+ * @link: https://github.com/rickbutterfield/FoundationNavWalker/blob/master/FoundationNavWalker.class.php
+ * @link: http://foundation.zurb.com/forum/posts/438-enabling-foundation-5-nav-with-wordpress-menus (this one for Top Nav)
+ */
+class Gojoseon_Foundation_Menu_Walker extends Walker_Nav_Menu {
+
+    // Add classes to ul sub-menus
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+        $display_depth = ( $depth + 1 ); // because it counts the first submenu as 0
+        $classes = array(
+            'sub-menu',
+            ( $display_depth % 2 ? 'menu-odd' : 'menu-even' ),
+            ( $display_depth >= 2 ? 'sub-sub-menu' : '' ),
+            'menu-depth-' . $display_depth
+        );
+        $class_names = implode( ' ', $classes );
+        
+        // build html
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+    }
+    
+    // Add main/sub classes to li's and links
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        global $wp_query;
+        $indent = ( $depth > 0 ) ? str_repeat( "\t", $depth ) : ''; // code indent
+        
+        // Get classes
+        $class_names = $value = '';
+
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $classes[] = 'menu-item-' . $item->ID;
+        $classes[] = ( $item->current ) ? 'active' : '';
+
+        $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+
+        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+        // Get id
+        $id = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args );
+        $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+            
+        if ( $depth === 0 ) {
+            $output .= '<li' . $id . $value .$class_names . '><label>' . esc_attr( $item->title ) . '</label></li>';
+        }
+        
+        if ( $depth === 1 ) {
+            $output .= $indent . '<li' . $id . $value . $class_names . '>';
+            
+            if ( ! empty( $item->url ) ) {
+                $output .= '<a href="' . $item->url . '">' . $item->title . '</a>';
+            }
+            
+            $output .= '</li>';
+        }
+    }
+    
+    function end_lvl( &$output, $depth = 0, $args = array() ) {
+        $indent = str_repeat( "\t", $depth );
+        $output .= "\n$indent\n";
+    }
+}
+
+/**
  * Social Nav Menu Walker to add classes to the <a> elements for better hover styling
  * 
  * @link: http://codex.wordpress.org/Function_Reference/wp_nav_menu
