@@ -84,7 +84,16 @@
 </head>
 
 <body <?php body_class(); ?>>
-
+    
+<div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
+<div class="inner-wrap"><!-- Foundation's inner-wrap -->
+    
+    <a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" ><span><?php _e( 'Main Menu', 'gojoseon' ); ?></span></a>
+            
+            <aside class="left-off-canvas-menu">
+                <?php gojoseon_primary_menu(); ?>
+            </aside>
+        
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
         
@@ -121,10 +130,12 @@
 
             <!-- Primary Menu -->  
             <nav id="primary-navigation" class="primary-nav navigation" role="navigation">
-                <button id="primary-nav-button" class="menu-toggle" aria-controls="menu" aria-expanded="true"><?php _e( 'Main Menu', 'gojoseon' ); ?></button>
-                    <?php // gojoseon_primary_menu(); ?>
+                <!--<button id="primary-nav-button" class="menu-toggle" aria-controls="menu" aria-expanded="true"></button>-->
+                    
                     <?php wp_nav_menu( array( 'container' => false, 'menu_id' => 'primary-nav-ul', 'theme_location' => 'primary' ) ); ?>
             </nav><!-- End #site-nav -->
+            
+            
             
             </div><!-- .something -->
 

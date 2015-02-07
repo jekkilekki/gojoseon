@@ -43,7 +43,12 @@
      
 </div><!-- #page -->
 
-<?php wp_footer(); ?>
+<a class="exit-off-canvas"></a>
+
+</div><!-- End Foundation's inner-wrap (must go after ALL content) -->
+</div><!-- End Foundation's off-canvas portion -->
+
+<?php wp_footer(); // calls the scripts in the footer ?>
 
 </body>
 </html>

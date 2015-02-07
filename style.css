@@ -701,6 +701,8 @@ a:active {
     width: 256px;
     display: none;
     font-weight: normal;
+    height: 2000px;
+    background: #777;
 }
 #menu-quick-items li ul li:hover {
     background-color: #169A70;
@@ -850,6 +852,36 @@ a:active {
     margin: 0;
     padding-left: 20px;
     padding-right: 0px;
+}
+
+/*--------------------------------------------------------------
+5.2.X Left Off-canvas Menu (Foundation)
+--------------------------------------------------------------*/
+.left-off-canvas-menu {
+    margin-left: -64px;
+}
+.left-off-canvas-toggle {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    text-align: center;
+    height: 50px;
+    width: 64px;
+    position: fixed;
+    left: 0;
+    top: 50px;
+    line-height: 1.2em;
+    padding-top: 10px;
+}
+.left-off-canvas-toggle:hover {
+    background: black;
+}
+.left-off-canvas-toggle a,
+.left-off-canvas-toggle a:visited {
+    color: #777!important;
+}
+.left-off-canvas-toggle a:hover,
+.left-off-canvas-toggle a:focus {
+    color: white!important;
 }
 
 /*--------------------------------------------------------------

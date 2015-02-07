@@ -26,10 +26,13 @@ jQuery(document).ready(function($) {
     var button = $('#primary-nav-button');
     var mainmenu = $('#primary-nav-ul');
     
-    if ((button).is(':visible')) {
+    if ((button).is(':visible')) { // If button is visible or document width is small...
         mainmenu.css({ "display": "none" });
-        
-        button.click(
+    } else {
+        mainmenu.css({ "display": "block" });
+    }
+    
+    button.click(
                 function() {
                     if (( mainmenu.is(':visible') )) {
                         mainmenu.css({ "display": "none" });
@@ -37,9 +40,6 @@ jQuery(document).ready(function($) {
                         mainmenu.css({ "display": "block" });
                     }
                 });
-    } else {
-        mainmenu.css({ "display": "block" });
-    }
     
 });
 
