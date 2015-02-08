@@ -88,16 +88,21 @@
 <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
 <div class="inner-wrap"><!-- Foundation's inner-wrap -->
     
-    <a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" ><?php _e( 'Main Menu', 'gojoseon' ); ?></a>
+    <a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" rel="primarymenu-list"><?php _e( 'Main Menu', 'gojoseon' ); ?></a>
             
     <?php gojoseon_primary_menu(); ?>
         
 <div id="page" class="hfeed site main-section">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
         
+        <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
+        <div class="inner-wrap"><!-- Foundation's inner-wrap -->
+        
         <?php if ( $quickmenu ) {
             get_template_part( 'quickmenu' );
         } ?>
+        
+        
         
         <!-- Primary Site Navigation Bar (sticky) -->
         <div id="primary-menu">

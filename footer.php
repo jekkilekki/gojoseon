@@ -40,7 +40,11 @@
         </div><!-- #large-10 from header.php -->
                 
     </div><!-- #row from header.php -->
-     
+    
+    </div><!-- End Foundation's inner-wrap (must go after ALL content) -->
+
+    <a class="exit-off-canvas"></a>
+</div><!-- End Foundation's off-canvas portion -->
 </div><!-- #page -->
 
 </div><!-- End Foundation's inner-wrap (must go after ALL content) -->

@@ -8,6 +8,7 @@
     </div>
 </div>
 
+<a class="left-off-canvas-toggle" href="#" rel="quickmenu-list">Quick Menu</a>
 <?php gojoseon_quick_menu(); // Place this outside the "quickmenu" div so it will stay on top ?>
 
 <div id="quickmenu">

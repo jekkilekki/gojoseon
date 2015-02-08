@@ -264,26 +264,31 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
             ( $display_depth < 1 ? 'quick off-canvas-list list-' . self::$menu_lvl++ : '' ), // @link: http://wordpress.aspcode.net/view/63538464303732726667245/costum-walker-with-sub-menu-item-count
             ( $display_depth >= 2 ? 'sub-sub-menu' : '' ),
             'menu-depth-' . $display_depth,
+            'left-submenu'
         );
         
         $class_names = implode( ' ', $classes );
         
         //build html
-        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n" . '<li class="back"><a href="#">Back</a></li>';
     }
     
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
         global $wp_query;
         $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+        $display_depth = ( $depth + 1 ); // because is counts the first submenu as 0
         
         $class_names = $value = '';
         
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $classes2 = array( 
+            ( $display_depth > 1 ? 'has-submenu' : '' ) 
+        );
         
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
         $class_names = ' class=" ' . esc_attr( $class_names ) . '"';
         
-        $output .= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
+        $output .= $indent . '<li id="has-submenu menu-item-' . $item->ID . '"' . $value . $class_names . '>';
         
         $attributes = ! empty( $item->attr_title )  ? ' title="'  . esc_attr( $item->attr_title ) . '"' : '';
         $attributes = ! empty( $item->target )      ? ' target="' . esc_attr( $item->target     ) . '"' : '';

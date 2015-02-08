@@ -21,7 +21,23 @@ jQuery(document).ready(function($) {
         activeClass: 'active',
     });
     
+    // Trying to get this to display TWO left-off-canvas-menus
+    // Multi-level @link: http://foundation.zurb.com/docs/components/offcanvas.html#off-canvas-multilevel-menu
+    // First try JS @link: http://foundation.zurb.com/forum/posts/2216-multiple-off-canvas-menu
+    // Codepen works @link: http://codepen.io/sandwich/pen/mpCrq
+    /*$( ".left-off-canvas-toggle" ).click(function() {
+        $( ".left-off-canvas-menu ul.off-canvas-list" ).css( "display", "none" );
+        $( "." + $(this).data("listname") ).css( "display", "block" );
+    });*/
     
+    // When an off-canvas toggle is clicked...
+    $(".left-off-canvas-toggle[rel]").click(function() {
+       // ... first hide all off-canvas menus except for the targeted one
+       $(".left-off-canvas-menu:not(#" + this.rel + ")").removeClass('off-canvas-visible');
+       
+       // ... and then show that off-canvas-menu, or toggle it
+       $("#" + this.rel).addClass('off-canvas-visible').toggleClass('mega-menu-visible');
+    });
     
     // Make the responsive main menu button work
     // @TODO: Make main menu visible ALWAYS on large screens and hidden by DEFAULT on small screens
