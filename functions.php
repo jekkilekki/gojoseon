@@ -246,16 +246,24 @@ require get_template_directory() . '/inc/theme-options.php';
  * @link: http://codex.wordpress.org/Function_Reference/wp_nav_menu (this helps add classes to the <ul> elements
  */
 class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
+    // @TODO: Make a multi-level off-canvas menu
+    // @link: http://foundation.zurb.com/docs/components/offcanvas.html#off-canvas-multilevel-menu
+    // @link: http://wordpress.aspcode.net/view/63538464303732726667245/costum-walker-with-sub-menu-item-count
+    
+    static $menu_lvl = 1;
     
     // add classes to ul sub-menus for the Superclick.js menu helper
     function start_lvl( &$output, $depth = 0, $args = array() ) {
+        
         // depth dependent classes
         $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
         $display_depth = ( $depth + 1 ); // because it counts the first submenu as 0
+        $count = 
+        
         $classes = array(
-            'quick',
+            ( $display_depth < 1 ? 'quick off-canvas-list list-' . self::$menu_lvl++ : '' ), // @link: http://wordpress.aspcode.net/view/63538464303732726667245/costum-walker-with-sub-menu-item-count
             ( $display_depth >= 2 ? 'sub-sub-menu' : '' ),
-            'menu-depth-' . $display_depth
+            'menu-depth-' . $display_depth,
         );
         
         $class_names = implode( ' ', $classes );
@@ -287,11 +295,13 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
         $append = '</strong>';
         $attr_title = ! empty( $item->attr_title ) ? '<span class="sub">' . esc_attr( $item->attr_title ) . '</span>' : '';
         
+        // If one level after the <ul>, add a <span> to the title
         if( $depth == 1 ) {
             $attr_title = "";
             $prepend = "<span>";
             $append = "</span>";
         }
+        // If two levels deep, no <span>
         if( $depth == 2 ) {
             $attr_title = $prepend = $append = "";
         }

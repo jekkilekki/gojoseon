@@ -21,9 +21,11 @@ jQuery(document).ready(function($) {
         activeClass: 'active',
     });
     
+    
+    
     // Make the responsive main menu button work
     // @TODO: Make main menu visible ALWAYS on large screens and hidden by DEFAULT on small screens
-    var button = $('#primary-nav-button');
+    /*var button = $('#primary-nav-button');
     var mainmenu = $('#primary-nav-ul');
     
     if ((button).is(':visible')) { // If button is visible or document width is small...
@@ -39,7 +41,7 @@ jQuery(document).ready(function($) {
                     } else {
                         mainmenu.css({ "display": "block" });
                     }
-                });
+                });*/
     
 });
 
