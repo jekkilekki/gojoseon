@@ -43,6 +43,7 @@
     
     </div><!-- End Foundation's inner-wrap (must go after ALL content) -->
 
+    </div><!-- .qm-padded-page -->
     <a class="exit-off-canvas"></a>
 </div><!-- End Foundation's off-canvas portion -->
 </div><!-- #page -->

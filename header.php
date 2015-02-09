@@ -88,106 +88,102 @@
 <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
 <div class="inner-wrap"><!-- Foundation's inner-wrap -->
     
-    <a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" rel="primarymenu-list"><?php _e( 'Main Menu', 'gojoseon' ); ?></a>
-            
-    <?php gojoseon_primary_menu(); ?>
+    <!--<a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" rel="primarymenu-list"><?php _e( 'Main Menu', 'gojoseon' ); ?></a>       -->
+    <?php //gojoseon_primary_menu(); ?>
         
 <div id="page" class="hfeed site main-section">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
+
+        <?php if ( $quickmenu ) {
+            echo '<div id="quickmenu-wrap">';
+                get_template_part( 'quickmenu' );
+            echo '</div><!-- #quickmenu-wrap -->';
+        } ?>
         
         <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
         <div class="inner-wrap"><!-- Foundation's inner-wrap -->
-        
-        <?php if ( $quickmenu ) {
-            get_template_part( 'quickmenu' );
-        } ?>
-        
-        
-        
-        <!-- Primary Site Navigation Bar (sticky) -->
-        <div id="primary-menu">
+    
+            <a class="left-off-canvas-toggle" href="#" rel="quickmenu-list">Quick Menu</a>
+            <?php gojoseon_quick_menu(); // Place this outside the "quickmenu" div so it will stay on top ?>
+            
+        <div class="qm-padded-page">
+            
+            <!-- Primary Site Navigation Bar (sticky) -->
+            <div id="primary-menu">
+                <!-- Site Branding -->
+                <div class="site-branding">
 
-            <div class="something"><!-- @TODO: Change this name -->
-            <!-- Site Branding -->
-            <div class="site-branding">
-                
-                <?php if ( get_theme_mod( 'gojoseon_logo' ) ) : ?>
-                
-                <!-- Site logo (replaces title) -->    
-                <div  id="site-logo">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-                        <img src="<?php echo get_theme_mod( 'gojoseon_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
-                    </a>
-                </div>
-                
-                <?php else : ?>
-                
-                <!-- Site title -->
-                <hgroup>
-                    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                </hgroup>
-                
-                <?php endif; ?>
-                
-            </div><!-- End .site-branding -->
+                    <?php if ( get_theme_mod( 'gojoseon_logo' ) ) : ?>
 
-            <!-- Primary Menu -->  
-            <nav id="primary-navigation" class="primary-nav navigation" role="navigation">
-                <!--<button id="primary-nav-button" class="menu-toggle" aria-controls="menu" aria-expanded="true"></button>-->
-                    
-                    <?php wp_nav_menu( array( 'container' => false, 'menu_id' => 'primary-nav-ul', 'theme_location' => 'primary' ) ); ?>
-            </nav><!-- End #site-nav -->
+                    <!-- Site logo (replaces title) -->    
+                    <div  id="site-logo">
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+                            <img src="<?php echo get_theme_mod( 'gojoseon_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+                        </a>
+                    </div>
+
+                    <?php else : ?>
+
+                    <!-- Site title -->
+                    <hgroup>
+                        <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                    </hgroup>
+
+                    <?php endif; ?>
+
+                </div><!-- End .site-branding -->
+
+                <!-- Primary Menu -->  
+                <nav id="primary-navigation" class="primary-nav navigation" role="navigation">
+                    <!--<button id="primary-nav-button" class="menu-toggle" aria-controls="menu" aria-expanded="true"></button>-->
+                        <?php wp_nav_menu( array( 'container' => false, 'menu_id' => 'primary-nav-ul', 'theme_location' => 'primary' ) ); ?>
+                </nav><!-- End #site-nav -->
+            </div><!-- End #primary-menu -->
             
             
             
-            </div><!-- .something -->
+            <div class="row padded-row"
+                <!-- Header area -->
+                <header id="masthead" class="site-header large-12 columns" role="banner">
 
-        </div><!-- End #primary-menu -->
+                    <?php if ( get_header_image() ) : ?>
+                        <!-- Header Image -->
+                        <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">;
+                        </div>
+                    <?php endif; // End header image check. ?>
 
-        
-    <!-- Foundation's Responsive Awesomeness Begins here -->
-    <div class="row padded-row">
-        
-        <!-- Begin main content area -->
-        <div id="content" class="site-content large-12 columns" data-equalizer> 
 
-            <!-- Header area -->
-            <header id="masthead" class="site-header" role="banner">
+                    <!-- Top Widgetized Area -->
+                    <div class="large-12 columns sidebar-top">
+                        <?php get_sidebar( 'header' ); ?>
+                    </div>
 
-                <?php if ( get_header_image() ) : ?>
-                
-                <!-- Header Image -->
-                <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">;
-                </div>
-                
-                <?php endif; // End header image check. ?>
+                    <!-- Site description/tagline -->
+                    <div class=" large-6 medium-10 columns">
+                        <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                    </div>
 
-                
-                <!-- Top Widgetized Area -->
-                <div class="large-12 columns sidebar-top">
-                    <?php get_sidebar( 'header' ); ?>
-                </div>
+                    <!-- Menu bar over sidebar -->
+                    <div class=" large-6 medium-2 columns">
+                        <nav id="site-navigation" class="top-navigation" role="navigation">
+                            <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
+                            <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
+                        </nav><!-- #top-navigation -->
+                    </div>
 
-                <!-- Site description/tagline -->
-                <div class=" large-6 medium-10 columns">
-                    <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-                </div>
+                </header><!-- End header #masthead -->
+            </div><!-- .row .padded-row -->
 
-                <!-- Menu bar over sidebar -->
-                <div class=" large-6 medium-2 columns">
-                    <nav id="site-navigation" class="top-navigation" role="navigation">
-                        <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
-                        <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
-                    </nav><!-- #top-navigation -->
-                </div>
+            
+            <div class="row padded-row">
+                <!-- Begin main content area -->
+                <div id="content" class="site-content large-12 columns" data-equalizer> 
 
-            </header><!-- End header #masthead -->
-                
-            <!-- Main Content Area -->  
-            <?php if ( $sidebar_display == 'none' || is_page_template( 'page-templates/page-nosidebar.php' ) ) {
-                echo '<div id="primary" class="content-area large-12 columns full-width" data-equalizer-watch>';
-            } else {
-                echo '<div id="primary" class="content-area large-9 medium-12 columns" data-equalizer-watch>';
-            } ?>
+                <!-- Main Content Area -->  
+                <?php if ( $sidebar_display == 'none' || is_page_template( 'page-templates/page-nosidebar.php' ) ) {
+                    echo '<div id="primary" class="content-area large-12 columns full-width" data-equalizer-watch>';
+                } else {
+                    echo '<div id="primary" class="content-area large-9 medium-12 columns" data-equalizer-watch>';
+                } ?>
 
-            <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true && !is_home() && !is_archive() && !is_search() && !is_404() ) { the_breadcrumb(); } ?>
+                <?php if ( get_theme_mod( 'show_breadcrumbs', true ) == true && !is_home() && !is_archive() && !is_search() && !is_404() ) { the_breadcrumb(); } ?>
