@@ -254,26 +254,53 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
     
     // add classes to ul sub-menus for the Superclick.js menu helper
     function start_lvl( &$output, $depth = 0, $args = array() ) {
+        // Don't wrap the top level
+        if ( $depth == 0 ) 
+            return;
+//        parent::start_lvl( &$output, $depth, $args );
         
         // depth dependent classes
         $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
         $display_depth = ( $depth + 1 ); // because it counts the first submenu as 0
-        $count = 
         
         $classes = array(
             ( $display_depth < 1 ? 'quick off-canvas-list list-' . self::$menu_lvl++ : '' ), // @link: http://wordpress.aspcode.net/view/63538464303732726667245/costum-walker-with-sub-menu-item-count
-            ( $display_depth >= 2 ? 'sub-sub-menu' : '' ),
-            'menu-depth-' . $display_depth,
-            'left-submenu'
+            ( $display_depth >= 2 ? 'sub-sub-menu left-submenu' : '' ),
+            'menu-depth-' . $display_depth
         );
+        
+        $offset = -50;
+        
+        $pre = ( $display_depth == 1 ? ( '<aside class="left-off-canvas-menu"><ul class="off-canvas-list ' ) : '<ul class="left-submenu ' ); 
+        $post = ( $display_depth > 1 ? '<li class="back"<a href="#">Back</a></li>' : '' );
         
         $class_names = implode( ' ', $classes );
         
         //build html
-        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n" . '<li class="back"><a href="#">Back</a></li>';
+        $output .= "\n" . $indent . $pre . $class_names . '">' . "\n" . $post;
+    }
+    
+    function end_lvl( &$output, $depth = 0, $args = array() ) {
+        // Don't wrap the top level
+        if ( $depth == 0 ) 
+            return;
+//        parent::end_lvl( &$output, $depth, $args );
+        
+        // depth dependent classes
+        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+        $display_depth = ( $depth + 1 ); // because it counts the first submenu as 0
+        
+        $post = ( $display_depth == 1 ? '</ul></aside>' : '</ul>' );
+        
+        $output .= "\n$indent\n" . $post;
     }
     
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        // Don't print top-level elements
+        //if ( $depth == 0 ) 
+        //    $output .= '<div>';
+//        parent::start_el( &$output, $item, $depth, $args );
+        
         global $wp_query;
         $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
         $display_depth = ( $depth + 1 ); // because is counts the first submenu as 0
@@ -281,20 +308,21 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
         $class_names = $value = '';
         
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-        $classes2 = array( 
-            ( $display_depth > 1 ? 'has-submenu' : '' ) 
-        );
         
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
         $class_names = ' class=" ' . esc_attr( $class_names ) . '"';
         
         $output .= $indent . '<li id="has-submenu menu-item-' . $item->ID . '"' . $value . $class_names . '>';
         
-        $attributes = ! empty( $item->attr_title )  ? ' title="'  . esc_attr( $item->attr_title ) . '"' : '';
-        $attributes = ! empty( $item->target )      ? ' target="' . esc_attr( $item->target     ) . '"' : '';
-        $attributes = ! empty( $item->xfn )         ? ' rel="'    . esc_attr( $item->xfn        ) . '"' : '';
-        $attributes = ! empty( $item->url )         ? ' href="'   . esc_attr( $item->url        ) . '"' : '';
-        
+        if ( $display_depth == 1 ) { 
+            $attributes  = ' class="left-off-canvas-toggle" href="#" ';
+        } else { 
+            $attributes  = ! empty( $item->attr_title )  ? ' title="'  . esc_attr( $item->attr_title ) . '"' : '';
+            $attributes .= ! empty( $item->target )      ? ' target="' . esc_attr( $item->target     ) . '"' : '';
+            $attributes .= ! empty( $item->xfn )         ? ' rel="'    . esc_attr( $item->xfn        ) . '"' : '';
+            $attributes .= ! empty( $item->url )         ? ' href="'   . esc_attr( $item->url        ) . '"' : '';
+        }
+            
         /* Additional code @link: http://www.kriesi.at/archives/improve-your-wordpress-navigation-menu-output */
         $prepend = '<strong>';
         $append = '</strong>';
@@ -318,6 +346,13 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
         $item_output .= $args->after;
         
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+    
+    function end_el( &$output, $item, $depth = 0, $args = array() ) {
+        // Don't print top-level elements
+        //if( $depth == 0 )
+            //$output .= '</div>';
+ //       parent::end_el( &$output, $item, $depth, $args);
     }
 }
 

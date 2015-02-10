@@ -88,8 +88,8 @@
 <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
 <div class="inner-wrap"><!-- Foundation's inner-wrap -->
     
-    <!--<a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" rel="primarymenu-list"><?php _e( 'Main Menu', 'gojoseon' ); ?></a>       -->
-    <?php //gojoseon_primary_menu(); ?>
+    <a id="primary-nav-button" class="left-off-canvas-toggle menu-icon" href="#" rel="primarymenu-list"><?php _e( 'Main Menu', 'gojoseon' ); ?></a>
+    <?php gojoseon_primary_menu(); ?>
         
 <div id="page" class="hfeed site main-section">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
@@ -103,7 +103,7 @@
         <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
         <div class="inner-wrap"><!-- Foundation's inner-wrap -->
     
-            <a class="left-off-canvas-toggle" href="#" rel="quickmenu-list">Quick Menu</a>
+            <!--<a class="left-off-canvas-toggle" href="#" rel="quickmenu-list">Quick Menu</a>-->
             <?php gojoseon_quick_menu(); // Place this outside the "quickmenu" div so it will stay on top ?>
             
         <div class="qm-padded-page">

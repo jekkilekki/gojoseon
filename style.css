@@ -650,13 +650,27 @@ a:active {
  .admin-bar #quickmenu {
     padding-top: 32px; 
 }
-
+#menu-quick-items a.left-off-canvas-toggle {
+    display: block;
+    top: 165px;
+    height: 50px;
+    width: 64px;
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    font-size: 1.2rem;
+}
+.admin-bar #menu-quick-items a.left-off-canva-toggle {
+    top: 197px;
+}
 /* Quick Menu Items styling */
 #menu-quick {
-    /*z-index: 20;*/
-    /*position: fixed;*/
-    /*top: 165px;*/
-    /*margin: 0;*/
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background: #555;
+    height: 100%;
+    left: -186px;
+    width: 250px;
     /*padding-bottom: 0;*/
 }
 .admin-bar #menu-quick {
