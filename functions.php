@@ -255,8 +255,8 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
     // add classes to ul sub-menus for the Superclick.js menu helper
     function start_lvl( &$output, $depth = 0, $args = array() ) {
         // Don't wrap the top level
-        if ( $depth == 0 ) 
-            return;
+//        if ( $depth == 0 ) 
+//            return;
 //        parent::start_lvl( &$output, $depth, $args );
         
         // depth dependent classes
@@ -282,8 +282,8 @@ class Gojoseon_Quick_Menu_Walker extends Walker_Nav_Menu {
     
     function end_lvl( &$output, $depth = 0, $args = array() ) {
         // Don't wrap the top level
-        if ( $depth == 0 ) 
-            return;
+//        if ( $depth == 0 ) 
+//            return;
 //        parent::end_lvl( &$output, $depth, $args );
         
         // depth dependent classes
@@ -458,27 +458,38 @@ class Gojoseon_Foundation_Menu_Walker extends Walker_Nav_Menu {
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
         $classes[] = 'menu-item-' . $item->ID;
         $classes[] = ( $item->current ) ? 'active' : '';
+        
+        if ( $depth === 0 ) {
+            $level = '';
+        } else if ( $depth === 1 ) {
+            $level = '';
+        } else if ( $depth === 2 ) {
+            $level = '<i class="fa fa-long-arrow-right"></i>';
+        } else {
+            $level = "++\t";
+        }
+        
+        if ( ! empty( $item->url ) ) {
+            $link = '<a href="' . $item->url . '">' . $level . $item->title . '</a>';
+            $no_link_class = '';
+        } else {
+            $link = '<span class="no-link">' . esc_attr( $item->title ) . '</span>';
+            $no_link_class = ' no-link';
+        }
 
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 
-        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . $no_link_class . '"' : '';
 
         // Get id
         $id = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args );
         $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
-            
-        if ( $depth === 0 ) {
-            $output .= '<li' . $id . $value .$class_names . '><label>' . esc_attr( $item->title ) . '</label></li>';
-        }
         
-        if ( $depth === 1 ) {
-            $output .= $indent . '<li' . $id . $value . $class_names . '>';
-            
-            if ( ! empty( $item->url ) ) {
-                $output .= '<a href="' . $item->url . '">' . $item->title . '</a>';
-            }
-            
-            $output .= '</li>';
+        
+        if ( $depth === 0 ) {
+            $output .= '<li' . $id . $value .$class_names . '><label>' . $link . '</label></li>';
+        } else if ( $depth > 0 ) {
+            $output .= $indent . '<li' . $id . $value . $class_names . '>' . $link . '</li>';
         }
     }
     

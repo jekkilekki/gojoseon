@@ -791,6 +791,16 @@ a:active {
 /*--------------------------------------------------------------
 5.2.X Primary Menu
 --------------------------------------------------------------*/
+#primary-nav-button {
+    color: #777;
+    border-bottom: 1px solid #555;
+}
+#primary-nav-button a {
+    color: #777;
+}
+#primary-nav-button:hover a {
+    color: white;
+}
 #primary-menu {
     margin-left: 64px;
     width: 256px;
@@ -907,6 +917,36 @@ a:active {
 .left-off-canvas-menu li {
     font-size: 0.8rem;
     font-weight: normal;
+}
+.left-off-canvas-menu li a {
+    font-weight: normal;
+    color: #ccc;
+}
+.left-off-canvas-menu label a {
+    margin: -0.3rem -0.9375rem;
+    border-bottom: none!important;
+    font-weight: bold;
+    padding: 0.5rem 0.66667rem!important;
+}
+.left-off-canvas-menu span {
+    display: block;
+    color: #777;
+    padding: 0.66667rem;
+}
+.left-off-canvas-menu .no-link {
+    background: #2a2a2a;
+    padding: 0.2rem 0.35rem!important;
+}
+.left-off-canvas-menu label .no-link {
+    padding: 0!important;
+    background: #444;
+}
+.left-off-canvas-menu .no-link label {
+        margin: -0.2rem -0.35rem;
+}
+.left-off-canvas-menu i {
+    color: #666;
+    padding-right: 10px;
 }
 @media only screen and (max-width: 780px) {
     .left-off-canvas-toggle {
@@ -1768,6 +1808,7 @@ input[type="search"] {
 .byline {
     float: right;
     margin-right: 0;
+    margin-top: -3px;
 }
 .byline .vcard {
     border: none;
