@@ -669,7 +669,7 @@ a:active {
     margin: 0;
     padding: 0;
     /*background: #555;*/
-    height: 100%;
+    /*height: 100%;*/
     /*left: -186px;*/
 /*    width: 250px;*/
     /*padding-bottom: 0;*/
@@ -1067,6 +1067,13 @@ a:active {
 .menu-social li a[href*="codepen.io"]:hover::before { color: #fff; }
 .menu-social li a[href*="behance.com"]:hover::before { color: #005cff; }
 .menu-social li a[href*="slideshare.net"]:hover::before { color: #00a8aa; }
+
+.menu-social li a span::before {
+    width: 20px;
+    height: 20px;
+    color: #999;
+    border-radius: 20px;
+}
 
 /*--------------------------------------------------------------
 5.2.X Back to Top Button
@@ -1585,7 +1592,7 @@ input[type="search"] {
     .footer-widgets .widget {
         float: none;
         width: 100%;
-        margin: 0 0 8rem;
+        margin: 0 0 3rem;
     }
 }
 @media screen and (min-width: 40.063em) and (max-width: 64.063em) {
@@ -1612,7 +1619,7 @@ input[type="search"] {
 
 #breadcrumbs {
     position: absolute;
-    top: 20px;
+    top: 15px;
     padding-top: 0.35rem;
     padding-bottom: 0.35rem;
 }
@@ -2590,9 +2597,44 @@ object {
 }
 #footer-area {
     background-color: #777;
+    margin: 0 -0.9375rem;
+    padding: 1.5rem;
+    clear: both;
+    position: relative;
+}
+#footer-navigation ul {
+    margin: 0;
+}
+#footer-navigation li {
+    list-style-type: none;
+    display: inline;
+    padding-right: 10px;
+    margin: 0;
+}
+#footer-navigation a {
+    color: whitesmoke;
+}
+.site-info {
+    clear: both;
+    background: #333;
+    height: 50px;
+    font-size: 0.6875rem;
+    color: #777;
+    text-transform: uppercase;
+    z-index: 15;
+    position: relative;
+    padding-top: 19px;
     text-align: center;
-    margin: 0 -2rem;
-    padding: 2rem;
+    margin-left: 64px;
+}
+.site-info a {
+    color: #999;
+}
+#copyright {
+    color: #ccc;
+    font-size: 0.8rem;
+    text-align: right;
+    padding-top: 3px;
 }
 
 
