@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 //    });
     
     // Quick menu click to open the menu
-    var sc = $('ul.quick');
+    var sc = $('.quick');
     sc.superclick({
         delay: 200,
         speed: 'fast',
@@ -38,13 +38,13 @@ jQuery(document).ready(function($) {
     });*/
     
     // When an off-canvas toggle is clicked...
-    $(".left-off-canvas-toggle[rel]").click(function() {
-       // ... first hide all off-canvas menus except for the targeted one
-       $(".left-off-canvas-menu:not(#" + this.rel + ")").removeClass('off-canvas-visible');
-       
-       // ... and then show that off-canvas-menu, or toggle it
-       $("#" + this.rel).addClass('off-canvas-visible').toggleClass('mega-menu-visible');
-    });
+//    $(".left-off-canvas-toggle[rel]").click(function() {
+//       // ... first hide all off-canvas menus except for the targeted one
+//       $(".left-off-canvas-menu:not(#" + this.rel + ")").removeClass('off-canvas-visible');
+//       
+//       // ... and then show that off-canvas-menu, or toggle it
+//       $("#" + this.rel).addClass('off-canvas-visible').toggleClass('mega-menu-visible');
+//    });
     
     // Make the responsive main menu button work
     // @TODO: Make main menu visible ALWAYS on large screens and hidden by DEFAULT on small screens
