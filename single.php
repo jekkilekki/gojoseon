@@ -32,10 +32,8 @@ get_header(); ?>
     <!-- Widget Sidebar -->
     <?php if ( $sidebar_display != 'none' ) { get_sidebar(); } ?> 
   
-        </div><!-- #content -->
-</div><!-- .padded-row -->
-
-<div class="row">
     <?php get_footer(); ?>
-</div><!-- .row -->
+    
+    </div><!-- #content -->
+</div><!-- .padded-row -->
 

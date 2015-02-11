@@ -819,6 +819,12 @@ a:active {
     text-transform: uppercase;
     border-top: 1px dotted silver;
 }
+.primary-nav ul li > a:hover {
+/*    border-bottom: 3px solid #1ED3A4;
+    padding-bottom: 7px;*/
+    color: #169A70;
+    font-weight: bold;
+}
 .primary-nav ul > li {
     padding: 10px 0;
 }
@@ -839,44 +845,51 @@ a:active {
     color: #999;
 }
 .primary-nav ul ul li:hover {
-    background-color: #777;
+/*    background-color: #777;
     margin: 0 -20px;
-    padding: 10px 20px;
+    padding: 10px 20px;*/
 }
-.primary-nav ul ul li:hover > a {
+/*.primary-nav ul ul li:hover > a {
     color: whitesmoke;
-}
+}*/
 .primary-nav ul li ul li > a:after { font-family: FontAwesome; content: ' \f0da'; padding-left: 5px; }
 .primary-nav ul li ul li > a:only-child:after { content: ''; }
 .primary-nav ul ul ul {
     list-style-type: none;
     background-color: #eee;
-    position: absolute;
-    top: -1px;
-    right: -200px;
-    width: 200px;
-    z-index: 5;
+    /*position: absolute;*/
+    /*top: -1px;*/
+    /*right: -200px;*/
+    width: 216px;
+/*    z-index: 5;*/
     display: none;
     padding: 0;
+    margin-top: 10px;
 }
 .primary-nav ul ul ul li {
-    background-color: #777;
-    padding: 10px;
+/*    background-color: #777;*/
+    padding: 10px 20px;
+}
+.primary-nav ul ul ul li::before {
+    font-family: "FontAwesome";
+    content: "\f178";
+    color: #999;
+    padding-right: 5px;
 }
 .primary-nav ul ul ul li:last-child {
-    border-bottom: 1px dotted silver;
+    margin-bottom: -10px;
 }
-.primary-nav ul ul li:hover > ul {
+/*.primary-nav ul ul li:hover > ul {
     display: list-item;
-}
+}*/
 .primary-nav ul ul ul li a {
-    color: whitesmoke;
+    color: #999;
 }
 .primary-nav ul ul ul li:hover {
-    background-color: #169A70;
+/*    background-color: #169A70;
     margin: 0;
     padding-left: 20px;
-    padding-right: 0px;
+    padding-right: 0px;*/
 }
 
 /*--------------------------------------------------------------
@@ -1029,26 +1042,26 @@ a:active {
 .menu-social li a[href*="subscribe"]::before { content: '\f410'; }
 
 /* TODO: Fix the hover colors here */
-.menu-social li a[href*="facebook.com"] { background-color: #3b5998; }
-.menu-social li:hover > a[href*="twitter.com"] { color: #33ccff; }
-.menu-social li:hover > a[href*="github.com"] { color: #171515; }
-.menu-social li:hover > a[href*="linkedin.com"] { color: #0e76a8; }
-.menu-social li:hover > a[href*="wordpress.com"], 
-.menu-social li:hover > a[href*="wordpress.org"] { color: #21759b; }
-.menu-social li:hover > a[href*="tumblr.com"] { color: #34526f; }
-.menu-social li:hover > a[href*="plus.google.com"] { color: #dd4b39; }
-.menu-social li:hover > a[href*="dribbble.com"] { color: #ea4c89; }
-.menu-social li:hover > a[href*="instagram.com"] { color: #3f729b; }
-.menu-social li:hover > a[href*="vimeo.com"] { color: #1AB7EA; }
-.menu-social li:hover > a[href*="youtube.com"] { color: #c4302b; }
-.menu-social li:hover > a[href*="pinterest.com"] { color: #c8232c; }
-.menu-social li:hover > a[href*="flickr.com"] { color: #ff0084; }
-.menu-social li:hover > a[href*="bitbucket.com"] { content: '\f171'; }
-.menu-social li:hover > a[href*="digg.com"] { content: '\f1a6'; }
-.menu-social li:hover > a[href*="reddit.com"] { content: '\f1a1'; }
-.menu-social li:hover > a[href*="codepen.io"] { color: #fff; }
-.menu-social li:hover > a[href*="behance.com"] { content: '\f1b4'; }
-.menu-social li:hover > a[href*="slideshare.net"] { content: '\f1e7'; }
+.menu-social li a[href*="facebook.com"]:hover::before { color: #3b5998; }
+.menu-social li a[href*="twitter.com"]:hover::before { color: #33ccff; }
+.menu-social li a[href*="github.com"]:hover::before { color: #171515; }
+.menu-social li a[href*="linkedin.com"]:hover::before { color: #0e76a8; }
+.menu-social li a[href*="wordpress.com"]:hover::before, 
+.menu-social li a[href*="wordpress.org"]:hover::before { color: #21759b; }
+.menu-social li a[href*="tumblr.com"]:hover::before { color: #34526f; }
+.menu-social li a[href*="plus.google.com"]:hover::before { color: #dd4b39; }
+.menu-social li a[href*="dribbble.com"]:hover::before { color: #ea4c89; }
+.menu-social li a[href*="instagram.com"]:hover::before { color: #3f729b; }
+.menu-social li a[href*="vimeo.com"]:hover::before { color: #1AB7EA; }
+.menu-social li a[href*="youtube.com"]:hover::before { color: #c4302b; }
+.menu-social li a[href*="pinterest.com"]:hover::before { color: #c8232c; }
+.menu-social li a[href*="flickr.com"]:hover::before { color: #ff0084; }
+.menu-social li a[href*="bitbucket.com"]:hover::before { color: #1f5182; }
+.menu-social li a[href*="digg.com"]:hover::before { color: #2169A8; }
+.menu-social li a[href*="reddit.com"]:hover::before { color: #fff; }
+.menu-social li a[href*="codepen.io"]:hover::before { color: #fff; }
+.menu-social li a[href*="behance.com"]:hover::before { color: #005cff; }
+.menu-social li a[href*="slideshare.net"]:hover::before { color: #00a8aa; }
 
 /*--------------------------------------------------------------
 5.2.X Back to Top Button
@@ -1069,14 +1082,15 @@ a:active {
 }
 .topbutton a {
     font-size: 0.7em;
+    color: #777;
 }
 .topbutton i {
     font-size: 2em;   
 }
-.topbutton:hover {
+div.topbutton:hover {
     background-color: #1ED3A4;
 }
-.topbutton:hover > a {
+div.topbutton:hover > a {
     color: white;
 }
 
@@ -1087,6 +1101,9 @@ a:active {
         clear: both;
         font-size: 1rem;
         margin-bottom: 2em;
+        max-width: 780px;
+        margin-left: auto;
+        margin-right: auto;
 }
 
 .comment-navigation .nav-previous,
@@ -1803,12 +1820,14 @@ input[type="search"] {
     margin-right: 50px;
     float: left;
 }
-
+.posted-on {
+    margin-top: 1px;
+}
 
 .byline {
     float: right;
     margin-right: 0;
-    margin-top: -3px;
+    margin-top: -4px;
 }
 .byline .vcard {
     border: none;
@@ -2558,7 +2577,6 @@ object {
     margin: 0 -0.9375rem;
     padding: 1.5rem;
     position: relative;
-    margin-left: 64px;
 }
 .site-footer,
 .site-footer a {

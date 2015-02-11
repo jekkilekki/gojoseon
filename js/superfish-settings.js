@@ -7,15 +7,22 @@
 
 jQuery(document).ready(function($) {
     // Primary menu hover dropdowns
-    var sf = $('ul.sub-menu');
-    sf.superfish({
-        delay: 200,
-        speed: 'fast',
-    });
+//    var sf = $('ul.sub-menu');
+//    sf.superfish({
+//        delay: 200,
+//        speed: 'fast',
+//    });
     
     // Quick menu click to open the menu
     var sc = $('ul.quick');
     sc.superclick({
+        delay: 200,
+        speed: 'fast',
+        activeClass: 'active',
+    });
+    
+    var sc2 = $('ul.sub-menu');
+    sc2.superclick({
         delay: 200,
         speed: 'fast',
         activeClass: 'active',

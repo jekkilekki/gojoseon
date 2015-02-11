@@ -3,9 +3,6 @@
  * 
  * @link: https://core.trac.wordpress.org/browser/trunk/src/wp-content/themes/twentyfifteen/js/functions.js?rev=30388
  * 
- * @TODO: When the sidebar is "fixed" but the content is scrolling, the dropdown 
- * menus don't pop up over the content 
- * 
  */
 
 ( function( $ ) {
