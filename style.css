@@ -1866,6 +1866,20 @@ input[type="search"] {
     padding-right: 5px;
     font-size: 1rem;
 }
+@media only screen and (max-width: 480px) {
+    .byline {
+        text-align: left;
+        border-bottom: 1px solid silver;
+        float: left;
+        width: 100%;
+        padding-bottom: 2px;
+    }
+    .comments-link {
+        padding-top: 5px;
+    }
+    /* @TODO: At this size, also change the post navigation size*/
+    /* @TODO: But footer-met and post-navigation inside the Foundation grid */
+}
 
 /* Footer Meta */
 .entry-footer {
@@ -2165,14 +2179,6 @@ ol.children .reply {
     color: #cd7f32;
 }
 
-/* Comments responsive */
-@media screen and ( max-width: 600px ) {
-    .comment-list ol { margin-left: 0; }
-    .comment-content ol { margin-left: 1.5em; }
-    .comment-content, 
-    .reply { margin-left: 0; }
-}
-
 /* Comment Reply Form */
 .comment-reply-title { }
 .comment-form textarea {
@@ -2193,6 +2199,16 @@ ol.children .reply {
     background: #84bd68;
     text-transform: capitalize;
     font-family: Roboto, sans-serif;
+}
+/* Comments responsive */
+@media screen and ( max-width: 600px ) {
+    .comment-list ol { margin-left: 0; }
+    .comment-content ol { margin-left: 1.5em; }
+    .comment-content, 
+    .reply { margin-left: 0; }
+    .comment-form input {
+        width: 100%!important;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -2598,7 +2614,7 @@ object {
 #footer-area {
     background-color: #777;
     margin: 0 -0.9375rem;
-    padding: 1.5rem;
+    padding: 1rem;
     clear: both;
     position: relative;
 }
@@ -2613,19 +2629,34 @@ object {
 }
 #footer-navigation a {
     color: whitesmoke;
+    border-bottom: 1px dotted silver;
+    font-size: 0.8rem;
+}
+#footer-navigation a:hover {
+    color: white;
 }
 .site-info {
     clear: both;
     background: #333;
-    height: 50px;
+    height: 49px;
     font-size: 0.6875rem;
     color: #777;
     text-transform: uppercase;
     z-index: 15;
     position: relative;
-    padding-top: 19px;
+    padding-top: 18px;
     text-align: center;
     margin-left: 64px;
+}
+@media only screen and (min-width: 311px) and (max-width: 500px) {
+    .site-info {
+        padding-top: 10px;
+    }
+}
+@media only screen and (max-width: 310px) {
+    .site-info {
+        padding-top: 2px;
+    }
 }
 .site-info a {
     color: #999;
@@ -2634,9 +2665,14 @@ object {
     color: #ccc;
     font-size: 0.8rem;
     text-align: right;
-    padding-top: 3px;
+    padding-top: 4px;
 }
-
+@media only screen and (max-width: 64.063em) {
+    #footer-navigation,
+    #copyright {
+        text-align: center;
+    }
+}
 
 /* At Foundation SMALL screen sizes */
 @media only screen and (max-width: 780px) {

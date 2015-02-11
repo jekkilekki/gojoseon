@@ -45,9 +45,9 @@
                 <div class="site-info">
                 
                     <!-- Site Info -->
-                    <?php printf( __( 'Theme %1$s by %2$s', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
+                    <?php printf( __( '%1$s Theme by %2$s', 'gojoseon' ), 'Gojoseon', '<a href="http://www.jekkilekki.com" rel="designer">Aaron Snowberger</a>' ); ?>
                     <span class="sep"> | </span>
-                    <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'gojoseon' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'gojoseon' ), 'WordPress' ); ?></a>
+                    <?php printf( __( 'Proudly powered by %s', 'gojoseon' ), '<a href="http://wordpress.org">WordPress</a>' ); ?>
                     
                 </div><!-- .site-info -->
 
