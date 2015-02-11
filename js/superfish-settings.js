@@ -28,6 +28,9 @@ jQuery(document).ready(function($) {
         activeClass: 'active',
     });
     
+    $(document).on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
+        $('html, body').animate( { scrollTop:0 }, 250 );
+    });
     // Trying to get this to display TWO left-off-canvas-menus
     // Multi-level @link: http://foundation.zurb.com/docs/components/offcanvas.html#off-canvas-multilevel-menu
     // First try JS @link: http://foundation.zurb.com/forum/posts/2216-multiple-off-canvas-menu

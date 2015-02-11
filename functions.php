@@ -154,7 +154,12 @@ function gojoseon_scripts() {
         
         // Enqueue FontAwesome ref @link: http://sridharkatakam.com/using-font-awesome-wordpress/
         wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' );
-
+        
+        // Enqueue Slick slider
+        wp_enqueue_style( 'gojoseon-slick-slider', get_template_directory_uri() . '/slick/slick.css' );
+        wp_enqueue_style( 'gojoseon-slick-theme', get_template_directory_uri() . '/slick/slick-theme.css' );
+        wp_enqueue_script( 'gojoseon-slick-js', get_template_directory_uri() . '/slick/slick.min.js', array( 'jquery' ), '20150212', true );
+        
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

@@ -35,11 +35,11 @@
                 
     </div><!-- #row from header.php -->
     
-    </div><!-- End Foundation's inner-wrap (must go after ALL content) -->
+    <!--</div> End Foundation's inner-wrap (must go after ALL content) -->
 
     </div><!-- .qm-padded-page -->
-    <a class="exit-off-canvas"></a>
-</div><!-- End Foundation's off-canvas portion -->
+<!--    <a class="exit-off-canvas"></a>
+</div> End Foundation's off-canvas portion -->
 </div><!-- #page -->
             
                 <div class="site-info">
@@ -51,9 +51,10 @@
                     
                 </div><!-- .site-info -->
 
+                <a class="exit-off-canvas"></a>
 </div><!-- End Foundation's inner-wrap (must go after ALL content) -->
 
-<a class="exit-off-canvas"></a>
+
 </div><!-- End Foundation's off-canvas portion -->
 
 <?php wp_footer(); // calls the scripts in the footer ?>

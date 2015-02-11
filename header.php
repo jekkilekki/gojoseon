@@ -100,8 +100,8 @@
             echo '</div><!-- #quickmenu-wrap -->';
         } ?>
         
-        <div class="off-canvas-wrap" data-offcanvas><!-- Start Foundation's off-canvas portion -->
-        <div class="inner-wrap"><!-- Foundation's inner-wrap -->
+<!--        <div class="off-canvas-wrap" data-offcanvas> Start Foundation's off-canvas portion 
+        <div class="inner-wrap"> Foundation's inner-wrap -->
     
             <!--<a class="left-off-canvas-toggle" href="#" rel="quickmenu-list">Quick Menu</a>-->
             <?php gojoseon_quick_menu(); // Place this outside the "quickmenu" div so it will stay on top ?>

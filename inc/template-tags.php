@@ -609,6 +609,7 @@ function gojoseon_featured_posts( $stickies ) {
     // If there is one or more sticky posts, we create our slider
     if ( $count > 0 ) : ?>
 
+    <h1 class="featured-title">Featured</h1>
     <section class="featured-post" id="featured-slider">
         
         <?php while( $featured->have_posts() ) : $featured->the_post(); ?>
@@ -625,13 +626,13 @@ function gojoseon_featured_posts( $stickies ) {
             echo '<img src="' . get_the_first_image() . '" />';
         }
         echo '</a>';
-        echo '<div id="count"><i class="fa fa-thumb-tack"></i> Featured Post ' . $count . '</div>';
+        //echo '<div id="count"><i class="fa fa-thumb-tack"></i> Featured Post ' . $count . '</div>';
         echo '</div>'; 
         
         ?>
         
         <div class="featured-article">
-            <header class="entry-header">
+            <header class="entry-header large-7 columns">
 		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
@@ -642,18 +643,19 @@ function gojoseon_featured_posts( $stickies ) {
 		<?php endif; ?>
             </header><!-- .entry-header -->
         
-            <div class="entry-content"><?php the_excerpt(); ?></div>
+            <div class="entry-content large-4 columns"><?php the_excerpt(); ?></div>
             <div class="content"><?php wp_link_pages(); ?></div>
             <footer class="footer-meta continue-reading">
                 <?php echo '<a href="' . get_permalink() . '" title="' . __( 'Continue Reading ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">Continue Reading<i class="fa fa-arrow-right"></i></a>'; ?>
             </footer>
-        </div>
-        </article>
-        
-        <hr class="thick" />
+        </div><!-- .featured-article -->
+        </article><!-- article -->
 
         <?php endwhile; wp_reset_query(); ?>
-    </section><!-- .featured -->
+    </section><!-- section .featured -->
+    
+    <hr class="thick" />
+    <h2 class="blog-title">Articles</h2>
 
     <?php endif; // end of the featured posts
 }
