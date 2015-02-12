@@ -632,22 +632,23 @@ function gojoseon_featured_posts( $stickies ) {
         ?>
         
         <div class="featured-article">
-            <header class="entry-header large-7 columns">
-		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
+            <header class="entry-header">
+		<?php the_title( sprintf( '<h1 class="entry-title large-9 columns"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
-		<div class="entry-meta">
+		<div class="entry-meta large-3 columns">
 			<?php gojoseon_posted_on(); ?>
                         <?php edit_post_link( __( 'Edit', 'gojoseon' ), '<span class="edit-link top-edit-link">', '</span>' ); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
             </header><!-- .entry-header -->
         
-            <div class="entry-content large-4 columns"><?php the_excerpt(); ?></div>
-            <div class="content"><?php wp_link_pages(); ?></div>
-            <footer class="footer-meta continue-reading">
-                <?php echo '<a href="' . get_permalink() . '" title="' . __( 'Continue Reading ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">Continue Reading<i class="fa fa-arrow-right"></i></a>'; ?>
-            </footer>
+            <div class="entry-content large-9 columns"><?php the_excerpt(); ?>
+            <!--<div class="content"><?php // wp_link_pages(); ?></div>-->
+                <footer class="footer-meta continue-reading large-3 columns">
+                    <?php echo '<a href="' . get_permalink() . '" title="' . __( 'Read the article ', 'gojoseon' ) . get_the_title() . '" rel="bookmark">Continue Reading<i class="fa fa-arrow-right"></i></a>'; ?>
+                </footer>
+            </div><!-- .entry-content -->
         </div><!-- .featured-article -->
         </article><!-- article -->
 
