@@ -15,7 +15,7 @@
             if ( has_post_thumbnail() ) {
                 echo the_post_thumbnail( 'index-thumb' );
             } else {
-                echo '<img src="' . get_the_first_image() . '" />';
+                echo '<img class="first-image" src="' . get_the_first_image( 'index-thumb' ) . '" />';
             }
             echo '</a>';
             echo '</div>'; 
