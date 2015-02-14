@@ -193,6 +193,11 @@ p {
 	margin-bottom: 1.5em;
 }
 
+a { color: #cd7f32; }
+a:hover,
+a:focus,
+a:visited { color: #814001; }
+
 b,
 strong {
 	font-weight: bold;
@@ -314,7 +319,7 @@ img {
 }
 
 figure {
-	margin: 0;
+	margin: 0!important;
 }
 
 table {
@@ -917,8 +922,11 @@ a:active {
 /*--------------------------------------------------------------
 5.2.X Left Off-canvas Menu (Foundation)
 --------------------------------------------------------------*/
+.move-right .exit-off-canvas {
+    box-shadow: none!important;
+}
 .left-off-canvas-menu {
-    border-right: 1px solid #777;
+    border-right: 1px solid #666;
 }
 .left-off-canvas-toggle {
     text-transform: uppercase;
@@ -969,7 +977,7 @@ a:active {
     padding: 0.66667rem;
 }
 .left-off-canvas-menu .no-link {
-    background: #2a2a2a;
+    background: #3a3a3a;
     padding: 0.2rem 0.35rem!important;
 }
 .left-off-canvas-menu label .no-link {
@@ -1356,6 +1364,9 @@ a:hover.page-numbers {
 /*--------------------------------------------------------------
 X.X Header
 --------------------------------------------------------------*/
+.header-image-row {
+    height: 160px;
+}
 .header-image,
 .header-image-pattern {
     width: 100%;
@@ -1375,7 +1386,7 @@ X.X Header
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    padding: 10px;
+    padding: 2em;
 }
 
 .site-branding,
@@ -1408,7 +1419,7 @@ X.X Header
 .site-description {
     font-size: 1rem;
     font-style: italic;
-    color: #999;
+    color: #999!important;
 }
 .logo {
     
@@ -1440,7 +1451,7 @@ input[type="search"] {
     background: #1ED3A4;
 }
 .admin-bar .search-box {
-    margin-top: 32px;
+    /*margin-top: 32px;*/
 }
 .search-box .search-field {
     background-color: #fff;
@@ -2127,14 +2138,15 @@ ol.children .vcard img {
 }
 
 .comment-list ol { margin-left: 50px; }
-.comment::after {
+.comment-list li { padding-bottom: 1em; }
+/*.comment::after {
     font-family: "FontAwesome";
     content: '\f175';
     font-size: 2rem;
     color: #e1e1e1;
     text-align: center;
     margin: -2em auto;
-}
+}*/
 .children .comment { margin-top: -1em; }
 .children .comment::after { display: none; }
 
@@ -2175,7 +2187,7 @@ ol.children .reply {
 }
 .comment-body {
     margin-bottom: 2em!important;
-    border: 1px solid silver;
+    border: 1px solid #ddd;
     padding: 1em;
 }
 .comment-content a {
@@ -2200,10 +2212,10 @@ ol.children .reply {
         padding: 1em;
         margin-bottom: 2em!important;
         border: none;
-        background: #eee;
+        background: whitesmoke;
 }
 .bypostauthor > .comment-body .avatar {
-    border-color: #eee;
+    border-color: whitesmoke;
 }
 .bypostauthor > .comment-body .avatar::before { /* @TODO: not currently working */
     font-family: "FontAwesome";
@@ -2564,9 +2576,15 @@ ul#index li {
 .full-width .post-navigation,
 .full-width #comments,
 .full-width .featured-article,
-.full-width .page-title {
+.full-width .page-title,
+.full-width .featured-post {
     max-width: 900px!important;
     margin: 0 auto;
+}
+.full-width .featured-title,
+.full-width .blog-title {
+    max-width: 1000px!important;
+    margin: 0 auto 20px;
 }
 
 /*--------------------------------------------------------------
@@ -2647,6 +2665,9 @@ object {
         position: relative;
         overflow: hidden;
         margin-bottom: 0;
+}
+.gallery-item img {
+    width: 100%;
 }
 .gallery-icon {
     background: gainsboro;

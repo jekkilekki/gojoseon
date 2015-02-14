@@ -25,8 +25,8 @@
 function gojoseon_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'gojoseon_custom_header_args', array(
 		'default-image'          => '',
-		'default-text-color'     => '000000',
-		'width'                  => 1600,
+		'default-text-color'     => '333333',
+		'width'                  => 1280,
 		'height'                 => 160,
 		'flex-height'            => true,
 		'wp-head-callback'       => 'gojoseon_header_style',

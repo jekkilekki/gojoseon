@@ -512,6 +512,7 @@ function gojoseon_social_menu() {
  * Social Sharing buttons in Single Posts
  * 
  * @link: http://kikolani.com/social-sharing-buttons-in-single-post-templates.html
+ * @TODO: DELETE THIS FUNCTION
  */
 function gojoseon_social_sharing_buttons() {
     

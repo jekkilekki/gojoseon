@@ -111,16 +111,17 @@ function gojoseon_theme_customizer( $wp_customize ) {
             'priority'  => 30,
         ));
     }
-    
-    $wp_customize->add_setting( 'show_korean_fonts' );
-    $wp_customize->add_control( 
-            'show_korean_fonts', 
-            array(
-                'label'     => __( 'Show Korean font options?', 'gojoseon' ),
-                'section'   => 'fonts',
-                'type'      => 'checkbox',
-                'priority'  => 1
-            ));
+
+//      Add this back in @VERSION2
+//    $wp_customize->add_setting( 'show_korean_fonts' );
+//    $wp_customize->add_control( 
+//            'show_korean_fonts', 
+//            array(
+//                'label'     => __( 'Show Korean font options?', 'gojoseon' ),
+//                'section'   => 'fonts',
+//                'type'      => 'checkbox',
+//                'priority'  => 1
+//            ));
     
     
     /**
@@ -130,17 +131,19 @@ function gojoseon_theme_customizer( $wp_customize ) {
      * @link: http://buildwpyourself.com/customizing-client-options-using-the-theme-customizer/
      */
     $wp_customize->get_control( 'background_color' )->priority = 60;
+    $wp_customize->get_setting( 'background_color' )->default = '#169A70';
+    $wp_customize->get_control( 'header_textcolor' )->label = __( 'Titles Text Color', 'gojoseon' );
     
     $colors = array();
     $colors[] = array(
         'slug'      => 'content_text_color',
-        'default'   => '#333',
+        'default'   => '#333333',
         'label'     => __( 'Content Text Color', 'gojoseon' )
     );
     $colors[] = array(
         'slug'      => 'primary_design_color',
         'default'   => '#cd7f32', 
-        'label'     => __( 'Primary Design Color', 'gojoseon' )
+        'label'     => __( 'Primary Design Color (Links)', 'gojoseon' )
     );
     $colors[] = array(
         'slug'      => 'primary_design_color_hover',
@@ -150,18 +153,18 @@ function gojoseon_theme_customizer( $wp_customize ) {
     $colors[] = array(
         'slug'      => 'secondary_design_color',
         'default'   => '#1ED3A4', 
-        'label'     => __( 'Secondary Design Color', 'gojoseon' )
+        'label'     => __( 'Secondary Design Color (Sidebars)', 'gojoseon' )
     );
     $colors[] = array(
         'slug'      => 'secondary_design_color_hover',
         'default'   => '#169A70', 
         'label'     => __( 'Secondary Design Color: Hover', 'gojoseon' )
     );
-    $colors[] = array(
-        'slug'      => 'background_color',
-        'default'   => '#169A70',
-        'label'     => __( 'Background Color', 'gojoseon' )
-    );
+//    $colors[] = array(
+//        'slug'      => 'background_color',
+//        'default'   => '#169A70',
+//        'label'     => __( 'Background Color', 'gojoseon' )
+//    );
     
     foreach( $colors as $color ) {
         
@@ -195,7 +198,6 @@ function gojoseon_theme_customizer( $wp_customize ) {
      * @link: http://www.wpexplorer.com/interacting-with-wordpress-theme-customizer/
      * @link: http://wptricks.co.uk/create-a-better-options-page-with-the-theme-customizer/#three
      * 
-     * PROBLEM: In following tutorials above, there's a problem with the 'body_class' filter
      */
     
     // Sidebar Position
@@ -215,22 +217,23 @@ function gojoseon_theme_customizer( $wp_customize ) {
         ),
     ));
     
-    // Quickmenu Position
-    $wp_customize->add_setting( 'quickmenu_position', array(
-        'default'   => 'left',
-        'type'      => 'theme_mod',
-    ));
-    $wp_customize->add_control( 'quickmenu_position', array(
-        'label'     => __( 'Quickmenu Position', 'gojoseon' ),
-        'section'   => 'layout',
-        'settings'  => 'quickmenu_position',
-        'type'      => 'radio',
-        'choices'   => array(
-            'left'      => 'Left',
-            'right'     => 'Right',
-            'none'      => 'None',
-        ),
-    ));
+//    // Quickmenu Position
+//    // Add this back in @VERSION2
+//    $wp_customize->add_setting( 'quickmenu_position', array(
+//        'default'   => 'left',
+//        'type'      => 'theme_mod',
+//    ));
+//    $wp_customize->add_control( 'quickmenu_position', array(
+//        'label'     => __( 'Quickmenu Position', 'gojoseon' ),
+//        'section'   => 'layout',
+//        'settings'  => 'quickmenu_position',
+//        'type'      => 'radio',
+//        'choices'   => array(
+//            'left'      => 'Left',
+//            'right'     => 'Right',
+//            'none'      => 'None',
+//        ),
+//    ));
     
     // Show Excerpts?
     $wp_customize->add_setting( 'show_excerpts', array(
@@ -270,111 +273,88 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'type'      => 'checkbox',
     ));
     
-    
-    /**
-     * Select Categories for the Home Page
-     * 
-     * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
-     * @link: http://code.tutsplus.com/articles/custom-controls-in-the-theme-customizer--wp-34556
-     * 
-     * TODO: Create a homepage and ADD these to it
-     * @link: http://code.tutsplus.com/tutorials/how-to-create-a-homepage-with-multiple-listings-using-custom-queries--wp-32073
-     */
-    
-    // Change "Static Front Page" to "Front Page Options"
-    $wp_customize->get_section( 'static_front_page' )->title = __( 'Front Page Options', 'gojoseon' );
-    
-    // Front Page Category 1
-    $wp_customize->add_setting( 'front_category_1', array(
-        'default'   => '',
-        'type'      => 'option',
-        'capability'    => 'manage_options',
-    ));
-    $wp_customize->add_control( 
-            new WP_Customize_Dropdown_Categories_Control(
-                    $wp_customize,
-                    'front_category_1',
-                    array(
-                        'label'     => __( 'Front Category 1', 'gojoseon' ),
-                        'section'   => 'static_front_page',
-                        'type'      => 'dropdown-categories',
-                        'settings'  => 'front_category_1',
-                        'priority'  => 30,
-                    )
-            )
-    ); 
-    
-    // Front Page Category 2
-    $wp_customize->add_setting( 'front_category_2', array(
-        'default'   => '',
-        'type'      => 'option',
-        'capability'    => 'manage_options',
-    ));
-    $wp_customize->add_control( 
-            new WP_Customize_Dropdown_Categories_Control(
-                    $wp_customize,
-                    'front_category_2',
-                    array(
-                        'label'     => __( 'Front Category 2', 'gojoseon' ),
-                        'section'   => 'static_front_page',
-                        'type'      => 'dropdown-categories',
-                        'settings'  => 'front_category_2',
-                        'priority'  => 40,
-                    )
-            )
-    ); 
-    
-    // Front Page Category 3
-    $wp_customize->add_setting( 'front_category_3', array(
-        'default'   => '',
-        'type'      => 'option',
-        'capability'    => 'manage_options',
-    ));
-    $wp_customize->add_control( 
-            new WP_Customize_Dropdown_Categories_Control(
-                    $wp_customize,
-                    'front_category_3',
-                    array(
-                        'label'     => __( 'Front Category 3', 'gojoseon' ),
-                        'section'   => 'static_front_page',
-                        'type'      => 'dropdown-categories',
-                        'settings'  => 'front_category_3',
-                        'priority'  => 50,
-                    )
-            )
-    ); 
-    
-    
-    /**
-     * Social site icons for Quick Menu bar
-     * 
-     * @link: https://www.competethemes.com/social-icons-wordpress-menu-theme-customizer/
-     */
-    $wp_customize->add_section( 'social_settings', array(
-        'title'     => __( 'Social Media Icons', 'gojoseon' ),
-        'priority'  => 100,
+    $wp_customize->add_setting( 'header_lines' );
+    $wp_customize->add_control( 'header_lines', array( 
+        'label'     => __( 'Show the lines under the header?', 'gojoseon' ),
+        'section'   => 'header_image',
+        'priority'  => 6,
+        'type'      => 'checkbox',
     ));
     
-    $social_sites = gojoseon_get_social_sites();
-    $priority = 5;
-    
-    foreach( $social_sites as $social_site ) {
-        
-        $wp_customize->add_setting( "$social_site", array(
-            'type'              => 'theme_mod',
-            'capability'        => 'edit_theme_options',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        
-        $wp_customize->add_control( $social_site, array(
-            'label'             => ucwords( __( "$social_site URL:", 'social_icon' ) ),
-            'section'           => 'social_settings',
-            'type'              => 'text',
-            'priority'          => $priority,
-        ));
-        
-        $priority += 5;
-    }
+//    /**
+//     * Select Categories for the Home Page
+//     * 
+//     * Add this back in @VERSION2
+//     * 
+//     * @link: http://josephfitzsimmons.com/adding-a-select-box-with-categories-into-wordpress-theme-customizer/
+//     * @link: http://code.tutsplus.com/articles/custom-controls-in-the-theme-customizer--wp-34556
+//     * 
+//     * TODO: Create a homepage and ADD these to it
+//     * @link: http://code.tutsplus.com/tutorials/how-to-create-a-homepage-with-multiple-listings-using-custom-queries--wp-32073
+//     */
+//    
+//    // Change "Static Front Page" to "Front Page Options"
+//    $wp_customize->get_section( 'static_front_page' )->title = __( 'Front Page Options', 'gojoseon' );
+//    
+//    // Front Page Category 1
+//    $wp_customize->add_setting( 'front_category_1', array(
+//        'default'   => '',
+//        'type'      => 'option',
+//        'capability'    => 'manage_options',
+//    ));
+//    $wp_customize->add_control( 
+//            new WP_Customize_Dropdown_Categories_Control(
+//                    $wp_customize,
+//                    'front_category_1',
+//                    array(
+//                        'label'     => __( 'Front Category 1', 'gojoseon' ),
+//                        'section'   => 'static_front_page',
+//                        'type'      => 'dropdown-categories',
+//                        'settings'  => 'front_category_1',
+//                        'priority'  => 30,
+//                    )
+//            )
+//    ); 
+//    
+//    // Front Page Category 2
+//    $wp_customize->add_setting( 'front_category_2', array(
+//        'default'   => '',
+//        'type'      => 'option',
+//        'capability'    => 'manage_options',
+//    ));
+//    $wp_customize->add_control( 
+//            new WP_Customize_Dropdown_Categories_Control(
+//                    $wp_customize,
+//                    'front_category_2',
+//                    array(
+//                        'label'     => __( 'Front Category 2', 'gojoseon' ),
+//                        'section'   => 'static_front_page',
+//                        'type'      => 'dropdown-categories',
+//                        'settings'  => 'front_category_2',
+//                        'priority'  => 40,
+//                    )
+//            )
+//    ); 
+//    
+//    // Front Page Category 3
+//    $wp_customize->add_setting( 'front_category_3', array(
+//        'default'   => '',
+//        'type'      => 'option',
+//        'capability'    => 'manage_options',
+//    ));
+//    $wp_customize->add_control( 
+//            new WP_Customize_Dropdown_Categories_Control(
+//                    $wp_customize,
+//                    'front_category_3',
+//                    array(
+//                        'label'     => __( 'Front Category 3', 'gojoseon' ),
+//                        'section'   => 'static_front_page',
+//                        'type'      => 'dropdown-categories',
+//                        'settings'  => 'front_category_3',
+//                        'priority'  => 50,
+//                    )
+//            )
+//    ); 
     
     /**
      * Custom Copyright Message in the Footer
@@ -404,32 +384,133 @@ function gojoseon_theme_customizer( $wp_customize ) {
             )
     );
     
-    /**
-     * Backend Stuff
-     */
-    $wp_customize->add_setting(
-            'gojoseon_google_analytics', 
-            array(
-                'sanitize_callback' => 'gojoseon_sanitize_analytics',
-            )
-    );
-    $wp_customize->add_control(
-            'gojoseon_google_analytics',
-            array(
-                'section'       => 'backend',
-                'label'         => __( 'Google Analytics Code', 'gojoseon' ),
-                'type'          => 'textarea'
-            )
-    );
-    $wp_customize->add_section(
-            'backend',
-            array(
-                'title'         => __( 'Backend Options', 'gojoseon' ),
-                'priority'      => 200
-            )
-    );
+//    /**
+//     * Backend Stuff
+//     * 
+//     * Option for @VERSION2 or remove?
+//     */
+//    $wp_customize->add_setting(
+//            'gojoseon_google_analytics', 
+//            array(
+//                'sanitize_callback' => 'gojoseon_sanitize_analytics',
+//            )
+//    );
+//    $wp_customize->add_control(
+//            'gojoseon_google_analytics',
+//            array(
+//                'section'       => 'backend',
+//                'label'         => __( 'Google Analytics Code', 'gojoseon' ),
+//                'type'          => 'textarea'
+//            )
+//    );
+//    $wp_customize->add_section(
+//            'backend',
+//            array(
+//                'title'         => __( 'Backend Options', 'gojoseon' ),
+//                'priority'      => 200
+//            )
+//    );
 }
 add_action( 'customize_register', 'gojoseon_theme_customizer' );
+
+function gojoseon_customize_css() {
+/**
+ * Customizer options
+ */
+    // In order as they appear in the Customizer   
+    /* Site Title, Logo, & Tagline */
+
+    
+    /* Fonts */
+    $content_font = get_theme_mod( 'content_font', 'Roboto' );
+    $header_font = get_theme_mod( 'header_font', '"Roboto Slab"' );
+    
+    /* Colors */
+    $header_textcolor = get_theme_mod( 'header_textcolor', '#000' );
+    $content_text_color = get_option( 'content_text_color', '#333' );
+    $primary_color_links = get_option( 'primary_design_color', '#cd7f32' );
+    $primary_color_hover = get_option( 'primary_design_color_hover', '#814001' );
+    $secondary_color_sidebar = get_option( 'secondary_design_color', '#1ed3a4' );
+    $secondary_color_hover = get_option( 'secondary_design_color_hover', '#169A70' );
+    $background_color = get_theme_mod( 'background_color', '#169A70' );
+    
+    
+    /* Layout & Content Options */
+    
+    $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
+    $sidebar_display = 'block';
+    if ( $sidebar_position == 'none' ) {
+        $sidebar_display = 'none';
+    } else if ( $sidebar_position == 'left' ) {
+        $content_position = 'right';
+    } else {
+        $content_position = 'left';
+    }
+    // @TODO: Fix this whole repositioning thing for different Theme Customizer options
+    $quickmenu_position = get_theme_mod( 'quickmenu_position', 'left' );
+    if ( $quickmenu_position == 'none' ) {
+        $quickmenu = false;
+        $row_padding = '256px';
+        $row_padding_right = '0px';
+        $primarymenu_margin = '0px';
+    } else if ( $quickmenu_position == 'right' ) {
+        $quickmenu = true;
+        $row_padding = '256px';
+        $row_padding_right = '64px';
+        $primarymenu_margin = '0px';
+    } else {
+        $quickmenu = true;
+        $row_padding = '320px';
+        $rox_padding_right = '0px';
+        $primarymenu_margin = '64px';
+    }
+    
+    
+    /* Header Image */
+    if ( get_theme_mod( 'header_lines' ) == 1 ) {
+        $header_border_width = '5px';
+    } else {
+        $header_border_width = '0px';
+    }
+    
+    
+    // Background Image
+    
+    // Menus
+    
+    // Widgets
+    
+    // Static Front Page
+    
+    // Footer Options
+      
+?>
+<style>
+    body { background: <?php echo $background_color; ?>; color: <?php echo $content_text_color; ?>; font-family: <?php echo $content_font; ?>; }
+    
+    h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, h6, h6 a { font-family: <?php echo $header_font; ?>; color: <?php echo $header_textcolor; ?>; }
+    a { color: <?php echo $primary_color_links; ?>; }
+    a:hover, a:visited, a:focus { color: <?php echo $primary_color_hover; ?>; }
+    
+    #primary { float: <?php echo $content_position; ?>; }
+    #secondary { display: <?php echo $sidebar_display; ?>; }
+    #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
+    #search-container { <?php echo $quickmenu_position; ?>: 4rem; }
+    .padded-row { padding-left: <?php echo $row_padding; ?>; padding-right: <?php echo $row_padding_right; ?>; } // Give extra padding for the Quickmenu
+    #primary-menu { margin-left: <?php echo $primarymenu_margin; ?>; }
+    #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
+    #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
+    <?php if ( get_theme_mod ( 'logo_image_background_color' ) == 1 ) : ?> 
+        .site-branding { background-color: transparent; }
+    <?php endif; ?>
+    <?php if ( get_header_image() ) : ?>
+        #masthead { background-color: transparent; margin-top: -160px; }
+    <?php endif; ?>
+
+</style>
+<?php
+}
+add_action( 'wp_head', 'gojoseon_customize_css' );
 
 /* -----------------------------------------------------------------------------
  * Helper functions
@@ -562,103 +643,44 @@ function gojoseon_enqueue_early_access_fonts( $font ) {
     wp_enqueue_style( "gojoseon_typography_$font", "http://fonts.googleapis.com/earlyaccess/$font.css", false, null, 'all' );
 }
 
-
-/**
- * Social Media icon helper functions
- * 
- * @return array
- * 
- * @link: https://www.competethemes.com/social-icons-wordpress-menu-theme-customizer/
- */
-function gojoseon_get_social_sites() {
-    
-    // Store social site names in array
-    $social_sites = array(
-        'twitter', 
-        'facebook', 
-        'google-plus',
-        'flickr',
-        'pinterest', 
-        'youtube',
-        'vimeo',
-        'tumblr',
-        'dribbble',
-        'rss',
-        'linkedin',
-        'instagram',
-        'email'
-    );
-    return $social_sites;
-}
-
-// Get user input from the Customizer and output the linked social media icons
-function gojoseon_show_social_icons() {
-    
-    $social_sites = gojoseon_get_social_sites();
-    
-    // Any inputs that aren't empty are stored in $active_sites array
-    foreach( $social_sites as $social_site ) {
-        if ( strlen( get_theme_mod( $social_site ) ) > 0 ) {
-            $active_sites[] = $social_site;
-        }
-    }
-    
-    // For each active social site, add it as a list item
-    if ( !empty( $active_sites ) ) {
-        echo "<ul class='social-media-icons'>";
-        
-        foreach ( $active_sites as $active_site ) { ?>
-
-            <li>
-                <a href="<?php echo get_theme_mod( $active_site ); ?>">
-                    <?php if( $active_site == 'vimeo' ) { ?>
-                        <i class="fa fa-<?php echo $active_site; ?>-square"></i> <?php
-                    } else if( $active_site == 'email' ) { ?>
-                        <i class="fa fa-envelope"></i> <?php
-                    } else { ?>
-                        <i class="fa fa-<?php echo $active_site; ?>"></i> <?php
-                    } ?>
-                </a>
-            </li> <?php
-        }
-        echo "</ul>";
-    }
-}
-
-
 /**
  * Categories Drop-Down List Control
  * 
+ * Implement in @VERSION2
+ * 
  * @link: http://code.tutsplus.com/articles/custom-controls-in-the-theme-customizer--wp-34556
  */
-if( class_exists( 'WP_Customize_Control' ) ) {
-class WP_Customize_Dropdown_Categories_Control extends WP_Customize_Control {
-    public $type = 'dropdown-categories';
-    
-    public function render_content() {
-        $dropdown = wp_dropdown_categories(
-                array(
-                    'name'          => '_customize-dropdown-categories-' . $this->id,
-                    'echo'          => 0,
-                    'hide_empty'    => false,
-                    'show_option_none'  => '&mdash; ' . __( 'Select', 'gojoseon' ) . ' &mdash;',
-                    'hide_if_empty'     => false,
-                    'selected'          => $this->value(),
-                )
-        );
-        
-        $dropdown = str_replace( '<select', '<select ' . $this->get_link(), $dropdown );
-        
-        printf(
-                '<label class="customize-control-select"><span class="customize-control-title">%s</span> %s</label>',
-                $this->label,
-                $dropdown
-        );
-    }
-}
-}
+//if( class_exists( 'WP_Customize_Control' ) ) {
+//class WP_Customize_Dropdown_Categories_Control extends WP_Customize_Control {
+//    public $type = 'dropdown-categories';
+//    
+//    public function render_content() {
+//        $dropdown = wp_dropdown_categories(
+//                array(
+//                    'name'          => '_customize-dropdown-categories-' . $this->id,
+//                    'echo'          => 0,
+//                    'hide_empty'    => false,
+//                    'show_option_none'  => '&mdash; ' . __( 'Select', 'gojoseon' ) . ' &mdash;',
+//                    'hide_if_empty'     => false,
+//                    'selected'          => $this->value(),
+//                )
+//        );
+//        
+//        $dropdown = str_replace( '<select', '<select ' . $this->get_link(), $dropdown );
+//        
+//        printf(
+//                '<label class="customize-control-select"><span class="customize-control-title">%s</span> %s</label>',
+//                $this->label,
+//                $dropdown
+//        );
+//    }
+//}
+//}
 
-
+/* -----------------------------------------------------------------------------
+ * Sanitize functions
+ * ----------------------------------------------------------------------------- */
+            
 /**
  * Sanitize Copyright Message Helper function
  * 

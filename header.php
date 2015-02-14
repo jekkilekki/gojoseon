@@ -18,69 +18,6 @@
 
 <?php wp_head(); ?>
 
-<?php
-/**
- * Customizer options
- */
-    $header_textcolor = get_theme_mod( 'header_textcolor', '#000' );
-    $content_text_color = get_option( 'content_text_color', '#333' );
-    $content_link_color = get_option( 'content_link_color', '#cd7f32' );
-    $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
-    $sidebar_display = 'block';
-    if ( $sidebar_position == 'none' ) {
-        $sidebar_display = 'none';
-    } else if ( $sidebar_position == 'left' ) {
-        $content_position = 'right';
-    } else {
-        $content_position = 'left';
-    }
-    
-    // @TODO: Fix this whole repositioning thing for different Theme Customizer options
-    $quickmenu_position = get_theme_mod( 'quickmenu_position', 'left' );
-    if ( $quickmenu_position == 'none' ) {
-        $quickmenu = false;
-        $row_padding = '256px';
-        $row_padding_right = '0px';
-        $primarymenu_margin = '0px';
-    } else if ( $quickmenu_position == 'right' ) {
-        $quickmenu = true;
-        $row_padding = '256px';
-        $row_padding_right = '64px';
-        $primarymenu_margin = '0px';
-    } else {
-        $quickmenu = true;
-        $row_padding = '320px';
-        $rox_padding_right = '0px';
-        $primarymenu_margin = '64px';
-    }
-    
-    $content_font = get_theme_mod( 'content_font', 'Roboto' );
-    $header_font = get_theme_mod( 'header_font', 'Roboto Slab' );
-    
-    if ( get_header_image() ) {
-        $header_border_width = '0px';
-    } else {
-        $header_border_width = '5px';
-    }
-    
-?>
-<style>
-    body { color: <?php echo $content_text_color; ?>; font-family: <?php echo $content_font; ?>; }
-    h1, h2, h3, h4, h5, h6 { font-family: <?php echo $header_font; ?>; }
-    a { color: <?php echo $content_link_color; ?>; }
-    #primary { float: <?php echo $content_position; ?>; }
-    #secondary { display: <?php echo $sidebar_display; ?>; }
-    #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
-    #search-container { <?php echo $quickmenu_position; ?>: 4rem; }
-    .padded-row { padding-left: <?php echo $row_padding; ?>; padding-right: <?php echo $row_padding_right; ?>; } // Give extra padding for the Quickmenu
-    #primary-menu { margin-left: <?php echo $primarymenu_margin; ?>; }
-    #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
-    #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
-    <?php if ( get_theme_mod ( 'logo_image_background_color' ) == 1 ) : ?> 
-        .site-branding { background-color: transparent; }
-    <?php endif; ?>
-</style>
-
 </head>
 
 <body <?php body_class(); ?>>
@@ -94,7 +31,7 @@
 <div id="page" class="hfeed site main-section">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'gojoseon' ); ?></a>
 
-        <?php if ( $quickmenu ) {
+        <?php if ( get_theme_mod( 'quickmenu_position', 'left' ) !== 'none' ) {
             echo '<div id="quickmenu-wrap">';
                 get_template_part( 'quickmenu' );
             echo '</div><!-- #quickmenu-wrap -->';
@@ -140,36 +77,40 @@
                 </nav><!-- End #site-nav -->
             </div><!-- End #primary-menu -->
             
+
+            <?php if ( get_header_image() ) : ?>
+            <!-- Header Image -->
+            <div class="row header-image-row <?php if ( get_theme_mod( 'logo_image_background_color' ) != 1 ) { echo 'padded-row'; } else { echo ''; } ?>">
+                <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">
+                </div>
+            </div>
+            <?php endif; // End header image check. ?>
             
             
-            <div class="row padded-row"
+            <div class="row padded-row">
+                
                 <!-- Header area -->
-                <header id="masthead" class="site-header large-12 columns" role="banner">
+                <header id="masthead" class="site-header" role="banner">
 
-                    <?php if ( get_header_image() ) : ?>
-                        <!-- Header Image -->
-                        <div class="header-image<?php if ( get_theme_mod( 'header_image_type' ) ) { ?>-pattern<?php } ?>" style="background: url(<?php header_image(); ?>)">;
+                    <div class="header-wrap large-12 columns">
+                        <!-- Top Widgetized Area -->
+                        <div class="large-12 columns sidebar-top">
+                            <?php get_sidebar( 'header' ); ?>
                         </div>
-                    <?php endif; // End header image check. ?>
 
+                        <!-- Site description/tagline -->
+                        <div class=" large-6 small-9 columns">
+                            <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                        </div>
 
-                    <!-- Top Widgetized Area -->
-                    <div class="large-12 columns sidebar-top">
-                        <?php get_sidebar( 'header' ); ?>
-                    </div>
-
-                    <!-- Site description/tagline -->
-                    <div class=" large-6 small-9 columns">
-                        <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-                    </div>
-
-                    <!-- Menu bar over sidebar -->
-                    <div class=" large-6 small-3 columns">
-                        <nav id="site-navigation" class="top-navigation" role="navigation">
-                            <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
-                            <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
-                        </nav><!-- #top-navigation -->
-                    </div>
+                        <!-- Menu bar over sidebar -->
+                        <div class=" large-6 small-3 columns">
+                            <nav id="site-navigation" class="top-navigation" role="navigation">
+                                <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Top Menu', 'gojoseon' ); ?></button>
+                                <?php wp_nav_menu( array( 'theme_location' => 'top' ) ); ?>
+                            </nav><!-- #top-navigation -->
+                        </div>
+                    </div><!-- .header-wrap -->
 
                 </header><!-- End header #masthead -->
             </div><!-- .row .padded-row -->
@@ -180,7 +121,7 @@
                 <div id="content" class="site-content large-12 columns" data-equalizer> 
 
                 <!-- Main Content Area -->  
-                <?php if ( $sidebar_display == 'none' || is_page_template( 'page-templates/page-nosidebar.php' ) ) {
+                <?php if ( get_theme_mod( 'sidebar_position', 'right' ) == 'none' || is_page_template( 'page-templates/page-nosidebar.php' ) ) {
                     echo '<div id="primary" class="content-area large-12 columns full-width" data-equalizer-watch>';
                 } else {
                     echo '<div id="primary" class="content-area large-9 medium-12 columns" data-equalizer-watch>';
