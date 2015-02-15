@@ -380,7 +380,7 @@ function the_breadcrumb() {
     if ( !is_home() ) {
         echo '<ul id="breadcrumbs" class="breadcrumbs">';
         echo '<li><a href="';
-        echo get_option( 'home' );
+        echo home_url();
         echo '">';
         echo 'Home';
         echo '</a></li>';
@@ -506,62 +506,6 @@ function gojoseon_social_menu() {
                 )   
         );
     }
-}
-
-/**
- * Social Sharing buttons in Single Posts
- * 
- * @link: http://kikolani.com/social-sharing-buttons-in-single-post-templates.html
- * @TODO: DELETE THIS FUNCTION
- */
-function gojoseon_social_sharing_buttons() {
-    
-    if( !is_home() ) {
-    
-    ?>
-    <div class="social-sharing">
-    <!-- TWITTER -->
-    <div id="tweetthis">
-        <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-        <div>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-via="jekkilekki" data-size="medium">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-    </div>
-            
-    <!-- FACEBOOK -->
-    <div id="likethis">
-        <iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo rawurlencode( get_permalink() ); ?>&layout=button_count&show_faces=false&&share=true&width=100&action=like&font=verdana&colorscheme=light&height=21" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;; height: 21px;" allowTransparency="true">
-        </iframe>
-    </div>
-    
-    <!-- GOOGLE+ -->
-    <div id="plusonethis">
-        <g:plusone size="medium"></g:plusone>
-    </div>
-    
-    <!-- LINKEDIN -->
-    <div id="linkthisin">
-        <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
-        <script type="in/share" data-counter="right"></script>
-    </div>
-    
-    <!-- STUMBLEUPON -->
-    <div id="stumblethis">
-        <script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
-    </div>
-    
-    <!-- PINTEREST -->
-    
-    <!-- REDDIT -->
-    
-    <!-- DIGG -->
-    
-    <!-- EMAIL -->
-    
-    </div>
-
-    <?php  }
 }
 
 /**

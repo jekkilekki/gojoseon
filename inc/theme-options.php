@@ -25,7 +25,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     $wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Logo, & Tagline', 'gojoseon' );
     $wp_customize->get_section( 'nav' )->title = __( 'Menus', 'gojoseon' );
     
-    $wp_customize->add_setting( 'gojoseon_logo' );
+    $wp_customize->add_setting( 'gojoseon_logo', array( 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control(
             new WP_Customize_Image_Control(
                     $wp_customize,
@@ -39,7 +39,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
             )
     );
     
-    $wp_customize->add_setting( 'logo_image_background_color' );
+    $wp_customize->add_setting( 'logo_image_background_color', array( 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( 
             'logo_image_background_color',
             array (
@@ -91,7 +91,8 @@ function gojoseon_theme_customizer( $wp_customize ) {
                 $font[ 'slug' ], array(
                     'default'       => $font[ 'default' ],
                     'type'          => 'theme_mod',
-                    'capability'    => 'edit_theme_options'
+                    'capability'    => 'edit_theme_options',
+                    'sanitize_callback' => 'gojoseon_sanitize_font_select'
                 )
         );
         
@@ -173,7 +174,8 @@ function gojoseon_theme_customizer( $wp_customize ) {
                 $color[ 'slug' ], array(
                     'default'       => $color[ 'default' ],
                     'type'          => 'option',
-                    'capability'    => 'edit_theme_options'
+                    'capability'    => 'edit_theme_options',
+                    'sanitize_callback' => 'sanitize_hex_color'
                 )
         );
         
@@ -204,6 +206,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     $wp_customize->add_setting( 'sidebar_position', array(
         'default'   => 'right',
         'type'      => 'theme_mod',
+        'sanitize_callback' => 'gojoseon_sanitize_sidebar_position'
     ));
     $wp_customize->add_control( 'sidebar_position', array(
         'label'     => __( 'Sidebar Position', 'gojoseon' ),
@@ -238,6 +241,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     // Show Excerpts?
     $wp_customize->add_setting( 'show_excerpts', array(
         'default'   => false,
+        'sanitize_callback' => 'gojoseon_sanitize_checkbox'
     ));
     $wp_customize->add_control( 'show_excerpts', array(
         'label'     => __( 'Show post excerpts?', 'gojoseon' ),
@@ -253,6 +257,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     // Show Breadcrumbs?
     $wp_customize->add_setting( 'show_breadcrumbs', array(
         'default'   => true,
+        'sanitize_callback' => 'gojoseon_sanitize_checkbox'
     ));
     $wp_customize->add_control( 'show_breadcrumbs', array(
         'label'     => __( 'Show breadcrumbs?', 'gojoseon' ),
@@ -265,7 +270,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
     /**
      * Header Image: Is this a Pattern (tileable) or Image (should stretch)?
      */
-    $wp_customize->add_setting( 'header_image_type' );
+    $wp_customize->add_setting( 'header_image_type', array( 'sanitize_callback' => 'gojoseon_sanitize_checkbox' ) );
     $wp_customize->add_control( 'header_image_type', array(
         'label'     => __( 'Is your image a (tileable) pattern?', 'gojoseon' ),
         'section'   => 'header_image',
@@ -273,7 +278,7 @@ function gojoseon_theme_customizer( $wp_customize ) {
         'type'      => 'checkbox',
     ));
     
-    $wp_customize->add_setting( 'header_lines' );
+    $wp_customize->add_setting( 'header_lines', array( 'sanitize_callback' => 'gojoseon_sanitize_checkbox' ) );
     $wp_customize->add_control( 'header_lines', array( 
         'label'     => __( 'Show the lines under the header?', 'gojoseon' ),
         'section'   => 'header_image',
@@ -440,7 +445,7 @@ function gojoseon_customize_css() {
     $sidebar_position = get_theme_mod( 'sidebar_position', 'right' );
     $sidebar_display = 'block';
     if ( $sidebar_position == 'none' ) {
-        $sidebar_display = 'none';
+        $sidebar_display = 'none'; 
     } else if ( $sidebar_position == 'left' ) {
         $content_position = 'right';
     } else {
@@ -473,25 +478,23 @@ function gojoseon_customize_css() {
         $header_border_width = '0px';
     }
     
-    
-    // Background Image
-    
-    // Menus
-    
-    // Widgets
-    
-    // Static Front Page
-    
-    // Footer Options
+    /* Background Image */
+    /* Menus */
+    /* Widgets */
+    /* Static Front Page */
+    /* Footer Options */
       
 ?>
 <style>
     body { background: <?php echo $background_color; ?>; color: <?php echo $content_text_color; ?>; font-family: <?php echo $content_font; ?>; }
+    .edit-link a, .comments-link a, .posted-on a, .byline a, .comment-metadata a, .reply a, .continue-reading a { color: <?php echo $content_text_color; ?>; }
     
-    h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, h6, h6 a { font-family: <?php echo $header_font; ?>; color: <?php echo $header_textcolor; ?>; }
+    h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, h6, h6 a, .entry-title, .entry-title a { font-family: <?php echo $header_font; ?>; color: #<?php echo $header_textcolor; ?> }
     a { color: <?php echo $primary_color_links; ?>; }
-    a:hover, a:visited, a:focus { color: <?php echo $primary_color_hover; ?>; }
+    a:hover { color: <?php echo $primary_color_hover; ?>; }
     
+    .primary-nav, #secondary, #main { border-color: <?php echo $secondary_color_sidebar; ?>; }
+    .thick { border-color: <?php echo $primary_color_links; ?>; }
     #primary { float: <?php echo $content_position; ?>; }
     #secondary { display: <?php echo $sidebar_display; ?>; }
     #quickmenu, .topbutton { <?php echo $quickmenu_position; ?>: 0; }
@@ -500,12 +503,20 @@ function gojoseon_customize_css() {
     #primary-menu { margin-left: <?php echo $primarymenu_margin; ?>; }
     #top-navigation ul li a { color: <?php echo $header_textcolor; ?>; }
     #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
+    
+    .site-branding { background-color: <?php echo $secondary_color_hover; ?>; }
     <?php if ( get_theme_mod ( 'logo_image_background_color' ) == 1 ) : ?> 
         .site-branding { background-color: transparent; }
     <?php endif; ?>
     <?php if ( get_header_image() ) : ?>
         #masthead { background-color: transparent; margin-top: -160px; }
     <?php endif; ?>
+        
+    .comments-title, #reply-title { border-color: <?php echo $primary_color_links; ?>; }
+    .widget-title { border-color: <?php echo $secondary_color_sidebar; ?>; }
+    .search-toggle:hover, .topbutton:hover { background: <?php echo $secondary_color_sidebar; ?>; }
+    .search-box { background: <?php echo $secondary_color_sidebar; ?>; }
+    
 
 </style>
 <?php
@@ -680,7 +691,49 @@ function gojoseon_enqueue_early_access_fonts( $font ) {
 /* -----------------------------------------------------------------------------
  * Sanitize functions
  * ----------------------------------------------------------------------------- */
-            
+
+/**
+ * Sanitize Font select callback
+ */
+function gojoseon_sanitize_font_select( $input ) {
+    $valid = array_merge( gojoseon_get_system_fonts(), gojoseon_get_google_fonts(), gojoseon_get_korean_fonts() );
+
+    if ( in_array( $input, $valid ) ) {
+        return $input;
+    } else {
+        return null;
+    }
+    
+}
+
+/**
+ * Sanitize Sidebar Position 
+ */
+function gojoseon_sanitize_sidebar_position( $input ) {
+    $valid = array(
+        'left'  => 'Left',
+        'right' => 'Right',
+        'none'  => 'None',
+    );
+    
+    if ( array_key_exists( $input, $valid ) ) {
+        return $input;
+    } else {
+        return '';
+    }
+}
+
+/**
+ * Sanitize Checkbox callback
+ */
+function gojoseon_sanitize_checkbox( $input ) {
+    if ( $input == 1 ) {
+        return 1;
+    } else {
+        return '';
+    }
+}
+
 /**
  * Sanitize Copyright Message Helper function
  * 

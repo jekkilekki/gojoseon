@@ -9,7 +9,7 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: gojoseon
 Domain Path: /languages/
-Tags: 
+Tags: green, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, full-width-template, theme-options, post-formats, sticky-post, threaded-comments, translation-ready
 
 http://www.wordpress.org/themes/tag-filter/ for the Tags above
 
@@ -2577,7 +2577,11 @@ ul#index li {
 .full-width #comments,
 .full-width .featured-article,
 .full-width .page-title,
-.full-width .featured-post {
+.full-width .featured-post,
+.full-width .paging-navigation,
+.full-width .comment-navigation,
+.full-width .post-navigation,
+.full-width .comments-list {
     max-width: 900px!important;
     margin: 0 auto;
 }
@@ -2585,6 +2589,9 @@ ul#index li {
 .full-width .blog-title {
     max-width: 1000px!important;
     margin: 0 auto 20px;
+}
+.full-width #primary {
+    margin-bottom: 3em;
 }
 
 /*--------------------------------------------------------------
