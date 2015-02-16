@@ -505,7 +505,7 @@ function gojoseon_customize_css() {
     #side-nav, #main, #secondary { border-top-width: <?php echo $header_border_width; ?>; }
     
     .site-branding { background-color: <?php echo $secondary_color_hover; ?>; }
-    <?php if ( get_theme_mod ( 'logo_image_background_color' ) == 1 ) : ?> 
+    <?php if ( get_theme_mod ( 'logo_image_background_color' ) === 1 ) : ?> 
         .site-branding { background-color: transparent; }
     <?php endif; ?>
     <?php if ( get_header_image() ) : ?>

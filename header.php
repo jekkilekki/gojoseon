@@ -94,8 +94,8 @@
 
                     <div class="header-wrap large-12 columns">
                         <!-- Top Widgetized Area -->
-                        <div class="large-12 columns sidebar-top">
-                            <?php get_sidebar( 'header' ); ?>
+                        <div class="large-12 columns google-ad-space">
+                            
                         </div>
 
                         <!-- Site description/tagline -->

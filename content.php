@@ -6,7 +6,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     
-    <?php if( has_post_thumbnail() || get_the_first_image() != '' ) {
+    <?php if( has_post_thumbnail() || get_the_first_image( 'index-thumb' ) != '' ) {
     
         echo '<div class="index-box">';    
         

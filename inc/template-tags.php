@@ -511,24 +511,30 @@ function gojoseon_social_menu() {
 /**
  * Get the first image of a post if there's no featured image set
  * 
- * @link: http://www.wprecipes.com/how-to-get-the-first-image-from-the-post-and-display-it
+ * Original @link: http://www.wprecipes.com/how-to-get-the-first-image-from-the-post-and-display-it
+ * Better   @link: https://gist.github.com/brajeshwar/1205901
  */
-function get_the_first_image() {
-    global $post, $posts;
+function get_the_first_image( $size ) {
+    if ( has_post_thumbnail() ) {
+        $image_id   = get_post_thumbnail();
+        $image_url  = wp_get_attachment_image_src( $image_id, $size );
+        $image_url  = $image_url[0];
+        
+    } else {
+        global $post, $posts;
     
-    $first_img = '';
+        $first_img = '';
+        ob_start();
+        ob_end_clean();
     
+        $output = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
+        $first_img = ( !empty ( $matches [1] [0] ) ) ? $matches [1] [0] : '';
     
-    ob_start();
-    ob_end_clean();
-    
-    $output = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
-    $first_img = ( !empty ( $matches [1] [0] ) ) ? $matches [1] [0] : '';
-    
-    if( empty( $first_img ) ) { // Defines a default image
-        // $first_img = get_template_directory_uri() . '/images/contemporary_china.png';
+        // Defines a default image
+        if( empty( $first_img ) ) { 
+            // $first_img = get_template_directory_uri() . '/images/contemporary_china.png';
+        }
     }
-    
     return $first_img;
 }
 
@@ -569,7 +575,7 @@ function gojoseon_featured_posts( $stickies ) {
         if ( has_post_thumbnail() ) {
             echo the_post_thumbnail( 'large-thumb' );
         } else {
-            echo '<img class="first-image" src="' . get_the_first_image() . '" />';
+            echo '<img class="first-image" src="' . get_the_first_image( 'large-thumb' ) . '" />';
         }
         echo '</a>';
         //echo '<div id="count"><i class="fa fa-thumb-tack"></i> Featured Post ' . $count . '</div>';
