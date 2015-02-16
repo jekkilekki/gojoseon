@@ -39,16 +39,17 @@ function gojoseon_theme_customizer( $wp_customize ) {
             )
     );
     
-    $wp_customize->add_setting( 'logo_image_background_color', array( 'sanitize_callback' => 'sanitize_hex_color' ) );
-    $wp_customize->add_control( 
-            'logo_image_background_color',
-            array (
-                'label'     => __( 'Hide logo background color?', 'gojoseon' ),
-                'section'   => 'title_tagline',
-                'type'      => 'checkbox',
-                'priority'  => 15
-            )
-    );
+    // Add back in in @VERSION2
+//    $wp_customize->add_setting( 'logo_image_background_color', array( 'sanitize_callback' => 'sanitize_hex_color' ) );
+//    $wp_customize->add_control( 
+//            'logo_image_background_color',
+//            array (
+//                'label'     => __( 'Hide logo background color?', 'gojoseon' ),
+//                'section'   => 'title_tagline',
+//                'type'      => 'checkbox',
+//                'priority'  => 15
+//            )
+//    );
     
     //Adjust the order of Site Title & Tagline controls
     $wp_customize->get_control( 'blogname' )->priority = 10;
